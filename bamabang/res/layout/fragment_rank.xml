@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/common_white_gray">
+
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+            >
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:id="@+id/tabLayout"
+                android:baselineAligned="false"
+                android:background="@color/common_white">
+
+            <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/weekRankFl">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/weekRankText"
+                        android:layout_gravity="center"
+                        android:text="周排行榜"
+                        android:textColor="@color/btn_logout_pressed"
+                        android:textSize="16dp"
+                        />
+            </FrameLayout>
+
+            <View android:layout_width="0.5dp" android:layout_height="match_parent"
+                    android:background="@color/gray_pressed"/>
+            <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/monthRankFL">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/monthRankText"
+                        android:layout_gravity="center"
+                        android:text="总排行榜"
+                        android:textSize="16dp"
+                        android:textColor="@color/gray_normal"
+                        />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:fadingEdge="none"
+            android:scrollbars="none" />
+
+</LinearLayout>

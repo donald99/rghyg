@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_white_gray">
+
+    <FrameLayout
+            android:id="@+id/title_parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="#FF0099"
+            >
+
+        <ImageView
+                android:id="@+id/back_btn"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="20dp"
+                android:src="@drawable/backwhite"
+                android:layout_gravity="left|center_vertical"/>
+        <TextView
+                android:id="@+id/title"
+                android:text="群组名称"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:textColor="@color/common_white"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+    <View
+            android:id="@+id/category_line"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:background="#ffdddddd" />
+
+
+    <TextView
+            android:text="请写出您的举报理由"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/text_gray_656074"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <EditText
+            android:id="@+id/et_jubao_info"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:hint="请输入举报信息"
+            android:maxLength="100"
+            android:background="@drawable/edit_bg"
+            android:gravity="left|top"
+            android:textColor="@color/text_gray_656074"
+            android:textSize="16sp" />
+
+    <TextView
+            android:id="@+id/tv_jubao"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FF0099"
+            android:textSize="18dp"
+            android:textColor="@color/common_white"
+            android:text="创建"
+            android:gravity="center"
+            />
+</LinearLayout>

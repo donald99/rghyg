@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_white_gray">
+
+    <FrameLayout
+            android:id="@+id/title_parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="#FF0099"
+            >
+
+        <ImageView
+                android:id="@+id/back_btn"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="20dp"
+                android:src="@drawable/backwhite"
+                android:layout_gravity="left|center_vertical"/>
+        <TextView
+                android:id="@+id/title"
+                android:text="群组名称"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:textColor="@color/common_white"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+
+        <ImageView
+                android:id="@+id/more"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="20dp"
+                android:src="@drawable/more"
+                android:layout_gravity="right|center_vertical"/>
+
+    </FrameLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60.0dip"
+            android:background="#fff3f3f3"
+            android:orientation="horizontal" >
+
+        <RelativeLayout
+                android:id="@+id/rl_column"
+                android:layout_width="match_parent"
+                android:layout_height="60.0dip"
+                android:layout_weight="1.0" >
+
+            <com.example.Bama.widget.ColumnHorizontalScrollView
+                    android:id="@+id/mColumnHorizontalScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="60.0dip"
+                    android:scrollbars="none" >
+
+                <LinearLayout
+                        android:id="@+id/mRadioGroup_content"
+                        android:layout_width="fill_parent"
+                        android:layout_height="60.0dip"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10.0dip"
+                        android:paddingRight="10.0dip" />
+            </com.example.Bama.widget.ColumnHorizontalScrollView>
+
+            <ImageView
+                    android:id="@+id/shade_left"
+                    android:layout_width="10.0dip"
+                    android:layout_height="60.0dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/channel_leftblock"
+                    android:visibility="gone" />
+
+            <ImageView
+                    android:id="@+id/shade_right"
+                    android:layout_width="10.0dip"
+                    android:layout_height="60.0dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/channel_rightblock"
+                    android:visibility="visible" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+            android:id="@+id/category_line"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:background="#ffdddddd" />
+
+    <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#dadae5" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:id="@+id/tabLayout"
+                android:baselineAligned="false"
+                android:background="@color/common_white">
+
+            <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/descFl">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/descText"
+                        android:layout_gravity="center"
+                        android:text="简介"
+                        android:textColor="@color/black_deep"
+                        />
+            </FrameLayout>
+            <View android:layout_width="0.5dp" android:layout_height="match_parent"
+                  android:background="@color/gray_pressed"/>
+            <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/groupchatFL">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/groupchatText"
+                        android:layout_gravity="center"
+                        android:text="聊天"
+                        android:textColor="@color/black_deep"
+                        />
+            </FrameLayout>
+            <View android:layout_width="0.5dp" android:layout_height="match_parent"
+                  android:background="@color/gray_pressed"/>
+            <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/rankFL"
+                    android:background="@color/common_top_bar_blue"
+                    >
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rankText"
+                        android:layout_gravity="center"
+                        android:text="排行"
+                        android:textColor="@color/black_deep"
+                         />
+            </FrameLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:background="#ffdddddd" />
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragementLayout"
+            android:layout_above="@id/layout"></FrameLayout>
+
+</LinearLayout>

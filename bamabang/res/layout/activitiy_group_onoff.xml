@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_white_gray">
+
+    <FrameLayout
+            android:id="@+id/title_parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="#FF0099"
+            >
+
+        <ImageView
+                android:id="@+id/back_btn"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="20dp"
+                android:src="@drawable/backwhite"
+                android:layout_gravity="left|center_vertical"/>
+        <TextView
+                android:id="@+id/title"
+                android:text="群组消息提示"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:textColor="@color/common_white"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+    <View
+            android:id="@+id/category_line"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:background="#ffdddddd" />
+
+    <FrameLayout
+            android:id="@+id/on_tip"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/btn_gray_normal">
+
+        <TextView
+                android:textSize="16dp"
+                android:text="开启"
+                android:textColor="@color/black_deep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                />
+
+    </FrameLayout>
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#ffdddddd" />
+    <FrameLayout
+            android:id="@+id/off_tip"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/btn_gray_normal"
+            >
+        <TextView
+                android:text="关闭"
+                android:textSize="16dp"
+                android:textColor="@color/black_deep"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                />
+
+    </FrameLayout>
+</LinearLayout>

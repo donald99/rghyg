@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/common_white"
+        >
+
+    <FrameLayout
+            android:id="@+id/avatar_container"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+        <ImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo"
+                />
+        <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/circle_header_path_white"/>
+    </FrameLayout>
+
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@+id/avatar_container"
+            android:orientation="vertical"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                    android:id="@+id/grouptitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:textSize="18dp"
+                    android:text="12414124"
+                    android:textColor="@color/btn_gray_pressed"
+                    />
+            <ImageView
+                    android:id="@+id/hotimage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="群人数"
+                    android:textSize="12dp"
+                    android:textColor="@android:color/darker_gray"
+                    />
+            <TextView
+                    android:id="@+id/grouppeople"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="1000"
+                    android:textSize="12dp"
+                    android:textColor="@android:color/darker_gray"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                    android:id="@+id/lastmsgtext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:textSize="16dp"
+                    android:text="欢迎加入宝宝群圈"
+                    android:textColor="@color/btn_gray_normal"
+                    />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#dadae5" />
+
+
+</RelativeLayout>
