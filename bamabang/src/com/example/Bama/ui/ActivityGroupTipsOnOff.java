@@ -1,6 +1,8 @@
 package com.example.Bama.ui;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -11,7 +13,18 @@ public class ActivityGroupTipsOnOff extends ActivityBase implements View.OnClick
 
     private FrameLayout on_tip,off_tip;
 
-    @Override
+	public static void open(Activity activity){
+		Intent intent = new Intent(activity,ActivityGroupTipsOnOff.class);
+		activity.startActivity(intent);
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		setContentView(R.layout.activitiy_group_onoff);
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
     protected void getViews() {
 
     }
@@ -26,12 +39,6 @@ public class ActivityGroupTipsOnOff extends ActivityBase implements View.OnClick
     @Override
     protected void setListeners() {
         on_tip.setOnClickListener(this);off_tip.setOnClickListener(this);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activitiy_group_onoff);
-        super.onCreate(savedInstanceState);
     }
 
     @Override

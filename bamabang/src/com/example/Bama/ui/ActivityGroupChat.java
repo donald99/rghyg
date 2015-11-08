@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import com.example.Bama.Bean.GroupMemberEntity;
 import com.example.Bama.R;
@@ -14,6 +15,8 @@ import com.example.Bama.ui.Views.ViewMemberHeaderItem;
 import com.example.Bama.ui.fragment.*;
 import com.example.Bama.util.DisplayUtil;
 import com.example.Bama.widget.ColumnHorizontalScrollView;
+import com.example.Bama.widget.XYBottomDialog;
+import com.example.Bama.widget.XYGroupCustomerDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 
 	private ArrayList<GroupMemberEntity> memberList = new ArrayList<GroupMemberEntity>();
 
+	private ImageView more;
 	private FrameLayout descFL;
 	private TextView descText;
 	private FrameLayout groupChatFL;
@@ -47,12 +51,29 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 	}
 
 	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		setContentView(R.layout.activity_group_chat);
+		super.onCreate(savedInstanceState);
+
+		for (int i = 0; i < 10; i++) {
+			GroupMemberEntity entity = new GroupMemberEntity();
+			entity.name = "name";
+			entity.accountId = "123123";
+			entity.avatar = "http://img.name2012.com/uploads/allimg/2015-06/30-023131_451.jpg";
+			entity.isMaster = false;
+			memberList.add(entity);
+		}
+		initHeaderColumn(memberList);
+	}
+
+	@Override
 	protected void getViews() {
 
 	}
 
 	@Override
 	protected void initViews() {
+		more = (ImageView) findViewById(R.id.more);
 		mColumnHorizontalScrollView = (ColumnHorizontalScrollView) findViewById(R.id.mColumnHorizontalScrollView);
 		mRadioGroup_content = (LinearLayout) findViewById(R.id.mRadioGroup_content);
 		shade_left = (ImageView) findViewById(R.id.shade_left);
@@ -76,6 +97,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 	@Override
 	protected void setListeners() {
 		findViewById(R.id.back_btn).setOnClickListener(this);
+		more.setOnClickListener(this);
 		descFL.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -160,29 +182,30 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 		updateImageViewsStatus(0);
 	}
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.activity_group_chat);
-		super.onCreate(savedInstanceState);
-
-		for (int i = 0; i < 10; i++) {
-			GroupMemberEntity entity = new GroupMemberEntity();
-			entity.name = "name";
-			entity.accountId = "123123";
-			entity.avatar = "http://img.name2012.com/uploads/allimg/2015-06/30-023131_451.jpg";
-			entity.isMaster = false;
-			memberList.add(entity);
-		}
-		initHeaderColumn(memberList);
-	}
-
 	private void initHeaderColumn(List<GroupMemberEntity> models) {
 		mRadioGroup_content.removeAllViews();
-		for (final GroupMemberEntity model : models) {
+		for (int i = 0; i < models.size(); i++) {
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			if(i != models.size() -1){
+				params.rightMargin = DisplayUtil.dip2px(this,13);
+			}
 			ViewMemberHeaderItem item = new ViewMemberHeaderItem(ActivityGroupChat.this);
-			item.setData(model);
-			mRadioGroup_content.addView(item);
+			item.setData(models.get(i));
+			mRadioGroup_content.addView(item,params);
 		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (XYBottomDialog.isShowing(this)) {
+			XYBottomDialog.onBackPressed(this);
+			return;
+		}
+		if (XYGroupCustomerDialog.isShowing(this)) {
+			XYGroupCustomerDialog.onBackPressed(this);
+			return;
+		}
+		super.onBackPressed();
 	}
 
 	@Override
@@ -190,6 +213,32 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 		switch (view.getId()) {
 		case R.id.back_btn:
 			finish();
+			break;
+		case R.id.more:
+			if (XYBottomDialog.hasDlg(this)) {
+				XYBottomDialog.getDlgView(this).show();
+			} else {
+				XYBottomDialog.showDialog(this, new XYBottomDialog.XYShareDialogListener() {
+					@Override
+					public void groupMessageTip() {
+						ActivityGroupTipsOnOff.open(ActivityGroupChat.this);
+					}
+
+					@Override
+					public void reportGroup() {
+						ActivityJubao.open(ActivityGroupChat.this);
+					}
+
+					@Override
+					public void exitGroup() {
+						Toast.makeText(ActivityGroupChat.this, "exitGroup", Toast.LENGTH_SHORT).show();
+					}
+
+					@Override
+					public void cancel() {
+					}
+				});
+			}
 			break;
 		case R.id.creategroup:
 			Toast.makeText(this, "creategroup", Toast.LENGTH_LONG).show();

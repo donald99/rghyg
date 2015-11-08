@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="view_alert_dlg_no_title" type="id"/>
+
+    <item name="hc_pop_listview" type="id"/>
+
+    <item name="view_date_pick_dlg" type="id"/>
+
+    <item name="xy_share_dialog" type="id"/>
+
+    <item name="xy_tips_dialog" type="id"/>
+
+    <item name="xy_group_customer_dialog" type="id"/>
+
+</resources>
