@@ -79,13 +79,11 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT);
             params.leftMargin = 5;
             params.rightMargin = 5;
-            params.topMargin = 10;
-            params.bottomMargin = 10;
             TextView columnTextView = new TextView(activity);
             columnTextView.setTextAppearance(activity, R.style.top_category_scroll_view_item_text);
             columnTextView.setBackgroundResource(R.drawable.radio_buttong_bg);
             columnTextView.setGravity(Gravity.CENTER);
-            columnTextView.setPadding(12, 12, 12, 12);
+            columnTextView.setPadding(5, 5, 5, 5);
             columnTextView.setId(i);
             columnTextView.setText(userChannelList.get(i).getName());
             columnTextView.setTextColor(getResources().getColorStateList(R.color.top_category_scroll_text_color_day));
