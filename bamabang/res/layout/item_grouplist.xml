@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/common_white_gray"
-        >
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_white_gray">
 
     <FrameLayout
             android:id="@+id/avatar_container"
@@ -19,15 +18,12 @@
                 android:layout_height="57dp"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/logo"
-                />
+                android:src="@drawable/logo"/>
         <ImageView
                 android:layout_width="57dp"
                 android:layout_height="57dp"
                 android:background="@drawable/circle_header_path_white"/>
     </FrameLayout>
-
-
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,13 +85,8 @@
 
         </LinearLayout>
     </LinearLayout>
-
-
-
     <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="#dadae5" />
-
-
+            android:background="#dadae5"/>
 </RelativeLayout>

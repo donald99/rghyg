@@ -20,11 +20,12 @@
         android:layout_centerInParent="true"
         android:src="@drawable/logo" />
 
-    <ListView
+    <com.example.Bama.widget.RefreshListView
         android:id="@+id/mListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
         android:dividerHeight="0dp"
         android:fadingEdge="none"
         android:scrollbars="none" />

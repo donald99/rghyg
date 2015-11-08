@@ -8,23 +8,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.Bama.R;
 
-public class DescFragment extends Fragment implements View.OnClickListener{
+/**
+ * 群圈简介界面*
+ */
+public class DescFragment extends Fragment implements View.OnClickListener {
 
-    private Activity activity;
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_group_desc, container, false);
-        return rootView;
-    }
+	private Activity activity;
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        this.activity = activity;
-    }
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.fragment_group_desc, container, false);
+		return rootView;
+	}
 
-    @Override
-    public void onClick(View view) {
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.activity = activity;
+	}
 
-    }
+	@Override
+	public void onClick(View view) {
+
+	}
 }

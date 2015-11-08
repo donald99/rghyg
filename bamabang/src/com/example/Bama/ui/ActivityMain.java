@@ -9,13 +9,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import com.example.Bama.R;
 import com.example.Bama.ui.fragment.GroupFragment;
 import com.example.Bama.ui.fragment.MeFragment;
 import com.example.Bama.ui.fragment.NewsFragment;
 import com.example.Bama.ui.fragment.ShopFragment;
 
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +27,13 @@ public class ActivityMain extends ActivityBase {
 
     public static boolean isConflict = false;
 
-    private FrameLayout newsFL;
+    private LinearLayout newsLL;
     private ImageView newsImage;
-    private FrameLayout groupFL;
+    private LinearLayout groupLL;
     private ImageView groupImage;
-    private FrameLayout shopFL;
+    private LinearLayout shopLL;
     private ImageView shopImage;
-    private FrameLayout mineFL;
+    private LinearLayout mineLL;
     private ImageView mineImage;
 
     private Fragment mFragmentCurrent;
@@ -58,13 +58,13 @@ public class ActivityMain extends ActivityBase {
 
     @Override
     protected void getViews() {
-        newsFL = (FrameLayout) findViewById(R.id.newsFl);
+        newsLL = (LinearLayout) findViewById(R.id.newsLL);
         newsImage = (ImageView) findViewById(R.id.newsImage);
-        groupFL = (FrameLayout) findViewById(R.id.groupFL);
+        groupLL = (LinearLayout) findViewById(R.id.groupLL);
         groupImage = (ImageView) findViewById(R.id.groupImage);
-        shopFL = (FrameLayout) findViewById(R.id.shopFL);
+        shopLL = (LinearLayout) findViewById(R.id.shopLL);
         shopImage = (ImageView) findViewById(R.id.shopImage);
-        mineFL = (FrameLayout) findViewById(R.id.mineFL);
+        mineLL = (LinearLayout) findViewById(R.id.mineLL);
         mineImage = (ImageView) findViewById(R.id.mineImage);
 
         imageViews.add(newsImage);
@@ -80,49 +80,49 @@ public class ActivityMain extends ActivityBase {
 
     @Override
     protected void setListeners() {
-        newsFL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateImageViewsStatus(0);
-                if (fragmentNews == null) {
-                    fragmentNews = new NewsFragment();
-                }
-                switchContent(mFragmentCurrent, fragmentNews);
-            }
-        });
+        newsLL.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				updateImageViewsStatus(0);
+				if (fragmentNews == null) {
+					fragmentNews = new NewsFragment();
+				}
+				switchContent(mFragmentCurrent, fragmentNews);
+			}
+		});
 
-        groupFL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateImageViewsStatus(1);
-                if (fragmentGroup == null) {
-                    fragmentGroup = new GroupFragment();
-                }
-                switchContent(mFragmentCurrent, fragmentGroup);
-            }
-        });
+        groupLL.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				updateImageViewsStatus(1);
+				if (fragmentGroup == null) {
+					fragmentGroup = new GroupFragment();
+				}
+				switchContent(mFragmentCurrent, fragmentGroup);
+			}
+		});
 
-        shopFL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateImageViewsStatus(2);
-                if (fragmentShop == null) {
-                    fragmentShop = new ShopFragment();
-                }
-                switchContent(mFragmentCurrent, fragmentShop);
-            }
-        });
+        shopLL.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				updateImageViewsStatus(2);
+				if (fragmentShop == null) {
+					fragmentShop = new ShopFragment();
+				}
+				switchContent(mFragmentCurrent, fragmentShop);
+			}
+		});
 
-        mineFL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateImageViewsStatus(3);
-                if (fragmentMine == null) {
-                    fragmentMine = new MeFragment();
-                }
-                switchContent(mFragmentCurrent, fragmentMine);
-            }
-        });
+        mineLL.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				updateImageViewsStatus(3);
+				if (fragmentMine == null) {
+					fragmentMine = new MeFragment();
+				}
+				switchContent(mFragmentCurrent, fragmentMine);
+			}
+		});
 
         setDefaultFragment();
     }

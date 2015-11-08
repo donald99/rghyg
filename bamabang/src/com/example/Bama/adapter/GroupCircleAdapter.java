@@ -23,20 +23,25 @@ public class GroupCircleAdapter extends BaseAdapter{
        return groupsList.size();
     }
 
-    @Override
-    public GroupCircleEntity getItem(int i) {
-        return groupsList.get(i);
-    }
+	@Override
+	public Object getItem(int position) {
+		return null;
+	}
 
-    @Override
+	@Override
     public long getItemId(int i) {
         return 0;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewGroupListItem item = new ViewGroupListItem(activity);
-        item.setGroupListItem(getItem(i));
+        ViewGroupListItem item = null;
+		if(view != null){
+			item = (ViewGroupListItem)view;
+		}else{
+			item = new ViewGroupListItem(activity);
+		}
+        item.setGroupListItem(groupsList.get(i));
         return item;
     }
 }
