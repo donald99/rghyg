@@ -4,20 +4,21 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/common_white_gray"
+              android:background="@color/common_white"
               android:orientation="vertical" >
     <FrameLayout
             android:id="@+id/title_parent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:background="#FF0099"
+            android:background="@color/title_bg"
             >
 
         <TextView
                 android:id="@+id/title"
                 android:text="群组"
-                android:textSize="16dp"
+                android:textSize="20dp"
+                android:textColor="@color/common_white"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -27,9 +28,11 @@
                 android:id="@+id/creatgroup"
                 android:text="创建"
                 android:gravity="center"
-                android:layout_width="58dp"
+                android:layout_margin="12dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:textSize="16dp"
+                android:textSize="15dp"
+                android:textColor="@color/common_white"
                 android:layout_gravity="right"/>
     </FrameLayout>
 
@@ -87,7 +90,7 @@
             android:id="@+id/category_line"
             android:layout_width="fill_parent"
             android:layout_height="0.5dip"
-            android:background="#ffdddddd" />
+            android:background="#e7e7e7" />
 
     <android.support.v4.view.ViewPager
             android:id="@+id/mViewPager"

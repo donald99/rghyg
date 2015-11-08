@@ -49,7 +49,6 @@ public class RankFragment extends Fragment implements View.OnClickListener{
         monthRankFL.setOnClickListener(this);
         monthRankText.setOnClickListener(this);
 
-
         mListView = (ListView) view.findViewById(R.id.listview);
 
         for (int i = 0; i < 10; i++) {
@@ -73,16 +72,14 @@ public class RankFragment extends Fragment implements View.OnClickListener{
         switch (view.getId()){
             case R.id.weekRankText:
             case  R.id. weekRankFl:
-                Toast.makeText(activity,"周排行榜",Toast.LENGTH_LONG).show();
-                weekRankText.setTextColor(getResources().getColor(R.color.btn_logout_normal));
-                monthRankText.setTextColor(getResources().getColor(R.color.gray_normal));
+                weekRankText.setTextColor(getResources().getColor(R.color.rank_press_font));
+                monthRankText.setTextColor(getResources().getColor(R.color.rank_unpress_font));
 
                 break;
             case R.id.monthRankText:
             case R.id.monthRankFL:
-                Toast.makeText(activity,"月排行榜",Toast.LENGTH_LONG).show();
-                weekRankText.setTextColor(getResources().getColor(R.color.gray_normal));
-                monthRankText.setTextColor(getResources().getColor(R.color.btn_logout_normal));
+                weekRankText.setTextColor(getResources().getColor(R.color.rank_unpress_font));
+                monthRankText.setTextColor(getResources().getColor(R.color.rank_press_font));
                 break;
         }
     }

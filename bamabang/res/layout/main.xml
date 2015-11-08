@@ -2,7 +2,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:id="@+id/rootView"
-        android:background="@color/common_white_gray">
+        android:background="@color/common_white">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -26,7 +26,7 @@
                     android:orientation="horizontal"
                     android:id="@+id/tabLayout"
                     android:baselineAligned="false"
-                    android:background="#FF0099">
+                    android:background="#FF6699">
 
                 <FrameLayout
                         android:layout_width="0dp"

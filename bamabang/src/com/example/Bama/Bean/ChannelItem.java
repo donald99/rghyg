@@ -33,32 +33,11 @@ public class ChannelItem implements Serializable {
 		return this.name;
 	}
 
-	public int getOrderId() {
-		return this.orderId.intValue();
-	}
-
-	public Integer getSelected() {
-		return this.selected;
-	}
-
 	public void setId(int paramInt) {
 		this.id = Integer.valueOf(paramInt);
 	}
 
 	public void setName(String paramString) {
 		this.name = paramString;
-	}
-
-	public void setOrderId(int paramInt) {
-		this.orderId = Integer.valueOf(paramInt);
-	}
-
-	public void setSelected(Integer paramInteger) {
-		this.selected = paramInteger;
-	}
-
-	public String toString() {
-		return "ChannelItem [id=" + this.id + ", name=" + this.name
-				+ ", selected=" + this.selected + "]";
 	}
 }

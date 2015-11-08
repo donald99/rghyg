@@ -30,7 +30,6 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 
     private ArrayList<GroupMemberEntity> memberList = new ArrayList<GroupMemberEntity>();
 
-
     private FrameLayout descFL;
     private TextView descText;
     private FrameLayout groupChatFL;
@@ -130,11 +129,11 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 
     private void setSelected(FrameLayout view,boolean bool){
         if (bool){
-            view.setBackgroundColor(getResources().getColor(R.color.btn_logout_pressed));
+            view.setBackgroundColor(getResources().getColor(R.color.title_bg));
             ((TextView)view.getChildAt(0)).setTextColor(getResources().getColor(R.color.common_white));
         }else{
             view.setBackgroundColor(getResources().getColor(R.color.common_white));
-            ((TextView)view.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_deep));
+            ((TextView)view.getChildAt(0)).setTextColor(getResources().getColor(R.color.title_font));
         }
     }
 

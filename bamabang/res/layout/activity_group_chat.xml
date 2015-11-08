@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:background="#FF0099"
+            android:background="@color/title_bg"
             >
 
         <ImageView
@@ -61,6 +61,8 @@
                     android:id="@+id/mColumnHorizontalScrollView"
                     android:layout_width="match_parent"
                     android:layout_height="60.0dip"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:scrollbars="none" >
 
                 <LinearLayout
@@ -133,7 +135,7 @@
                         android:id="@+id/descText"
                         android:layout_gravity="center"
                         android:text="简介"
-                        android:textColor="@color/black_deep"
+                        android:textColor="@color/common_white"
                         />
             </FrameLayout>
             <View android:layout_width="0.5dp" android:layout_height="match_parent"

@@ -4,7 +4,7 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="80.00dip"
-        android:background="@color/common_white_gray"
+        android:background="@color/rand_bg"
         >
 
     <TextView
@@ -12,28 +12,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#ff0099"
-            android:text="01"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="15dp"
             />
 
     <FrameLayout
             android:id="@+id/avatar_container"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_margin="20dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="14dp"
             android:orientation="vertical">
         <ImageView
                 android:id="@+id/ivAvatar"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:src="@drawable/logo"
                 />
         <ImageView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:background="@drawable/circle_header_path_white"/>
     </FrameLayout>
 
@@ -43,6 +42,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/gray_normal"
             android:text="RankRank"
+            android:textSize="15dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             />
@@ -52,11 +52,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/gray_normal"
-            android:layout_marginRight="20.00dip"
-            android:text="9999活跃值"
+            android:layout_marginRight="15.00dip"
             android:gravity="right"
             android:layout_gravity="right|center_vertical"
-            android:layout_marginLeft="10dp"
             />
 
     <View

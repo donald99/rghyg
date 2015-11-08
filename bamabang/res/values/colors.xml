@@ -29,7 +29,7 @@
     <color name="btn_blue_pressed">#0066FF</color>
     <color name="orange">#FFA500</color>
     <color name="gray_pressed">#b5b5b6</color>
-    <color name="gray_normal">#666667</color>
+    <color name="gray_normal">#666666</color>
     <color name="grid_state_pressed">#1Affffff</color>
     <color name="grid_state_focused">#80000000</color>
     <color name="voip_interface_text_color">#bababa</color>
@@ -41,4 +41,12 @@
     <color name="text_gray_656074">#656074</color>
     <color name="common_white_gray">#f1f1ed</color>
     <color name="line_color">#dadae5</color>
+
+    <color name="title_bg">#FF6699</color>
+    <color name="title_font">#333333</color>
+    <color name="lastmsg_font">#666666</color>
+    <color name="group_detail_font">#999999</color>
+    <color name="rand_bg">#F7F7F7</color>
+    <color name="rank_press_font">#FF6699</color>
+    <color name="rank_unpress_font">#cccccc</color>
 </resources>

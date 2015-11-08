@@ -79,11 +79,13 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT);
             params.leftMargin = 5;
             params.rightMargin = 5;
+            params.topMargin = 10;
+            params.bottomMargin = 10;
             TextView columnTextView = new TextView(activity);
             columnTextView.setTextAppearance(activity, R.style.top_category_scroll_view_item_text);
             columnTextView.setBackgroundResource(R.drawable.radio_buttong_bg);
             columnTextView.setGravity(Gravity.CENTER);
-            columnTextView.setPadding(5, 5, 5, 5);
+            columnTextView.setPadding(12, 12, 12, 12);
             columnTextView.setId(i);
             columnTextView.setText(userChannelList.get(i).getName());
             columnTextView.setTextColor(getResources().getColorStateList(R.color.top_category_scroll_text_color_day));
@@ -103,7 +105,6 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
                             mViewPager.setCurrentItem(i);
                         }
                     }
-                    Toast.makeText(activity, userChannelList.get(v.getId()).getName(), Toast.LENGTH_SHORT).show();
                 }
             });
             mRadioGroup_content.addView(columnTextView, i ,params);
@@ -169,7 +170,6 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.creatgroup:
-                Toast.makeText(activity,"CreateGroup",Toast.LENGTH_LONG).show();
                 ActivityCreateGroup.open(activity);
                 break;
         }

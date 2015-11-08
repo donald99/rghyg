@@ -4,7 +4,7 @@
         android:id="@+id/rootView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/common_white_gray"
+        android:background="@color/common_white"
         >
 <ScrollView
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:background="#FF0099"
+            android:background="@color/title_bg"
             >
 
             <ImageView
@@ -61,6 +61,7 @@
                 android:layout_marginTop="35dp"
                 android:layout_marginRight="22dp"
                 android:layout_marginLeft="22dp"
+                android:padding="10dp"
                 android:hint="输入群名称，不超过10个字"
                 android:background="@drawable/edit_bg"
                 android:maxLength="10"
@@ -82,11 +83,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:background="@drawable/edit_bg"
+                    android:text="宝宝城市"
+                    android:enabled="false"
                     android:maxLength="10"
                     android:ellipsize="end"
                     android:gravity="left|center"
+                    android:padding="10dp"
                     android:singleLine="true"
-                    android:text="babycity"
                     android:textColor="#656074"
                     android:textSize="16sp" />
 
@@ -95,7 +98,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/downchoose"
-                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="right|center_vertical"
                     />
         </FrameLayout>
 
@@ -104,6 +108,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
                 android:layout_margin="20dp"
+                android:padding="10dp"
                 android:hint="请输入群描述信息，不超过100字"
                 android:maxLength="100"
                 android:background="@drawable/edit_bg"
@@ -117,7 +122,7 @@
                 android:layout_height="44dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="#FF0099"
+                android:background="@color/title_bg"
                 android:textSize="18dp"
                 android:textColor="@color/common_white"
                 android:text="创建"
