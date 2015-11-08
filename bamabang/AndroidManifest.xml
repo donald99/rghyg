@@ -47,7 +47,7 @@
     <uses-feature android:name="android.hardware.camera.flash"/>
     <uses-feature android:name="android.hardware.camera.front"/>
     <application
-            android:name=".background.HCApplicaton"
+            android:name=".background.HCApplication"
             android:icon="@drawable/logo">
         <activity
                 android:name=".ui.ActivityMain"
@@ -57,6 +57,22 @@
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.NoTitleBar"
                 android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity
+                android:name=".ui.ActivityCreateGroup"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide"
+                android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity
+                android:name=".ui.account.ActivityLogin"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide"
+                android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -64,7 +80,7 @@
         </activity>
 
         <activity
-                android:name=".ui.ActivityCreateGroup"
+                android:name=".ui.account.ActivityRegister"
                 android:launchMode="singleTop"
                 android:screenOrientation="portrait"
                 android:theme="@style/horizontal_slide"
@@ -308,7 +324,7 @@
         <!-- 设置环信应用的appkey -->
         <meta-data
                 android:name="EASEMOB_APPKEY"
-                android:value="8mbang#8mbang"/>
+                android:value="lyaixy#bamabang"/>
         <!-- 声明sdk所需的service -->
         <service android:name="com.easemob.chat.EMChatService"/>
 

@@ -15,8 +15,6 @@ public class Account {
     public static final String kUserId = "key_user_id";
     public static final String kAvatar = "key_avatar";
     public static final String kUserName = "key_user_name";
-    public static final String kStuNo = "stu_no";
-    public static final String kStuPassWd = "stu_passwd";
 
 
     public String phoneNumber;
@@ -24,8 +22,6 @@ public class Account {
     public String userId;
     public String avatar;
     public String userName;
-    public String stuNo;
-    public String stuPassWd;
 
     // 用户选择照片时需要记住用户的偏好的文件夹的key
     public static String kLastSelectDir = "lastSelectDir";
@@ -44,8 +40,6 @@ public class Account {
             account.userId = user.optString(kUserId);
             account.avatar = user.optString(kAvatar);
             account.userName = user.optString(kUserName);
-            account.stuNo = user.optString(kStuNo);
-            account.stuPassWd = user.optString(kStuPassWd);
             account.lastSelectDir = user.optString(kLastSelectDir);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -61,8 +55,6 @@ public class Account {
             info.put(kUserId, userId);
             info.put(kAvatar, avatar);
             info.put(kUserName, userName);
-            info.put(kStuNo, stuNo);
-            info.put(kStuPassWd, stuPassWd);
             info.put(kLastSelectDir, lastSelectDir);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -77,8 +69,6 @@ public class Account {
         avatar = "";
         userName = "";
         lastSelectDir = "";
-        stuNo = "";
-        stuPassWd = "";
         saveMeInfoToPreference();
     }
 }

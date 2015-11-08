@@ -11,7 +11,7 @@ import android.widget.Checkable;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 
 //此处一定要继承FrameLayout，xml中的rootView也要是FrameLayout，不知道原因，有待验证
 public class PhotoGridItem extends FrameLayout implements Checkable {
@@ -39,7 +39,7 @@ public class PhotoGridItem extends FrameLayout implements Checkable {
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		WindowManager wm = (WindowManager) HCApplicaton.getInstance().getSystemService(Context.WINDOW_SERVICE);
+		WindowManager wm = (WindowManager) HCApplication.getInstance().getSystemService(Context.WINDOW_SERVICE);
 		int screenWidth = wm.getDefaultDisplay().getWidth();
 		int rowPhotos = 4;
 		int itemWidth = (screenWidth-(rowPhotos+1)*space)/rowPhotos;

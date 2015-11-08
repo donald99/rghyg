@@ -17,7 +17,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.chatuidemo.Constant;
 import com.example.Bama.chat.chatuidemo.adapter.NewFriendsMsgAdapter;
 import com.example.Bama.chat.chatuidemo.db.InviteMessgeDao;
@@ -44,7 +44,7 @@ public class NewFriendsMsgActivity extends ActivityBase {
 		//设置adapter
 		NewFriendsMsgAdapter adapter = new NewFriendsMsgAdapter(this, 1, msgs);
 		listView.setAdapter(adapter);
-		HCApplicaton.getInstance().getContactList().get(Constant.NEW_FRIENDS_USERNAME).setUnreadMsgCount(0);
+		HCApplication.getInstance().getContactList().get(Constant.NEW_FRIENDS_USERNAME).setUnreadMsgCount(0);
 		
 	}
 

@@ -1,5 +1,7 @@
 package com.example.Bama.ui;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +15,7 @@ import com.example.Bama.ui.fragment.MeFragment;
 import com.example.Bama.ui.fragment.NewsFragment;
 import com.example.Bama.ui.fragment.ShopFragment;
 
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +43,11 @@ public class ActivityMain extends ActivityBase {
     private MeFragment fragmentMine;
 
     private List<ImageView> imageViews = new ArrayList<ImageView>();
+
+	public static void open(Activity activity){
+		Intent intent = new Intent(activity,ActivityMain.class);
+		activity.startActivity(intent);
+	}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

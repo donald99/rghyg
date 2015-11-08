@@ -32,7 +32,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.easemob.chat.EMContactManager;
 import com.easemob.exceptions.EaseMobException;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.chatuidemo.Constant;
 import com.example.Bama.chat.chatuidemo.adapter.ContactAdapter;
 import com.example.Bama.chat.chatuidemo.db.InviteMessgeDao;
@@ -121,7 +121,7 @@ public class ContactlistFragment extends Fragment {
                     startActivity(new Intent(getActivity(), AddContactActivity.class));
                 } else if (Constant.NEW_FRIENDS_USERNAME.equals(username)) {
                     // 进入申请与通知页面
-                    User user = HCApplicaton.getInstance().getContactList().get(Constant.NEW_FRIENDS_USERNAME);
+                    User user = HCApplication.getInstance().getContactList().get(Constant.NEW_FRIENDS_USERNAME);
                     user.setUnreadMsgCount(0);
                     startActivity(new Intent(getActivity(), NewFriendsMsgActivity.class));
                 } else if (Constant.GROUP_USERNAME.equals(username)) {
@@ -224,7 +224,7 @@ public class ContactlistFragment extends Fragment {
                     // 删除db和内存中此用户的数据
                     UserDao dao = new UserDao(getActivity());
                     dao.deleteContact(tobeDeleteUser.getUsername());
-                    HCApplicaton.getInstance().getContactList().remove(tobeDeleteUser.getUsername());
+                    HCApplication.getInstance().getContactList().remove(tobeDeleteUser.getUsername());
                     getActivity().runOnUiThread(new Runnable() {
                         public void run() {
                             pd.dismiss();
@@ -307,7 +307,7 @@ public class ContactlistFragment extends Fragment {
     private void getContactList() {
         contactList.clear();
         //获取本地好友列表
-        Map<String, User> users = HCApplicaton.getInstance().getContactList();
+        Map<String, User> users = HCApplication.getInstance().getContactList();
         Iterator<Map.Entry<String, User>> iterator = users.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, User> entry = iterator.next();

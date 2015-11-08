@@ -1,7 +1,6 @@
 package com.example.Bama.ui.Views;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -10,10 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.Bama.Bean.GroupCircleEntity;
 import com.example.Bama.Bean.GroupMemberEntity;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.ActivityBase;
 import com.example.Bama.util.ImageLoaderUtil;
 
@@ -52,7 +50,7 @@ public class ViewMemberHeaderItem  extends LinearLayout {
         if (TextUtils.isEmpty(model.avatar)) {
             return;
         }
-        HCApplicaton.getInstance().getImageLoader().displayImage(model.avatar, imageView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
+        HCApplication.getInstance().getImageLoader().displayImage(model.avatar, imageView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
 
     }
 

@@ -5,11 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,7 +29,7 @@ import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.applib.controller.HXSDKHelper;
 import com.example.Bama.chat.chatuidemo.DemoHXSDKHelper;
 import com.example.Bama.chat.chatuidemo.activity.*;
@@ -47,8 +44,6 @@ import com.example.Bama.chat.chatuidemo.widget.ExpandGridView;
 import com.example.Bama.chat.chatuidemo.widget.PasteEditText;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -750,7 +745,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
             return;
         }
 
-        cameraFile = new File(PathUtil.getInstance().getImagePath(), HCApplicaton.getInstance().getUserName()
+        cameraFile = new File(PathUtil.getInstance().getImagePath(), HCApplication.getInstance().getUserName()
                 + System.currentTimeMillis() + ".jpg");
         cameraFile.getParentFile().mkdirs();
         startActivityForResult(
