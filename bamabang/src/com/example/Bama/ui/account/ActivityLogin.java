@@ -69,7 +69,7 @@ public class ActivityLogin extends ActivityBase implements View.OnClickListener 
 
 	@Override
 	protected void initViews() {
-		if(!TextUtils.isEmpty(account.userName)){
+		if(!TextUtils.isEmpty(account.userId)){
 			ActivityMain.open(this);
 			this.finish();
 		}

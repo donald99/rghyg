@@ -117,6 +117,9 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 				updateImageViewsStatus(0);
 				if (fragmentDesc == null) {
 					fragmentDesc = new DescFragment();
+					Bundle bundle = new Bundle();
+					bundle.putString(DescFragment.kGroupId, groupId);
+					fragmentDesc.setArguments(bundle);
 				}
 				switchContent(mFragmentCurrent, fragmentDesc);
 			}
@@ -129,7 +132,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 				if (fragmentGroupChat == null) {
 					fragmentGroupChat = new GroupChatFragment();
 					Bundle bundle = new Bundle();
-					bundle.putString("groupId", groupId);
+					bundle.putString(GroupChatFragment.kGroupId, groupId);
 					fragmentGroupChat.setArguments(bundle);
 				}
 				switchContent(mFragmentCurrent, fragmentGroupChat);
@@ -191,6 +194,9 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction transaction = fm.beginTransaction();
 		fragmentDesc = new DescFragment();
+		Bundle bundle = new Bundle();
+		bundle.putString(DescFragment.kGroupId, groupId);
+		fragmentDesc.setArguments(bundle);
 		transaction.add(R.id.fragementLayout, fragmentDesc);
 		transaction.commit();
 		mFragmentCurrent = fragmentDesc;

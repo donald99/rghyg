@@ -12,8 +12,7 @@
             android:layout_height="@dimen/height_top_bar"
             android:background="@color/top_bar_normal_bg"
             android:gravity="center_vertical"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
 
         <include layout="@layout/commom_back_btn" />
 
@@ -430,11 +429,9 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:orientation="vertical" >
-
                         <RelativeLayout
                                 android:layout_width="64dp"
                                 android:layout_height="64dp" >
-
                             <ImageView
                                     android:id="@+id/btn_video_call"
                                     android:layout_width="56dp"
@@ -483,6 +480,7 @@
                 android:scrollbarStyle="outsideOverlay"
                 android:transcriptMode="normal" />
 
+        <!--录音界面-->
         <RelativeLayout
                 android:id="@+id/recording_container"
                 android:layout_width="wrap_content"
@@ -511,5 +509,4 @@
                     android:textSize="10sp" />
         </RelativeLayout>
     </RelativeLayout>
-
 </RelativeLayout>
