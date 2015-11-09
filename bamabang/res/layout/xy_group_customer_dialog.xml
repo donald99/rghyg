@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="#80000000">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="@android:color/white">
+        <!--顶部个人信息-->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingTop="24dp"
+                android:paddingBottom="29dp">
+
+            <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp">
+                <ImageView
+                        android:id="@+id/avatar"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="#ff0000"
+                        android:scaleType="centerCrop"/>
+                <ImageView
+                        android:id="@+id/avatar"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/circle_header_path"/>
+            </FrameLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:id="@+id/nickName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rick"
+                            android:textSize="15sp"
+                            android:textColor="#3d3d3d"
+                            android:layout_marginRight="15dp"/>
+
+                    <TextView
+                            android:id="@+id/isGroupMater"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="群主"
+                            android:textSize="10sp"
+                            android:background="@drawable/gray_stroke_white_bg_shape"
+                            android:textColor="#6c6c6c"
+                            android:layout_gravity="bottom"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                    <TextView
+                            android:id="@+id/groupAge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="宝宝:一岁2月26天"
+                            android:textSize="12sp"
+                            android:textColor="#adadad"
+                            android:layout_marginRight="8dp"/>
+
+                    <ImageView
+                            android:id="@+id/sexImage"
+                            android:layout_width="12dp"
+                            android:layout_height="15dp"
+                            android:background="#ff0000"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/atTa"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="\@TA"
+                android:textSize="13sp"
+                android:textColor="#3d3d3d"
+                android:gravity="center"
+                android:background="#ffffff"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#dddddd"/>
+        <TextView
+                android:id="@+id/report"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="举报"
+                android:textSize="13sp"
+                android:textColor="#3d3d3d"
+                android:gravity="center"
+                android:background="#ffffff"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#dddddd"/>
+
+        <TextView
+                android:id="@+id/delete"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="删除"
+                android:textSize="13sp"
+                android:textColor="#3d3d3d"
+                android:gravity="center"
+                android:background="#ffffff"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#dddddd"/>
+
+        <TextView
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="取消"
+                android:textSize="13sp"
+                android:textColor="#3d3d3d"
+                android:gravity="center"
+                android:background="#ffffff"/>
+    </LinearLayout>
+</FrameLayout>

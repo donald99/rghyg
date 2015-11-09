@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="#80000000">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:id="@+id/container"
+            android:background="#4b4b4b">
+
+        <TextView
+                android:id="@+id/groupTips"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:text="群组消息提示"
+                android:textSize="15sp"
+                android:textColor="#5e5e5e"
+                android:gravity="center"
+                android:background="#e3e3e3"
+                android:layout_marginBottom="1dp"/>
+
+        <TextView
+                android:id="@+id/reportGroup"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:text="举报该组"
+                android:textSize="15sp"
+                android:textColor="#5e5e5e"
+                android:gravity="center"
+                android:background="#e3e3e3"
+                android:layout_marginBottom="1dp"/>
+
+        <TextView
+                android:id="@+id/exitGroup"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:text="退出该群"
+                android:textSize="15sp"
+                android:textColor="#5e5e5e"
+                android:gravity="center"
+                android:background="#e3e3e3"
+                android:layout_marginBottom="5dp"/>
+
+        <TextView
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:text="取消"
+                android:textSize="15sp"
+                android:textColor="#5e5e5e"
+                android:gravity="center"
+                android:background="#e3e3e3"/>
+    </LinearLayout>
+</FrameLayout>
