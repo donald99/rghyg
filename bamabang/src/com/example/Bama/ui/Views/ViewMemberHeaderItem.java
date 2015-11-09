@@ -18,6 +18,7 @@ import com.example.Bama.widget.XYGroupCustomerDialog;
 
 public class ViewMemberHeaderItem extends LinearLayout {
 	private ImageView imageView;
+	private ImageView isMaster;
 	private GroupMemberEntity model;
 	private ActivityBase activity;
 	private TextView name;
@@ -38,6 +39,7 @@ public class ViewMemberHeaderItem extends LinearLayout {
 		inflater.inflate(R.layout.view_group_member, this);
 		imageView = (ImageView) findViewById(R.id.image);
 		name = (TextView) findViewById(R.id.name);
+		isMaster = (ImageView) findViewById(R.id.isMaster);
 		setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -69,10 +71,16 @@ public class ViewMemberHeaderItem extends LinearLayout {
 	public void setData(GroupMemberEntity modelCategory) {
 		this.model = modelCategory;
 		name.setText(modelCategory.name);
-		if (TextUtils.isEmpty(model.avatar)) {
-			return;
+		if (modelCategory.isMaster) {
+			isMaster.setVisibility(View.VISIBLE);
+		} else {
+			isMaster.setVisibility(View.GONE);
 		}
-		HCApplication.getInstance().getImageLoader().displayImage(model.avatar, imageView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
+		if (!TextUtils.isEmpty(model.avatar)) {
+			HCApplication.getInstance().getImageLoader().displayImage(model.avatar, imageView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
+		} else {
+			HCApplication.getInstance().getImageLoader().displayImage("", imageView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
+		}
 	}
 
 }

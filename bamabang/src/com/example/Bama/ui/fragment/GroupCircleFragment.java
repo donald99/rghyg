@@ -20,6 +20,7 @@ import com.example.Bama.R;
 import com.example.Bama.Bean.GroupCircleEntity;
 import com.example.Bama.adapter.GroupCircleAdapter;
 import com.example.Bama.ui.ActivityGroupChat;
+import com.example.Bama.ui.Views.ViewGroupListItem;
 import com.example.Bama.util.ToastUtil;
 import com.example.Bama.widget.RefreshListView;
 
@@ -278,9 +279,15 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 				mListView.setAdapter(mAdapter);
 				mListView.setOnItemClickListener(new OnItemClickListener() {
 					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						ActivityGroupChat.open(activity);
+					public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+						if(view instanceof ViewGroupListItem){
+							ViewGroupListItem item = (ViewGroupListItem)view;
+							if(item.entity != null && !TextUtils.isEmpty(item.entity.groupId)){
+								ActivityGroupChat.open(activity,item.entity.groupId);
+							}else{
+								ToastUtil.makeShortText("群id为空");
+							}
+						}
 					}
 				});
 				onRefresh();

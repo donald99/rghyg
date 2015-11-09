@@ -71,6 +71,7 @@ public class ActivityLogin extends ActivityBase implements View.OnClickListener 
 	protected void initViews() {
 		if(!TextUtils.isEmpty(account.userName)){
 			ActivityMain.open(this);
+			this.finish();
 		}
 	}
 
@@ -119,13 +120,13 @@ public class ActivityLogin extends ActivityBase implements View.OnClickListener 
 		toLoginChatServer(phoneNumberStr,pwdStr);
 	}
 
-	private void toLoginChatServer(final String userName,final String password) {
-		EMChatManager.getInstance().login(userName, password, new EMCallBack() {
+	private void toLoginChatServer(final String userId,final String password) {
+		EMChatManager.getInstance().login(userId, password, new EMCallBack() {
 			@Override
 			public void onSuccess() {
-				HCApplication.getInstance().setUserName(userName);
+				HCApplication.getInstance().setUserName(userId);
 				HCApplication.getInstance().setPassword(password);
-				account.userName = userName;
+				account.userId = userId;
 				account.password = password;
 				account.saveMeInfoToPreference();
 				try {

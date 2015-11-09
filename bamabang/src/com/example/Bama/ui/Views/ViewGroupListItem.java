@@ -17,7 +17,7 @@ public class ViewGroupListItem extends LinearLayout {
 	private TextView mTitle, groupPeople, lastMsgText;
 	private ImageView ivAvatar, hotImage;
 
-	private GroupCircleEntity entity;
+	public GroupCircleEntity entity;
 
 	public ViewGroupListItem(Context context) {
 		super(context);

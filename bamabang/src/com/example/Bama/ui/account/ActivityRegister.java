@@ -92,13 +92,10 @@ public class ActivityRegister extends ActivityBase implements View.OnClickListen
 			ToastUtil.makeShortText("密码不能为空");
 			return;
 		}
-		account.userName = phoneNumberStr;
-		account.password = pwdStr;
-		account.saveMeInfoToPreference();
-		tryToRegisterChatServer();
+		tryToRegisterChatServer(phoneNumberStr, pwdStr);
 	}
 
-	private void tryToRegisterChatServer() {
+	private void tryToRegisterChatServer(final String accountId, final String password) {
 		final String st7 = getResources().getString(R.string.network_anomalies);
 		final String st8 = getResources().getString(R.string.User_already_exists);
 		final String st9 = getResources().getString(R.string.registration_failed_without_permission);
@@ -106,10 +103,13 @@ public class ActivityRegister extends ActivityBase implements View.OnClickListen
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					EMChatManager.getInstance().createAccountOnServer(account.userName, account.password);
+					EMChatManager.getInstance().createAccountOnServer(accountId, password);
 					runOnUiThread(new Runnable() {
 						public void run() {
-							HCApplication.getInstance().setUserName(account.userName);
+							account.userId = accountId;
+							account.password = password;
+							account.saveMeInfoToPreference();
+							HCApplication.getInstance().setUserName(account.userId);
 							ToastUtil.makeShortText("注册成功");
 							finish();
 						}

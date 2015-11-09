@@ -6,11 +6,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.easemob.chat.EMGroup;
+import com.easemob.chat.EMGroupManager;
+import com.easemob.exceptions.EaseMobException;
 import com.example.Bama.Bean.GroupMemberEntity;
 import com.example.Bama.R;
+import com.example.Bama.background.Account;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.Views.ViewMemberHeaderItem;
 import com.example.Bama.ui.fragment.*;
 import com.example.Bama.util.DisplayUtil;
@@ -45,34 +51,38 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 
 	private List<FrameLayout> frameLayouts = new ArrayList<FrameLayout>();
 
-	public static void open(Activity activity) {
+	/**
+	 * 是否加入群的标志位*
+	 */
+	public boolean isJoinGroup = false;
+	public Account account;
+
+	/**
+	 * intent data*
+	 */
+	public static final String kGroupId = "group_id";
+	private String groupId;
+
+	public static void open(Activity activity, String groupId) {
 		Intent intent = new Intent(activity, ActivityGroupChat.class);
+		intent.putExtra(kGroupId, groupId);
 		activity.startActivity(intent);
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		if (getIntent() != null) {
+			groupId = getIntent().getStringExtra(kGroupId);
+		}
+		account = HCApplication.getInstance().getAccount();
 		setContentView(R.layout.activity_group_chat);
 		super.onCreate(savedInstanceState);
-
-		for (int i = 0; i < 10; i++) {
-			GroupMemberEntity entity = new GroupMemberEntity();
-			entity.name = "name";
-			entity.accountId = "123123";
-			entity.avatar = "http://img.name2012.com/uploads/allimg/2015-06/30-023131_451.jpg";
-			entity.isMaster = false;
-			memberList.add(entity);
-		}
-		initHeaderColumn(memberList);
+		/**初始化群成员头像**/
+		initHeaderColumn();
 	}
 
 	@Override
 	protected void getViews() {
-
-	}
-
-	@Override
-	protected void initViews() {
 		more = (ImageView) findViewById(R.id.more);
 		mColumnHorizontalScrollView = (ColumnHorizontalScrollView) findViewById(R.id.mColumnHorizontalScrollView);
 		mRadioGroup_content = (LinearLayout) findViewById(R.id.mRadioGroup_content);
@@ -88,7 +98,10 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 
 		rankFL = (FrameLayout) findViewById(R.id.rankFL);
 		rankText = (TextView) findViewById(R.id.rankText);
+	}
 
+	@Override
+	protected void initViews() {
 		frameLayouts.add(descFL);
 		frameLayouts.add(groupChatFL);
 		frameLayouts.add(rankFL);
@@ -130,7 +143,6 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 				switchContent(mFragmentCurrent, fragmentRank);
 			}
 		});
-
 		setDefaultFragment();
 	}
 
@@ -182,17 +194,57 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 		updateImageViewsStatus(0);
 	}
 
-	private void initHeaderColumn(List<GroupMemberEntity> models) {
-		mRadioGroup_content.removeAllViews();
-		for (int i = 0; i < models.size(); i++) {
-			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-			if(i != models.size() -1){
-				params.rightMargin = DisplayUtil.dip2px(this,13);
+	/**
+	 * 初始化群成员*
+	 */
+	private void initHeaderColumn() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					EMGroup group = EMGroupManager.getInstance().getGroupFromServer(groupId);
+					String ownerId = group.getOwner();
+					List<String> accountIds = group.getMembers();
+					/**判断自己是否加入群**/
+					if (!TextUtils.isEmpty(account.userId) && accountIds.contains(account.userId)) {
+						isJoinGroup = true;
+					} else {
+						isJoinGroup = false;
+					}
+					memberList.clear();
+					for (String accountId : accountIds) {
+						GroupMemberEntity entity = new GroupMemberEntity();
+						/**通过自己服务器的accountid去注册环信**/
+						entity.name = accountId;
+						entity.accountId = accountId;
+						entity.avatar = "http://img.name2012.com/uploads/allimg/2015-06/30-023131_451.jpg";
+						if (!TextUtils.isEmpty(ownerId) && ownerId.equals(accountId)) {
+							entity.isMaster = true;
+						} else {
+							entity.isMaster = false;
+						}
+						memberList.add(entity);
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								mRadioGroup_content.removeAllViews();
+								for (int i = 0; i < memberList.size(); i++) {
+									LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+									if (i != memberList.size() - 1) {
+										params.rightMargin = DisplayUtil.dip2px(ActivityGroupChat.this, 13);
+									}
+									ViewMemberHeaderItem item = new ViewMemberHeaderItem(ActivityGroupChat.this);
+									item.setData(memberList.get(i));
+									mRadioGroup_content.addView(item, params);
+								}
+							}
+						});
+					}
+				} catch (EaseMobException e) {
+					e.printStackTrace();
+				}
 			}
-			ViewMemberHeaderItem item = new ViewMemberHeaderItem(ActivityGroupChat.this);
-			item.setData(models.get(i));
-			mRadioGroup_content.addView(item,params);
-		}
+		}).start();
 	}
 
 	@Override
