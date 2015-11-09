@@ -22,6 +22,7 @@ import android.text.ClipboardManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
@@ -32,7 +33,7 @@ import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.applib.controller.HXSDKHelper;
 import com.example.Bama.chat.chatuidemo.DemoHXSDKHelper;
 import com.example.Bama.chat.chatuidemo.activity.*;
@@ -112,11 +113,11 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
     private InputMethodManager manager;
     private List<String> reslist;
     private Drawable[] micImages;
-    private int chatType;
+    private int chatType = CHATTYPE_GROUP;
     private EMConversation conversation;
     public static Activity activityInstance = null;
     // 给谁发送消息
-    private String toChatUsername;
+    private String toChatUsername = "1446979957636";
     private VoiceRecorder voiceRecorder;
     private MessageAdapter adapter;
     private File cameraFile;
@@ -159,8 +160,6 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
         this.activityInstance = activity;
 
     }
-
-
     /**
      * initView
      */
@@ -174,6 +173,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
         edittext_layout = (RelativeLayout) rootView.findViewById(R.id.edittext_layout);
         buttonSetModeVoice = rootView.findViewById(R.id.btn_set_mode_voice);
         buttonSend = rootView.findViewById(R.id.btn_send);
+        buttonSend.setOnClickListener(this);
         buttonPressToSpeak = rootView.findViewById(R.id.btn_press_to_speak);
         expressionViewpager = (ViewPager) rootView.findViewById(R.id.vPager);
         emojiIconContainer = (LinearLayout) rootView.findViewById(R.id.ll_face_container);
@@ -183,7 +183,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
         iv_emoticons_checked = (ImageView) rootView.findViewById(R.id.iv_emoticons_checked);
         loadmorePB = (ProgressBar) rootView.findViewById(R.id.pb_load_more);
         btnMore = (Button) rootView.findViewById(R.id.btn_more);
-//        btnMore.setOnClickListener(this);
+        btnMore.setOnClickListener(this);
         iv_emoticons_normal.setVisibility(View.VISIBLE);
         iv_emoticons_checked.setVisibility(View.INVISIBLE);
         more = rootView.findViewById(R.id.more);
@@ -267,6 +267,11 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
     private void setUpView(View rootView) {
         iv_emoticons_normal.setOnClickListener(this);
         iv_emoticons_checked.setOnClickListener(this);
@@ -276,134 +281,23 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
         activityInstance.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         wakeLock = ((PowerManager) activityInstance.getSystemService(Context.POWER_SERVICE)).newWakeLock(
                 PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
-        // 判断单聊还是群聊
-        chatType = activityInstance.getIntent().getIntExtra("chatType", CHATTYPE_SINGLE);
 
-        if (chatType == CHATTYPE_SINGLE) { // 单聊
-            toChatUsername = activityInstance.getIntent().getStringExtra("userId");
-            //doctor avatar
-            String name = activityInstance.getIntent().getStringExtra("name");
-            if(!TextUtils.isEmpty(name)){
-                ((TextView) rootView.findViewById(R.id.name)).setText(name);
-            }else{
-                ((TextView) rootView.findViewById(R.id.name)).setText(toChatUsername);
-            }
-        } else {
             // 群聊
             rootView.findViewById(R.id.container_to_group).setVisibility(View.VISIBLE);
             rootView.findViewById(R.id.container_remove).setVisibility(View.GONE);
             rootView.findViewById(R.id.container_voice_call).setVisibility(View.GONE);
             rootView.findViewById(R.id.container_video_call).setVisibility(View.GONE);
-            toChatUsername = activityInstance.getIntent().getStringExtra("groupId");
+//            toChatUsername = activityInstance.getIntent().getStringExtra("groupId");
 
-            if(chatType == CHATTYPE_GROUP){
-                onGroupViewCreation(rootView);
-            }else{
-                onChatRoomViewCreation(rootView);
-            }
-        }
+//        Bundle args = getArguments();
+//        toChatUsername = args != null ? args.getString("groupId") : "";
 
-        // for chatroom type, we only init conversation and create view adapter on success
-        if(chatType != CHATTYPE_CHATROOM){
-            onConversationInit();
+            onGroupViewCreation(rootView);
 
-            onListViewCreation();
-
-            // show forward message if the message is not null
-            String forward_msg_id = activityInstance.getIntent().getStringExtra("forward_msg_id");
-            if (forward_msg_id != null) {
-                // 显示发送要转发的消息
-                forwardMessage(forward_msg_id);
-            }
-        }
-    }
-
-    protected void onConversationInit(){
-//        if(chatType == CHATTYPE_SINGLE){
-//            conversation = EMChatManager.getInstance().getConversationByType(toChatUsername, EMConversation.EMConversationType.Chat);
-//        }else if(chatType == CHATTYPE_GROUP){
-//            conversation = EMChatManager.getInstance().getConversationByType(toChatUsername, EMConversation.EMConversationType.GroupChat);
-//        }else if(chatType == CHATTYPE_CHATROOM){
-//            conversation = EMChatManager.getInstance().getConversationByType(toChatUsername, EMConversation.EMConversationType.ChatRoom);
-//        }
-//
-//        // 把此会话的未读数置为0
-//        conversation.markAllMessagesAsRead();
-//
-//        // 初始化db时，每个conversation加载数目是getChatOptions().getNumberOfMessagesLoaded
-//        // 这个数目如果比用户期望进入会话界面时显示的个数不一样，就多加载一些
-//        final List<EMMessage> msgs = conversation.getAllMessages();
-//        int msgCount = msgs != null ? msgs.size() : 0;
-//        if (msgCount < conversation.getAllMsgCount() && msgCount < pagesize) {
-//            String msgId = null;
-//            if (msgs != null && msgs.size() > 0) {
-//                msgId = msgs.get(0).getMsgId();
-//            }
-//            if (chatType == CHATTYPE_SINGLE) {
-//                conversation.loadMoreMsgFromDB(msgId, pagesize);
-//            } else {
-//                conversation.loadMoreGroupMsgFromDB(msgId, pagesize);
-//            }
-//        }
-//
-//        EMChatManager.getInstance().addChatRoomChangeListener(new EMChatRoomChangeListener(){
-//
-//            @Override
-//            public void onChatRoomDestroyed(String roomId, String roomName) {
-//                if(roomId.equals(toChatUsername)){
-////                    finish();
-//                }
-//            }
-//
-//            @Override
-//            public void onMemberJoined(String roomId, String participant) {
-//            }
-//
-//            @Override
-//            public void onMemberExited(String roomId, String roomName,
-//                                       String participant) {
-//
-//            }
-//
-//            @Override
-//            public void onMemberKicked(String roomId, String roomName,
-//                                       String participant) {
-//                if(roomId.equals(toChatUsername)){
-//                    String curUser = EMChatManager.getInstance().getCurrentUser();
-//                    if(curUser.equals(participant)){
-//                        EMChatManager.getInstance().leaveChatRoom(toChatUsername);
-////                        finish();
-//                    }
-//                }
-//            }
-//
-//        });
-    }
-
-    protected void onListViewCreation(){
-//        adapter = new MessageAdapter(activityInstance, toChatUsername, chatType);
-//        // 显示消息
-//        listView.setAdapter(adapter);
-//
-//        listView.setOnScrollListener(new ListScrollListener());
-//        adapter.refreshSelectLast();
-//
-//        listView.setOnTouchListener(new View.OnTouchListener() {
-//
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                hideKeyboard();
-//                more.setVisibility(View.GONE);
-//                iv_emoticons_normal.setVisibility(View.VISIBLE);
-//                iv_emoticons_checked.setVisibility(View.INVISIBLE);
-//                emojiIconContainer.setVisibility(View.GONE);
-//                btnContainer.setVisibility(View.GONE);
-//                return false;
-//            }
-//        });
     }
 
     protected void onGroupViewCreation(View rootView){
+
         group = EMChatManager.getInstance().getGroup(toChatUsername);
 
         if (group != null){
@@ -415,49 +309,6 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
         // 监听当前会话的群聊解散被T事件
         groupListener = new GroupListener();
         EMChatManager.getInstance().addGroupChangeListener(groupListener);
-    }
-
-    protected void onChatRoomViewCreation(final View rootView){
-        rootView.findViewById(R.id.container_to_group).setVisibility(View.GONE);
-
-        final ProgressDialog pd = ProgressDialog.show(activityInstance, "", "Joining......");
-        EMChatManager.getInstance().joinChatRoom(toChatUsername, new EMValueCallBack<EMChatRoom>() {
-
-            @Override
-            public void onSuccess(EMChatRoom value) {
-                // TODO Auto-generated method stub
-                activityInstance.runOnUiThread(new Runnable(){
-                    @Override
-                    public void run(){
-                        pd.dismiss();
-                        room = EMChatManager.getInstance().getChatRoom(toChatUsername);
-                        if(room !=null){
-                            ((TextView) rootView.findViewById(R.id.name)).setText(room.getName());
-                        }else{
-                            ((TextView) rootView.findViewById(R.id.name)).setText(toChatUsername);
-                        }
-                        EMLog.d(TAG, "join room success : " + room.getName());
-
-                        onConversationInit();
-
-                        onListViewCreation();
-                    }
-                });
-            }
-
-            @Override
-            public void onError(final int error, String errorMsg) {
-                // TODO Auto-generated method stub
-                EMLog.d(TAG, "join room failure : " + error);
-                activityInstance.runOnUiThread(new Runnable(){
-                    @Override
-                    public void run(){
-                        pd.dismiss();
-                    }
-                });
-                //finish();
-            }
-        });
     }
 
     /**
@@ -496,104 +347,104 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
                     break;
             }
         }
-//        if (resultCode == RESULT_OK) { // 清空消息
-//            if (requestCode == REQUEST_CODE_EMPTY_HISTORY) {
-//                // 清空会话
-//                EMChatManager.getInstance().clearConversation(toChatUsername);
-//                adapter.refresh();
-//            } else if (requestCode == REQUEST_CODE_CAMERA) { // 发送照片
-//                if (cameraFile != null && cameraFile.exists())
-//                    sendPicture(cameraFile.getAbsolutePath());
-//            } else if (requestCode == REQUEST_CODE_SELECT_VIDEO) { // 发送本地选择的视频
-//
-//                int duration = data.getIntExtra("dur", 0);
-//                String videoPath = data.getStringExtra("path");
-//                File file = new File(PathUtil.getInstance().getImagePath(), "thvideo" + System.currentTimeMillis());
-//                Bitmap bitmap = null;
-//                FileOutputStream fos = null;
-//                try {
-//                    if (!file.getParentFile().exists()) {
-//                        file.getParentFile().mkdirs();
-//                    }
-//                    bitmap = ThumbnailUtils.createVideoThumbnail(videoPath, 3);
-//                    if (bitmap == null) {
-//                        EMLog.d("chatactivity", "problem load video thumbnail bitmap,use default icon");
-//                        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.app_panel_video_icon);
-//                    }
-//                    fos = new FileOutputStream(file);
-//
-//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                } finally {
-//                    if (fos != null) {
-//                        try {
-//                            fos.close();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        fos = null;
-//                    }
-//                    if (bitmap != null) {
-//                        bitmap.recycle();
-//                        bitmap = null;
-//                    }
-//
-//                }
-//                sendVideo(videoPath, file.getAbsolutePath(), duration / 1000);
-//
-//            } else if (requestCode == REQUEST_CODE_LOCAL) { // 发送本地图片
-//                if (data != null) {
-//                    Uri selectedImage = data.getData();
-//                    if (selectedImage != null) {
-//                        sendPicByUri(selectedImage);
-//                    }
-//                }
-//            } else if (requestCode == REQUEST_CODE_SELECT_FILE) { // 发送选择的文件
-//                if (data != null) {
-//                    Uri uri = data.getData();
-//                    if (uri != null) {
-//                        sendFile(uri);
-//                    }
-//                }
-//
-//            } else if (requestCode == REQUEST_CODE_MAP) { // 地图
-//                double latitude = data.getDoubleExtra("latitude", 0);
-//                double longitude = data.getDoubleExtra("longitude", 0);
-//                String locationAddress = data.getStringExtra("address");
-//                if (locationAddress != null && !locationAddress.equals("")) {
-//                    more(more);
-//                    sendLocationMsg(latitude, longitude, "", locationAddress);
-//                } else {
-//                    String st = getResources().getString(R.string.unable_to_get_loaction);
-//                    Toast.makeText(this, st, Toast.LENGTH_SHORT).show();
-//                }
-//                // 重发消息
-//            } else if (requestCode == REQUEST_CODE_TEXT || requestCode == REQUEST_CODE_VOICE
-//                    || requestCode == REQUEST_CODE_PICTURE || requestCode == REQUEST_CODE_LOCATION
-//                    || requestCode == REQUEST_CODE_VIDEO || requestCode == REQUEST_CODE_FILE) {
-//                resendMessage();
-//            } else if (requestCode == REQUEST_CODE_COPY_AND_PASTE) {
-//                // 粘贴
-//                if (!TextUtils.isEmpty(clipboard.getText())) {
-//                    String pasteText = clipboard.getText().toString();
-//                    if (pasteText.startsWith(COPY_IMAGE)) {
-//                        // 把图片前缀去掉，还原成正常的path
-//                        sendPicture(pasteText.replace(COPY_IMAGE, ""));
-//                    }
-//
-//                }
-//            } else if (requestCode == REQUEST_CODE_ADD_TO_BLACKLIST) { // 移入黑名单
-//                EMMessage deleteMsg = (EMMessage) adapter.getItem(data.getIntExtra("position", -1));
-//                addUserToBlacklist(deleteMsg.getFrom());
-//            } else if (conversation.getMsgCount() > 0) {
-//                adapter.refresh();
+        if (resultCode == activityInstance.RESULT_OK) { // 清空消息
+            if (requestCode == REQUEST_CODE_EMPTY_HISTORY) {
+                // 清空会话
+                EMChatManager.getInstance().clearConversation(toChatUsername);
+                adapter.refresh();
+            } else if (requestCode == REQUEST_CODE_CAMERA) { // 发送照片
+                if (cameraFile != null && cameraFile.exists())
+                    sendPicture(cameraFile.getAbsolutePath());
+            } else if (requestCode == REQUEST_CODE_SELECT_VIDEO) { // 发送本地选择的视频
+
+                int duration = data.getIntExtra("dur", 0);
+                String videoPath = data.getStringExtra("path");
+                File file = new File(PathUtil.getInstance().getImagePath(), "thvideo" + System.currentTimeMillis());
+                Bitmap bitmap = null;
+                FileOutputStream fos = null;
+                try {
+                    if (!file.getParentFile().exists()) {
+                        file.getParentFile().mkdirs();
+                    }
+                    bitmap = ThumbnailUtils.createVideoThumbnail(videoPath, 3);
+                    if (bitmap == null) {
+                        EMLog.d("chatactivity", "problem load video thumbnail bitmap,use default icon");
+                        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.app_panel_video_icon);
+                    }
+                    fos = new FileOutputStream(file);
+
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        fos = null;
+                    }
+                    if (bitmap != null) {
+                        bitmap.recycle();
+                        bitmap = null;
+                    }
+
+                }
+                sendVideo(videoPath, file.getAbsolutePath(), duration / 1000);
+
+            } else if (requestCode == REQUEST_CODE_LOCAL) { // 发送本地图片
+                if (data != null) {
+                    Uri selectedImage = data.getData();
+                    if (selectedImage != null) {
+                        sendPicByUri(selectedImage);
+                    }
+                }
+            } else if (requestCode == REQUEST_CODE_SELECT_FILE) { // 发送选择的文件
+                if (data != null) {
+                    Uri uri = data.getData();
+                    if (uri != null) {
+                        sendFile(uri);
+                    }
+                }
+
+            } else if (requestCode == REQUEST_CODE_MAP) { // 地图
+                double latitude = data.getDoubleExtra("latitude", 0);
+                double longitude = data.getDoubleExtra("longitude", 0);
+                String locationAddress = data.getStringExtra("address");
+                if (locationAddress != null && !locationAddress.equals("")) {
+                    more(more);
+                    sendLocationMsg(latitude, longitude, "", locationAddress);
+                } else {
+                    String st = getResources().getString(R.string.unable_to_get_loaction);
+                    Toast.makeText(activityInstance, st, Toast.LENGTH_SHORT).show();
+                }
+                // 重发消息
+            } else if (requestCode == REQUEST_CODE_TEXT || requestCode == REQUEST_CODE_VOICE
+                    || requestCode == REQUEST_CODE_PICTURE || requestCode == REQUEST_CODE_LOCATION
+                    || requestCode == REQUEST_CODE_VIDEO || requestCode == REQUEST_CODE_FILE) {
+                resendMessage();
+            } else if (requestCode == REQUEST_CODE_COPY_AND_PASTE) {
+                // 粘贴
+                if (!TextUtils.isEmpty(clipboard.getText())) {
+                    String pasteText = clipboard.getText().toString();
+                    if (pasteText.startsWith(COPY_IMAGE)) {
+                        // 把图片前缀去掉，还原成正常的path
+                        sendPicture(pasteText.replace(COPY_IMAGE, ""));
+                    }
+
+                }
+            } else if (requestCode == REQUEST_CODE_ADD_TO_BLACKLIST) { // 移入黑名单
+                EMMessage deleteMsg = (EMMessage) adapter.getItem(data.getIntExtra("position", -1));
+                addUserToBlacklist(deleteMsg.getFrom());
+            } else if (conversation.getMsgCount() > 0) {
+                adapter.refresh();
 //                setResult(RESULT_OK);
-//            } else if (requestCode == REQUEST_CODE_GROUP_DETAIL) {
-//                adapter.refresh();
-//            }
-//        }
+            } else if (requestCode == REQUEST_CODE_GROUP_DETAIL) {
+                adapter.refresh();
+            }
+        }
     }
 
     /**
@@ -750,7 +601,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
             return;
         }
 
-        cameraFile = new File(PathUtil.getInstance().getImagePath(), HCApplicaton.getInstance().getUserName()
+        cameraFile = new File(PathUtil.getInstance().getImagePath(), HCApplication.getInstance().getUserName()
                 + System.currentTimeMillis() + ".jpg");
         cameraFile.getParentFile().mkdirs();
         startActivityForResult(
@@ -801,12 +652,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 
         if (content.length() > 0) {
             EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
-            // 如果是群聊，设置chattype,默认是单聊
-            if (chatType == CHATTYPE_GROUP){
-                message.setChatType(EMMessage.ChatType.GroupChat);
-            }else if(chatType == CHATTYPE_CHATROOM){
-                message.setChatType(EMMessage.ChatType.ChatRoom);
-            }
+            message.setChatType(EMMessage.ChatType.GroupChat);
 
             TextMessageBody txtBody = new TextMessageBody(content);
             // 设置消息body
@@ -819,7 +665,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
             adapter.refreshSelectLast();
             mEditTextContent.setText("");
 
-//          setResult(RESULT_OK);
+          activityInstance.setResult(activityInstance.RESULT_OK);
 
         }
     }

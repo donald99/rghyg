@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 import com.example.Bama.R;
 import com.example.Bama.ui.ActivityBase;
 
+/**我的界面**/
 public class MeFragment extends Fragment {
     private ActivityBase activity;
     private WebView webView;

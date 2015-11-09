@@ -20,7 +20,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.chatuidemo.Constant;
 import com.example.Bama.chat.chatuidemo.adapter.ContactAdapter;
 import com.example.Bama.chat.chatuidemo.domain.User;
@@ -89,7 +89,7 @@ public class PickContactNoCheckboxActivity extends ActivityBase {
 
 	private void getContactList() {
 		contactList.clear();
-		Map<String, User> users = HCApplicaton.getInstance().getContactList();
+		Map<String, User> users = HCApplication.getInstance().getContactList();
 		Iterator<Entry<String, User>> iterator = users.entrySet().iterator();
 		while (iterator.hasNext()) {
 			Entry<String, User> entry = iterator.next();

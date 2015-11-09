@@ -16,7 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.ActivityBase;
 import com.example.Bama.util.ToastUtil;
 import com.example.Bama.widget.photoview.HackyViewPager;
@@ -124,7 +124,7 @@ public class PreviewActivity extends ActivityBase implements OnClickListener {
 
 		toFilter = findViewById(R.id.btn_filter);
 		toFilter.setOnClickListener(this);
-		toFilter.setVisibility((HCApplicaton.android_show_filter && Build.VERSION.SDK_INT >= 8) ? View.VISIBLE
+		toFilter.setVisibility((HCApplication.android_show_filter && Build.VERSION.SDK_INT >= 8) ? View.VISIBLE
 				: View.GONE);
 
 		check_box = (ImageView) findViewById(R.id.check_box);

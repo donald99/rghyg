@@ -54,7 +54,7 @@ import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.applib.controller.HXSDKHelper;
 import com.example.Bama.chat.chatuidemo.DemoHXSDKHelper;
 import com.example.Bama.chat.chatuidemo.adapter.ExpressionAdapter;
@@ -763,7 +763,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener, EMEve
 			return;
 		}
 
-		cameraFile = new File(PathUtil.getInstance().getImagePath(), HCApplicaton.getInstance().getUserName()
+		cameraFile = new File(PathUtil.getInstance().getImagePath(), HCApplication.getInstance().getUserName()
 				+ System.currentTimeMillis() + ".jpg");
 		cameraFile.getParentFile().mkdirs();
 		startActivityForResult(

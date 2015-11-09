@@ -21,8 +21,8 @@ import java.util.Map;
 /**
  * Created by xiaoyuPC on 2015/6/5.
  */
-public class HCApplicaton extends Application {
-    private static HCApplicaton mApplication;
+public class HCApplication extends Application {
+    private static HCApplication mApplication;
     public static boolean android_show_filter = false;
     private ImageLoader imageLoader;
     private Account account;
@@ -64,7 +64,7 @@ public class HCApplicaton extends Application {
         hxSDKHelper.onInit(mApplication);
     }
 
-    public static HCApplicaton getInstance() {
+    public static HCApplication getInstance() {
         return mApplication;
     }
 

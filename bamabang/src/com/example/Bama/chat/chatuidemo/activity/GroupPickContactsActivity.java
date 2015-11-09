@@ -27,7 +27,7 @@ import android.widget.ListView;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroup;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.chatuidemo.Constant;
 import com.example.Bama.chat.chatuidemo.adapter.ContactAdapter;
 import com.example.Bama.chat.chatuidemo.domain.User;
@@ -67,7 +67,7 @@ public class GroupPickContactsActivity extends ActivityBase {
 			exitingMembers = new ArrayList<String>();
 		// 获取好友列表
 		final List<User> alluserList = new ArrayList<User>();
-		for (User user : HCApplicaton.getInstance().getContactList().values()) {
+		for (User user : HCApplication.getInstance().getContactList().values()) {
 			if (!user.getUsername().equals(Constant.NEW_FRIENDS_USERNAME) & !user.getUsername().equals(Constant.GROUP_USERNAME) & !user.getUsername().equals(Constant.CHAT_ROOM))
 				alluserList.add(user);
 		}

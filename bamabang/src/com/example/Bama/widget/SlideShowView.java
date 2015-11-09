@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.util.ImageLoaderUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -76,7 +76,7 @@ public class SlideShowView extends FrameLayout {
 
     private void init(Context context) {
         this.context = context;
-        imageLoader = HCApplicaton.getInstance().getImageLoader();
+        imageLoader = HCApplication.getInstance().getImageLoader();
         initData();
         if (isAutoPlay) {
             slideShowTask = new SlideShowTask();

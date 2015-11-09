@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.Bama.R;
 import com.example.Bama.background.Account;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.ActivityBase;
 
 import java.util.ArrayList;
@@ -60,7 +60,7 @@ public class PhotoAlbumActivity extends ActivityBase implements OnClickListener 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		account = HCApplicaton.getInstance().getAccount();
+		account = HCApplication.getInstance().getAccount();
 		getDataFromIntent(getIntent());
 		setContentView(R.layout.activity_photoalbum);
 		super.onCreate(savedInstanceState);

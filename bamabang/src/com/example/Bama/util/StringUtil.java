@@ -1,7 +1,7 @@
 package com.example.Bama.util;
 
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 
 import java.util.Calendar;
 
@@ -24,17 +24,17 @@ public class StringUtil {
         long oneDay = oneHour * 24;
         long oneYear = oneDay * 365;
         if (mss < oneMinute) {
-            sb.append(HCApplicaton.getInstance().getString(R.string.oneMinAgo));
+            sb.append(HCApplication.getInstance().getString(R.string.oneMinAgo));
         } else if (mss < oneHour) {
-            sb.append(mss / oneMinute).append(HCApplicaton.getInstance().getString(R.string.minsAgo));
+            sb.append(mss / oneMinute).append(HCApplication.getInstance().getString(R.string.minsAgo));
         } else if (mss < yesterday) {
-            sb.append(mss / oneHour).append(HCApplicaton.getInstance().getString(R.string.hoursAgo));
+            sb.append(mss / oneHour).append(HCApplication.getInstance().getString(R.string.hoursAgo));
         } else if ((mss - yesterday) < oneDay) {
-            sb.append(HCApplicaton.getInstance().getString(R.string.yestaday));
+            sb.append(HCApplication.getInstance().getString(R.string.yestaday));
         } else if ((mss - yesterday) < oneYear) {
-            sb.append((mss - yesterday) / oneDay).append(HCApplicaton.getInstance().getString(R.string.daysAgo));
+            sb.append((mss - yesterday) / oneDay).append(HCApplication.getInstance().getString(R.string.daysAgo));
         } else {
-            sb.append((mss - yesterday) / oneYear).append(HCApplicaton.getInstance().getString(R.string.yearsAgo));
+            sb.append((mss - yesterday) / oneYear).append(HCApplication.getInstance().getString(R.string.yearsAgo));
         }
         return sb.toString();
     }
@@ -48,8 +48,8 @@ public class StringUtil {
             int month = calendar.get(Calendar.MONTH) + 1;
             int day = calendar.get(Calendar.DAY_OF_MONTH);
             StringBuffer sb = new StringBuffer();
-            sb.append(year).append(HCApplicaton.getInstance().getString(R.string.year));
-            sb.append(month).append(HCApplicaton.getInstance().getString(R.string.month)).append(day).append(HCApplicaton.getInstance().getString(R.string.day));
+            sb.append(year).append(HCApplication.getInstance().getString(R.string.year));
+            sb.append(month).append(HCApplication.getInstance().getString(R.string.month)).append(day).append(HCApplication.getInstance().getString(R.string.day));
             return sb.toString();
         } catch (NumberFormatException e) {
             return time;

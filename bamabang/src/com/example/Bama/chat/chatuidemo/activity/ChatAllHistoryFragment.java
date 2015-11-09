@@ -20,7 +20,7 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMConversation.EMConversationType;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.chatuidemo.adapter.ChatAllHistoryAdapter;
 import com.example.Bama.chat.chatuidemo.db.InviteMessgeDao;
 import com.example.Bama.ui.ActivityMain;
@@ -67,7 +67,7 @@ public class ChatAllHistoryFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 EMConversation conversation = adapter.getItem(position);
                 String username = conversation.getUserName();
-                if (username.equals(HCApplicaton.getInstance().getUserName()))
+                if (username.equals(HCApplication.getInstance().getUserName()))
                     Toast.makeText(getActivity(), st2, Toast.LENGTH_SHORT).show();
                 else {
                     Intent intent = new Intent(getActivity(), ChatActivity.class);

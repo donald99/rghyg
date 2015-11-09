@@ -3,15 +3,12 @@ package com.example.Bama.ui.Views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.example.Bama.Bean.GroupCircleEntity;
-import com.example.Bama.Bean.GroupMemberEntity;
 import com.example.Bama.Bean.GroupMemberRankEntity;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.util.ImageLoaderUtil;
 
 public class ViewGroupMemberRankItem extends LinearLayout {
@@ -55,7 +52,7 @@ public class ViewGroupMemberRankItem extends LinearLayout {
         }
 
         tvTitle.setText(entity.rankValue);
-        HCApplicaton.getInstance().getImageLoader().displayImage(entity.avatar,ivAvatar, ImageLoaderUtil.Options_Memory_Rect_Avatar);
+        HCApplication.getInstance().getImageLoader().displayImage(entity.avatar,ivAvatar, ImageLoaderUtil.Options_Memory_Rect_Avatar);
         tvName.setText(entity.accountName);
         tvRankValue.setText(entity.activityValue+"活跃值");
     }

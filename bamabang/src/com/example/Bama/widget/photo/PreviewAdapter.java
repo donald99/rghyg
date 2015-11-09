@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.util.BitmapUtil;
 import com.example.Bama.util.ImageLoaderUtil;
 import com.example.Bama.util.ToastUtil;
@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class PreviewAdapter extends PagerAdapter {
 	private Context mContext;
-	private ImageLoader imageLoader = HCApplicaton.getInstance().getImageLoader();
+	private ImageLoader imageLoader = HCApplication.getInstance().getImageLoader();
 
 	public PreviewAdapter(Context mContext) {
 		super();

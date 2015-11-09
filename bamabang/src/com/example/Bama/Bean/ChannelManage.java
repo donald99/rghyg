@@ -10,7 +10,7 @@ public class ChannelManage {
 
     static {
         defaultChannels = new ArrayList<ChannelItem>();
-        defaultChannels.add(new ChannelItem(1, "wodequnzu", 1, 1));
+        defaultChannels.add(new ChannelItem(1, "环信真实群组", 1, 1));
         defaultChannels.add(new ChannelItem(2, "baobaodazahui", 2, 1));
         defaultChannels.add(new ChannelItem(3, "citycitycity", 3, 1));
         defaultChannels.add(new ChannelItem(4, "babybabybaby", 4, 1));

@@ -3,7 +3,7 @@ package com.example.Bama.util;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.text.TextUtils;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 
 import java.io.*;
 
@@ -19,7 +19,7 @@ public final class FileUtil {
 		if (sdCardExist) {
 			rootPath = Environment.getExternalStorageDirectory().getAbsolutePath();//��ȡ��Ŀ¼
 		} else {
-			rootPath = HCApplicaton.getInstance().getApplicationContext().getFilesDir().getAbsolutePath();
+			rootPath = HCApplication.getInstance().getApplicationContext().getFilesDir().getAbsolutePath();
 		}
 		return rootPath;
 	}

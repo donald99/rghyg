@@ -30,7 +30,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import com.easemob.chat.*;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.chatuidemo.adapter.ChatHistoryAdapter;
 import com.example.Bama.chat.chatuidemo.db.InviteMessgeDao;
 import com.example.Bama.chat.chatuidemo.domain.User;
@@ -64,7 +64,7 @@ public class ChatHistoryFragment extends Fragment {
         errorItem = (RelativeLayout) getView().findViewById(R.id.rl_error_item);
         errorText = (TextView) errorItem.findViewById(R.id.tv_connect_errormsg);
         // contact list
-        contactList = HCApplicaton.getInstance().getContactList();
+        contactList = HCApplication.getInstance().getContactList();
         listView = (ListView) getView().findViewById(R.id.list);
         adapter = new ChatHistoryAdapter(getActivity(), 1, loadUsersWithRecentChat());
         // 设置adapter
@@ -75,7 +75,7 @@ public class ChatHistoryFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 EMContact emContact = adapter.getItem(position);
-                if (adapter.getItem(position).getUsername().equals(HCApplicaton.getInstance().getUserName()))
+                if (adapter.getItem(position).getUsername().equals(HCApplication.getInstance().getUserName()))
                     Toast.makeText(getActivity(), st, Toast.LENGTH_SHORT).show();
                 else {
                     // 进入聊天页面

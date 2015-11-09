@@ -56,6 +56,11 @@ public class HCPopListView extends FrameLayout {
         init(context, titleStr, cancelStr, items, listViewListener);
     }
 
+	public static HCPopListView showDialog(Context context, String titleStr, String cancelStr, List<String> items, HCPopListViewListener listViewListener){
+		HCPopListView popListView = new HCPopListView(context, titleStr, cancelStr, items, listViewListener);
+		popListView.show();
+		return popListView;
+	}
 
     private void init(Context context, String titleStr, String cancelStr, List<String> items, HCPopListViewListener listViewListener) {
         this.activity = (Activity) context;

@@ -3,7 +3,7 @@ package com.example.Bama.chat.chatuidemo.utils;
 import android.content.Context;
 import android.widget.ImageView;
 import com.example.Bama.R;
-import com.example.Bama.background.HCApplicaton;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.chatuidemo.domain.User;
 import com.squareup.picasso.Picasso;
 
@@ -14,7 +14,7 @@ public class UserUtils {
      * @return
      */
     public static User getUserInfo(String username){
-        User user = HCApplicaton.getInstance().getContactList().get(username);
+        User user = HCApplication.getInstance().getContactList().get(username);
         if(user == null){
             user = new User(username);
         }

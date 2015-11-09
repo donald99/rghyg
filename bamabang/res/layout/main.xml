@@ -11,7 +11,7 @@
         <LinearLayout
                 android:id="@+id/layout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_alignParentBottom="true">
 
@@ -22,69 +22,101 @@
 
             <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="44dp"
                     android:orientation="horizontal"
                     android:id="@+id/tabLayout"
                     android:baselineAligned="false"
                     android:background="#FF6699">
 
-                <FrameLayout
+                <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/newsFl">
-
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:id="@+id/newsLL">
                     <ImageView
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
                             android:id="@+id/newsImage"
-                            android:layout_gravity="center"
-                            android:background="@drawable/icon_news_selector" />
-                </FrameLayout>
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icon_news_selector"
+                            android:layout_marginBottom="4dp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="资讯"
+                            android:textSize="12sp"
+                            android:textColor="@color/common_white"/>
+                </LinearLayout>
 
-                <FrameLayout
+                <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/groupFL">
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:id="@+id/groupLL">
 
                     <ImageView
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
                             android:id="@+id/groupImage"
-                            android:layout_gravity="center"
-                            android:background="@drawable/icon_group_selector" />
-                </FrameLayout>
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icon_group_selector"
+                            android:layout_marginBottom="4dp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="群组"
+                            android:textSize="12sp"
+                            android:textColor="@color/common_white"/>
+                </LinearLayout>
 
-                <FrameLayout
+                <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/shopFL">
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:id="@+id/shopLL">
 
                     <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="27dp"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
                             android:id="@+id/shopImage"
-                            android:layout_gravity="center"
-                            android:background="@drawable/icon_shop_selector" />
-                </FrameLayout>
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icon_shop_selector"
+                            android:layout_marginBottom="4dp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="商城"
+                            android:textSize="12sp"
+                            android:textColor="@color/common_white"/>
+                </LinearLayout>
 
-                <FrameLayout
+                <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/mineFL">
-
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:id="@+id/mineLL">
                     <ImageView
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
                             android:id="@+id/mineImage"
-                            android:layout_gravity="center"
-                            android:background="@drawable/icon_mine_selector" />
-
-                </FrameLayout>
-
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icon_mine_selector"
+                            android:layout_marginBottom="4dp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="我的"
+                            android:textSize="12sp"
+                            android:textColor="@color/common_white"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
