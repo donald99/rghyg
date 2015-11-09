@@ -671,7 +671,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 				ToastUtil.makeShortText("请先加入群再发送消息");
 				return;
 			}
-			setModeVoice(rootView);
+			setModeVoice();
 		}
 	}
 
@@ -1038,11 +1038,11 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	 *
 	 * @param view
 	 */
-	public void setModeVoice(View view) {
+	public void setModeVoice() {
 		hideKeyboard();
 		edittext_layout.setVisibility(View.GONE);
 		more.setVisibility(View.GONE);
-		view.setVisibility(View.GONE);
+		btn_set_mode_voice.setVisibility(View.GONE);
 		buttonSetModeKeyboard.setVisibility(View.VISIBLE);
 		buttonSend.setVisibility(View.GONE);
 		btnMore.setVisibility(View.VISIBLE);

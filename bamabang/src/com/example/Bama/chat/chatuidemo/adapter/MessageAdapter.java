@@ -50,6 +50,8 @@ import com.example.Bama.chat.chatuidemo.utils.ImageCache;
 import com.example.Bama.chat.chatuidemo.utils.ImageUtils;
 import com.example.Bama.chat.chatuidemo.utils.SmileUtils;
 import com.example.Bama.chat.chatuidemo.utils.UserUtils;
+import com.example.Bama.ui.ActivityGroupChat;
+import com.example.Bama.ui.fragment.GroupChatFragment;
 
 import java.io.File;
 import java.util.*;
@@ -81,7 +83,7 @@ public class MessageAdapter extends BaseAdapter{
 
 	private String username;
 	private LayoutInflater inflater;
-	private Activity activity;
+	private ActivityGroupChat activity;
 	
 	private static final int HANDLER_MESSAGE_REFRESH_LIST = 0;
 	private static final int HANDLER_MESSAGE_SELECT_LAST = 1;
@@ -99,7 +101,7 @@ public class MessageAdapter extends BaseAdapter{
 		this.username = username;
 		this.context = context;
 		inflater = LayoutInflater.from(context);
-		activity = (Activity) context;
+		activity = (ActivityGroupChat) context;
 		this.conversation = EMChatManager.getInstance().getConversation(username);
 	}
 	
@@ -122,8 +124,8 @@ public class MessageAdapter extends BaseAdapter{
 				refreshList();
 				break;
 			case HANDLER_MESSAGE_SELECT_LAST:
-				if (activity instanceof ChatActivity) {
-					ListView listView = ((ChatActivity)activity).getListView();
+				if (activity instanceof ActivityGroupChat) {
+					ListView listView = ((ActivityGroupChat)activity).fragmentGroupChat.getListView();
 					if (messages.length > 0) {
 						listView.setSelection(messages.length - 1);
 					}
@@ -131,8 +133,8 @@ public class MessageAdapter extends BaseAdapter{
 				break;
 			case HANDLER_MESSAGE_SEEK_TO:
 				int position = message.arg1;
-				if (activity instanceof ChatActivity) {
-					ListView listView = ((ChatActivity)activity).getListView();
+				if (activity instanceof ActivityGroupChat) {
+					ListView listView = ((ActivityGroupChat)activity).fragmentGroupChat.getListView();
 					listView.setSelection(position);
 				}
 				break;
@@ -453,17 +455,17 @@ public class MessageAdapter extends BaseAdapter{
 					intent.putExtra("cancel", true);
 					intent.putExtra("position", position);
 					if (message.getType() == EMMessage.Type.TXT)
-						activity.startActivityForResult(intent, ChatActivity.REQUEST_CODE_TEXT);
+						activity.startActivityForResult(intent, GroupChatFragment.REQUEST_CODE_TEXT);
 					else if (message.getType() == EMMessage.Type.VOICE)
-						activity.startActivityForResult(intent, ChatActivity.REQUEST_CODE_VOICE);
+						activity.startActivityForResult(intent, GroupChatFragment.REQUEST_CODE_VOICE);
 					else if (message.getType() == EMMessage.Type.IMAGE)
-						activity.startActivityForResult(intent, ChatActivity.REQUEST_CODE_PICTURE);
+						activity.startActivityForResult(intent, GroupChatFragment.REQUEST_CODE_PICTURE);
 					else if (message.getType() == EMMessage.Type.LOCATION)
-						activity.startActivityForResult(intent, ChatActivity.REQUEST_CODE_LOCATION);
+						activity.startActivityForResult(intent, GroupChatFragment.REQUEST_CODE_LOCATION);
 					else if (message.getType() == EMMessage.Type.FILE)
-						activity.startActivityForResult(intent, ChatActivity.REQUEST_CODE_FILE);
+						activity.startActivityForResult(intent, GroupChatFragment.REQUEST_CODE_FILE);
 					else if (message.getType() == EMMessage.Type.VIDEO)
-						activity.startActivityForResult(intent, ChatActivity.REQUEST_CODE_VIDEO);
+						activity.startActivityForResult(intent, GroupChatFragment.REQUEST_CODE_VIDEO);
 
 				}
 			});
@@ -480,7 +482,7 @@ public class MessageAdapter extends BaseAdapter{
 						intent.putExtra("msg", st);
 						intent.putExtra("cancel", true);
 						intent.putExtra("position", position);
-						activity.startActivityForResult(intent, ChatActivity.REQUEST_CODE_ADD_TO_BLACKLIST);
+						activity.startActivityForResult(intent, GroupChatFragment.REQUEST_CODE_ADD_TO_BLACKLIST);
 						return true;
 					}
 				});
@@ -536,9 +538,9 @@ public class MessageAdapter extends BaseAdapter{
 		holder.tv.setOnLongClickListener(new OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
-				activity.startActivityForResult(
+				activity.fragmentGroupChat.startActivityForResult(
 						(new Intent(activity, ContextMenu.class)).putExtra("position", position).putExtra("type",
-								EMMessage.Type.TXT.ordinal()), ChatActivity.REQUEST_CODE_CONTEXT_MENU);
+								EMMessage.Type.TXT.ordinal()), GroupChatFragment.REQUEST_CODE_CONTEXT_MENU);
 				return true;
 			}
 		});
@@ -590,9 +592,9 @@ public class MessageAdapter extends BaseAdapter{
 		holder.iv.setOnLongClickListener(new OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
-				activity.startActivityForResult(
+				activity.fragmentGroupChat.startActivityForResult(
 						(new Intent(activity, ContextMenu.class)).putExtra("position", position).putExtra("type",
-								EMMessage.Type.IMAGE.ordinal()), ChatActivity.REQUEST_CODE_CONTEXT_MENU);
+								EMMessage.Type.IMAGE.ordinal()), GroupChatFragment.REQUEST_CODE_CONTEXT_MENU);
 				return true;
 			}
 		});
@@ -710,9 +712,9 @@ public class MessageAdapter extends BaseAdapter{
 
 			@Override
 			public boolean onLongClick(View v) {
-				activity.startActivityForResult(
+				activity.fragmentGroupChat.startActivityForResult(
 						new Intent(activity, ContextMenu.class).putExtra("position", position).putExtra("type",
-								EMMessage.Type.VIDEO.ordinal()), ChatActivity.REQUEST_CODE_CONTEXT_MENU);
+								EMMessage.Type.VIDEO.ordinal()), GroupChatFragment.REQUEST_CODE_CONTEXT_MENU);
 				return true;
 			}
 		});
@@ -835,14 +837,14 @@ public class MessageAdapter extends BaseAdapter{
 		holder.iv.setOnLongClickListener(new OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
-				activity.startActivityForResult(
+				activity.fragmentGroupChat.startActivityForResult(
 						(new Intent(activity, ContextMenu.class)).putExtra("position", position).putExtra("type",
-								EMMessage.Type.VOICE.ordinal()), ChatActivity.REQUEST_CODE_CONTEXT_MENU);
+								EMMessage.Type.VOICE.ordinal()), GroupChatFragment.REQUEST_CODE_CONTEXT_MENU);
 				return true;
 			}
 		});
-		if (((ChatActivity)activity).playMsgId != null
-				&& ((ChatActivity)activity).playMsgId.equals(message
+		if (activity.fragmentGroupChat.playMsgId != null
+				&& (activity).fragmentGroupChat.playMsgId.equals(message
 						.getMsgId())&&VoicePlayClickListener.isPlaying) {
 			AnimationDrawable voiceAnimation;
 			if (message.direct == EMMessage.Direct.RECEIVE) {
@@ -1052,9 +1054,9 @@ public class MessageAdapter extends BaseAdapter{
 		locationView.setOnLongClickListener(new OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
-				activity.startActivityForResult(
+				activity.fragmentGroupChat.startActivityForResult(
 						(new Intent(activity, ContextMenu.class)).putExtra("position", position).putExtra("type",
-								EMMessage.Type.LOCATION.ordinal()), ChatActivity.REQUEST_CODE_CONTEXT_MENU);
+								EMMessage.Type.LOCATION.ordinal()), GroupChatFragment.REQUEST_CODE_CONTEXT_MENU);
 				return false;
 			}
 		});
@@ -1182,7 +1184,6 @@ public class MessageAdapter extends BaseAdapter{
 			holder.tv.setText("0%");
 			
 			final long start = System.currentTimeMillis();
-			// if (chatType == ChatActivity.CHATTYPE_SINGLE) {
 			EMChatManager.getInstance().sendMessage(message, new EMCallBack() {
 
 				@Override

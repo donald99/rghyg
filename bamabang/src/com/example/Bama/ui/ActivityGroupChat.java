@@ -45,9 +45,9 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 
 	private Fragment mFragmentCurrent;
 
-	private DescFragment fragmentDesc;
-	private GroupChatFragment fragmentGroupChat;
-	private RankFragment fragmentRank;
+	public DescFragment fragmentDesc;
+	public GroupChatFragment fragmentGroupChat;
+	public RankFragment fragmentRank;
 
 	private List<FrameLayout> frameLayouts = new ArrayList<FrameLayout>();
 
