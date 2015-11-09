@@ -1097,7 +1097,7 @@ public class MessageAdapter extends BaseAdapter{
 
 			@Override
 			public void onSuccess() {
-				
+				Log.e("hx","message.status"+message.status);
 				updateSendedView(message, holder);
 			}
 
@@ -1243,21 +1243,21 @@ public class MessageAdapter extends BaseAdapter{
 				}
 				EMLog.d(TAG, "message status : " + message.status);
 				if (message.status == EMMessage.Status.SUCCESS) {
-					// if (message.getType() == EMMessage.Type.FILE) {
-					// holder.pb.setVisibility(View.INVISIBLE);
-					// holder.staus_iv.setVisibility(View.INVISIBLE);
-					// } else {
-					// holder.pb.setVisibility(View.GONE);
-					// holder.staus_iv.setVisibility(View.GONE);
-					// }
+					if (message.getType() == EMMessage.Type.FILE) {
+					holder.pb.setVisibility(View.INVISIBLE);
+					holder.staus_iv.setVisibility(View.INVISIBLE);
+					} else {
+					holder.pb.setVisibility(View.GONE);
+					holder.staus_iv.setVisibility(View.GONE);
+					}
 
 				} else if (message.status == EMMessage.Status.FAIL) {
-					// if (message.getType() == EMMessage.Type.FILE) {
-					// holder.pb.setVisibility(View.INVISIBLE);
-					// } else {
-					// holder.pb.setVisibility(View.GONE);
-					// }
-					// holder.staus_iv.setVisibility(View.VISIBLE);
+					if (message.getType() == EMMessage.Type.FILE) {
+					holder.pb.setVisibility(View.INVISIBLE);
+					} else {
+					holder.pb.setVisibility(View.GONE);
+					}
+					holder.staus_iv.setVisibility(View.VISIBLE);
 					Toast.makeText(activity, activity.getString(R.string.send_fail) + activity.getString(R.string.connect_failuer_toast), Toast.LENGTH_SHORT)
 							.show();
 				}

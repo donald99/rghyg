@@ -128,6 +128,9 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 				updateImageViewsStatus(1);
 				if (fragmentGroupChat == null) {
 					fragmentGroupChat = new GroupChatFragment();
+					Bundle bundle = new Bundle();
+					bundle.putString("groupId", groupId);
+					fragmentGroupChat.setArguments(bundle);
 				}
 				switchContent(mFragmentCurrent, fragmentGroupChat);
 			}

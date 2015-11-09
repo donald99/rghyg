@@ -24,8 +24,8 @@ public class GroupCircleAdapter extends BaseAdapter{
     }
 
 	@Override
-	public Object getItem(int position) {
-		return null;
+	public GroupCircleEntity getItem(int position) {
+		return groupsList.get(position);
 	}
 
 	@Override
