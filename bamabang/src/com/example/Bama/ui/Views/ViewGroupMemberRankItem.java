@@ -1,6 +1,8 @@
 package com.example.Bama.ui.Views;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -16,7 +18,7 @@ public class ViewGroupMemberRankItem extends LinearLayout {
     private TextView tvTitle,tvName,tvRankValue;
     private ImageView ivAvatar;
 
-    private GroupMemberRankEntity entity;
+    private GroupMemberRankEntity.ContentEntity.RankEntity entity;
 
     public ViewGroupMemberRankItem(Context context) {
         super(context);
@@ -41,7 +43,7 @@ public class ViewGroupMemberRankItem extends LinearLayout {
     }
 
 
-    public void setModelItem(GroupMemberRankEntity entity) {
+    public void setModelItem(GroupMemberRankEntity.ContentEntity.RankEntity entity) {
         this.entity = entity;
         setUI();
     }
@@ -51,9 +53,12 @@ public class ViewGroupMemberRankItem extends LinearLayout {
             return;
         }
 
-        tvTitle.setText(entity.rankValue);
+        tvTitle.setText(entity.ranking+"");
+        if(!TextUtils.isEmpty(entity.color) && entity.color.length()==7){
+            tvTitle.setTextColor(Color.parseColor(entity.color));
+        }
         HCApplication.getInstance().getImageLoader().displayImage(entity.avatar,ivAvatar, ImageLoaderUtil.Options_Memory_Rect_Avatar);
-        tvName.setText(entity.accountName);
-        tvRankValue.setText(entity.activityValue+"活跃值");
+        tvName.setText(entity.name);
+        tvRankValue.setText(entity.coin+"活跃值");
     }
 }

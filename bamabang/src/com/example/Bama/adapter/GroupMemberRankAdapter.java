@@ -10,12 +10,13 @@ import com.example.Bama.ui.Views.ViewGroupListItem;
 import com.example.Bama.ui.Views.ViewGroupMemberRankItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GroupMemberRankAdapter extends BaseAdapter{
     private Activity activity;
-    private ArrayList<GroupMemberRankEntity> ranklist = new ArrayList<GroupMemberRankEntity>();
+    private List<GroupMemberRankEntity.ContentEntity.RankEntity> ranklist = new ArrayList<GroupMemberRankEntity.ContentEntity.RankEntity>();
 
-    public GroupMemberRankAdapter(Activity activity, ArrayList<GroupMemberRankEntity> groupsList) {
+    public GroupMemberRankAdapter(Activity activity, List<GroupMemberRankEntity.ContentEntity.RankEntity> groupsList) {
         this.activity = activity;
         this.ranklist = groupsList;
     }
@@ -26,7 +27,7 @@ public class GroupMemberRankAdapter extends BaseAdapter{
     }
 
     @Override
-    public GroupMemberRankEntity getItem(int i) {
+    public GroupMemberRankEntity.ContentEntity.RankEntity getItem(int i) {
         return ranklist.get(i);
     }
 
