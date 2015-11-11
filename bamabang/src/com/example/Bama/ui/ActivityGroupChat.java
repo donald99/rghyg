@@ -20,6 +20,7 @@ import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.Views.ViewMemberHeaderItem;
 import com.example.Bama.ui.fragment.*;
 import com.example.Bama.util.DisplayUtil;
+import com.example.Bama.util.Request;
 import com.example.Bama.widget.ColumnHorizontalScrollView;
 import com.example.Bama.widget.XYBottomDialog;
 import com.example.Bama.widget.XYGroupCustomerDialog;
@@ -221,7 +222,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 						isJoinGroup = false;
 					}
 					memberList.clear();
-					for (String accountId : accountIds) {
+					for (final String accountId : accountIds) {
 						GroupMemberEntity entity = new GroupMemberEntity();
 						/**通过自己服务器的accountid去注册环信**/
 						entity.name = accountId;
@@ -244,6 +245,8 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 									}
 									ViewMemberHeaderItem item = new ViewMemberHeaderItem(ActivityGroupChat.this);
 									item.setData(memberList.get(i));
+                                    item.setOnClickListener(ClickListener);
+                                    item.setTag(accountId);
 									mRadioGroup_content.addView(item, params);
 								}
 							}
@@ -255,6 +258,44 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 			}
 		}).start();
 	}
+
+    View.OnClickListener ClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(final View view) {
+            XYGroupCustomerDialog.showDialog(ActivityGroupChat.this, new XYGroupCustomerDialog.XYGroupCustomerDialogListener() {
+                @Override
+                public void onAtTaClicked() {
+                    if (listener!=null){
+                        listener.onAttalistener((String) view.getTag());
+                    }
+                }
+
+                @Override
+                public void onReportClicked() {
+                    RequestUtil.jubaoGroup(ActivityGroupChat.this, "user", (String) view.getTag(), "report");
+                }
+
+                @Override
+                public void onDeleteClicked() {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //把username从群聊里删除
+                            try {
+                                EMGroupManager.getInstance().removeUserFromGroup(groupId, (String)view.getTag());//需异步处理
+                            } catch (EaseMobException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+                }
+
+                @Override
+                public void onCancelClicked() {
+                }
+            });
+        }
+    };
 
 	@Override
 	public void onBackPressed() {
@@ -282,7 +323,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 				XYBottomDialog.showDialog(this, new XYBottomDialog.XYShareDialogListener() {
 					@Override
 					public void groupMessageTip() {
-						ActivityGroupTipsOnOff.open(ActivityGroupChat.this);
+						ActivityGroupTipsOnOff.open(ActivityGroupChat.this,groupId);
 					}
 
 					@Override
@@ -292,7 +333,17 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 
 					@Override
 					public void exitGroup() {
-						Toast.makeText(ActivityGroupChat.this, "exitGroup", Toast.LENGTH_SHORT).show();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    EMGroupManager.getInstance().exitFromGroup(groupId);//需异步处理
+                                } catch (EaseMobException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+                        Toast.makeText(ActivityGroupChat.this, "exitGroup", Toast.LENGTH_SHORT).show();
 					}
 
 					@Override
@@ -301,9 +352,14 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 				});
 			}
 			break;
-		case R.id.creategroup:
-			Toast.makeText(this, "creategroup", Toast.LENGTH_LONG).show();
-			break;
 		}
 	}
+
+    public ATTAListener listener;
+    public void setATTAListener(ATTAListener  l){
+        this.listener = l;
+    }
+    public interface ATTAListener{
+        public void onAttalistener(String atusername);
+    }
 }
