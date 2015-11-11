@@ -40,32 +40,6 @@ public class ViewMemberHeaderItem extends LinearLayout {
 		imageView = (ImageView) findViewById(R.id.image);
 		name = (TextView) findViewById(R.id.name);
 		isMaster = (ImageView) findViewById(R.id.isMaster);
-		setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				XYGroupCustomerDialog.showDialog(activity, new XYGroupCustomerDialog.XYGroupCustomerDialogListener() {
-					@Override
-					public void onAtTaClicked() {
-						Toast.makeText(activity, "onAtTaClicked", Toast.LENGTH_SHORT).show();
-					}
-
-					@Override
-					public void onReportClicked() {
-						Toast.makeText(activity, "onReportClicked", Toast.LENGTH_SHORT).show();
-					}
-
-					@Override
-					public void onDeleteClicked() {
-						Toast.makeText(activity, "onDeleteClicked", Toast.LENGTH_SHORT).show();
-					}
-
-					@Override
-					public void onCancelClicked() {
-						Toast.makeText(activity, "onCancelClicked", Toast.LENGTH_SHORT).show();
-					}
-				});
-			}
-		});
 	}
 
 	public void setData(GroupMemberEntity modelCategory) {
