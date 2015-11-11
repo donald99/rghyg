@@ -1,56 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="13dp" >
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:paddingTop="13dp">
 
     <TextView
-        android:id="@+id/timestamp"
-        style="@style/chat_text_date_style"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_chat_activity" >
-
-        <ImageView
-            android:id="@+id/iv_userhead"
-            android:layout_width="@dimen/size_avatar"
-            android:layout_height="@dimen/size_avatar"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="@dimen/margin_chat_activity"
-            android:background="@drawable/mini_avatar_shadow"
-            android:scaleType="fitXY" />
-
-       <TextView
-             android:maxWidth="225.0dip"
-            android:id="@+id/tv_chatcontent"
+            android:id="@+id/timestamp"
+            style="@style/chat_text_date_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_chat_activity"
-            android:layout_toRightOf="@id/iv_userhead"
-            android:background="@drawable/chatfrom_bg"
-            android:autoLink="web"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="left|center"
-            android:lineSpacingExtra="2dp"
-            android:minHeight="50dp"
-            android:textColor="#ff000000"
-            android:textSize="15sp" />
-        <TextView
-            android:id="@+id/tv_userid"
-            style="@style/chat_text_name_style"
+            android:layout_gravity="center"/>
+
+    <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/tv_chatcontent"
-            android:layout_below="@id/iv_userhead"/>
-    </RelativeLayout>
+            android:layout_marginTop="@dimen/margin_chat_activity"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_chat_left_right_activity"
+                android:layout_marginRight="12dp">
+            <FrameLayout
+                    android:layout_width="@dimen/size_avatar"
+                    android:layout_height="@dimen/size_avatar"
+                    android:layout_marginBottom="4dp">
+                <ImageView
+                        android:id="@+id/iv_userhead"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/mini_avatar_shadow"
+                        android:scaleType="centerCrop"/>
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/circle_header_path_white"
+                        android:scaleType="centerCrop"/>
+            </FrameLayout>
+            <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="15dp"
+                    android:text="群主"
+                    android:textSize="10sp"
+                    android:gravity="center"
+                    android:textColor="@color/common_black"
+                    android:background="@drawable/gray_stroke_white_bg_shape"/>
+        </LinearLayout>
 
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TextView
+                    android:id="@+id/tv_userid"
+                    style="@style/chat_text_name_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|center_vertical"
+                    android:layout_marginBottom="10dp"/>
+            <TextView
+                    android:maxWidth="225.0dip"
+                    android:id="@+id/tv_chatcontent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_chat_activity"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/gray_stroke_white_bg_shape"
+                    android:autoLink="web"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="left|center"
+                    android:lineSpacingExtra="2dp"
+                    android:minHeight="50dp"
+                    android:textColor="#ff000000"
+                    android:textSize="15sp"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -31,6 +31,7 @@ import com.easemob.util.EMLog;
 import com.example.Bama.R;
 import com.example.Bama.chat.applib.controller.HXSDKHelper;
 import com.example.Bama.chat.chatuidemo.activity.ChatActivity;
+import com.example.Bama.ui.ActivityGroupChat;
 
 import java.io.File;
 
@@ -84,7 +85,7 @@ public class VoicePlayClickListener implements View.OnClickListener {
 			mediaPlayer.release();
 		}
 		isPlaying = false;
-		((ChatActivity) activity).playMsgId = null;
+		((ActivityGroupChat) activity).fragmentGroupChat.playMsgId = null;
 		adapter.notifyDataSetChanged();
 	}
 
@@ -92,7 +93,7 @@ public class VoicePlayClickListener implements View.OnClickListener {
 		if (!(new File(filePath).exists())) {
 			return;
 		}
-		((ChatActivity) activity).playMsgId = message.getMsgId();
+		((ActivityGroupChat) activity).fragmentGroupChat.playMsgId = message.getMsgId();
 		AudioManager audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
 
 		mediaPlayer = new MediaPlayer();

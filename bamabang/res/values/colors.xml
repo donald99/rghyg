@@ -38,6 +38,7 @@
     <color name="btn_answer_normal">#2dafa3</color>
 
     <color name="common_white">#ffffff</color>
+    <color name="common_black">#494949</color>
     <color name="text_gray_656074">#656074</color>
     <color name="common_white_gray">#f1f1ed</color>
     <color name="line_color">#dadae5</color>

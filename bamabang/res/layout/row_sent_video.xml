@@ -38,7 +38,11 @@
                 android:id="@+id/chatting_click_area"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@drawable/chatto_bg" >
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/gray_stroke_white_bg_shape" >
 
                 <ImageView
                     android:id="@+id/chatting_content_iv"

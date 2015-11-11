@@ -38,7 +38,11 @@
                 android:id="@+id/iv_sendPicture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/chatto_bg"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/gray_stroke_white_bg_shape"
                 android:scaleType="fitCenter"
                 />
         </RelativeLayout>	
