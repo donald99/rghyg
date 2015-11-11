@@ -46,6 +46,7 @@ import com.example.Bama.chat.chatuidemo.utils.ImageUtils;
 import com.example.Bama.chat.chatuidemo.utils.SmileUtils;
 import com.example.Bama.chat.chatuidemo.widget.ExpandGridView;
 import com.example.Bama.chat.chatuidemo.widget.PasteEditText;
+import com.example.Bama.ui.ActivityGroupChat;
 import com.example.Bama.util.ToastUtil;
 
 import java.io.File;
@@ -58,7 +59,7 @@ import java.util.List;
 /**
  * 群聊页面*
  */
-public class GroupChatFragment extends Fragment implements View.OnClickListener, EMEventListener {
+public class GroupChatFragment extends Fragment implements View.OnClickListener, EMEventListener,ActivityGroupChat.ATTAListener {
 	private static final String TAG = "ChatActivity";
 	private static final int REQUEST_CODE_EMPTY_HISTORY = 2;
 	public static final int REQUEST_CODE_CONTEXT_MENU = 3;
@@ -188,6 +189,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		this.activityInstance = activity;
+        ((ActivityGroupChat)activityInstance).setATTAListener(this);
 	}
 
 	/**
@@ -1159,7 +1161,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 
 	private PowerManager.WakeLock wakeLock;
 
-	/**
+    /**
 	 * 按住说话listener
 	 */
 	class PressToSpeakListen implements View.OnTouchListener {
@@ -1624,4 +1626,9 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	public ListView getListView() {
 		return listView;
 	}
+
+    @Override
+    public void onAttalistener(String atusername) {
+        mEditTextContent.setText("@"+atusername);
+    }
 }
