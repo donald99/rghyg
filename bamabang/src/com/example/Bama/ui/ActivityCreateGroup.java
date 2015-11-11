@@ -68,11 +68,12 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 
 	@Override
 	public void onBackPressed() {
-		if (HCPopListView.getDlgView(this).isShowing()) {
-			HCPopListView.onBackPressed(this);
-			return;
-		}
+//		if (HCPopListView.getDlgView(this).isShowing()) {
+//			HCPopListView.onBackPressed(this);
+//			return;
+//		}
 		super.onBackPressed();
+        finish();
 	}
 
 	@Override
