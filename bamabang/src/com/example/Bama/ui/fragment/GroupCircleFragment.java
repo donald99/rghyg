@@ -71,7 +71,7 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 	@Override
 	public void onRefresh() {
 		/**制造数据**/
-		if (text.equals("环信真实群组")) {
+		if (text.equals("同城")) {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -157,7 +157,7 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 	@Override
 	public void onLoadMore() {
 		/**制造数据**/
-		if (text.equals("环信真实群组")) {
+		if (text.equals("同城")) {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -303,11 +303,5 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 	public void onDestroyView() {
 		super.onDestroyView();
 		mAdapter = null;
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		Log.d(TAG, "channel_id = " + channel_id);
 	}
 }

@@ -10,17 +10,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.example.Bama.Bean.ChannelItem;
-import com.example.Bama.Bean.ChannelManage;
 import com.example.Bama.R;
 import com.example.Bama.adapter.GroupCircleFragmentPagerAdapter;
 import com.example.Bama.ui.ActivityBase;
 import com.example.Bama.ui.ActivityCreateGroup;
+import com.example.Bama.ui.RequestUtil;
 import com.example.Bama.util.DisplayUtil;
 import com.example.Bama.widget.ColumnHorizontalScrollView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GroupFragment extends Fragment implements View.OnClickListener{
     private ActivityBase activity;
@@ -31,7 +31,7 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
     private ViewPager mViewPager;
     private TextView creatGroup;
 
-    ArrayList<ChannelItem> userChannelList;
+    ArrayList<ChannelItem.ContentEntity> userChannelList;
     private int columnSelectIndex = 0;
     private int mScreenWidth = 0;
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
@@ -47,7 +47,7 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
         super.onActivityCreated(savedInstanceState);
         activity = (ActivityBase) getActivity();
         mScreenWidth = DisplayUtil.getWindowsWidth(activity);
-        setChangelView();
+        initColumnData();
     }
 
     private void initView(View rootView) {
@@ -61,14 +61,22 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
         creatGroup.setOnClickListener(this);
     }
 
-    private void setChangelView() {
-        initColumnData();
-        initTabColumn();
-        initFragment();
+    private void initColumnData() {
+        RequestUtil.queryTagList(activity,new QueryTagListCallback(){
+            @Override
+            public void queryTagList(List list) {
+                if(list!=null){
+                    userChannelList  = (ArrayList<ChannelItem.ContentEntity>)list;
+                    initTabColumn();
+                    initFragment();
+                }
+            }
+        });
     }
 
-    private void initColumnData() {
-        userChannelList = ((ArrayList<ChannelItem>) ChannelManage.getManage().defaultChannels);
+    @Override
+    public void setRetainInstance(boolean retain) {
+        super.setRetainInstance(retain);
     }
 
     private void initTabColumn() {
@@ -83,9 +91,9 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
             columnTextView.setTextAppearance(activity, R.style.top_category_scroll_view_item_text);
             columnTextView.setBackgroundResource(R.drawable.radio_buttong_bg);
             columnTextView.setGravity(Gravity.CENTER);
-            columnTextView.setPadding(5, 5, 5, 5);
+            columnTextView.setPadding(25, 5, 25, 5);
             columnTextView.setId(i);
-            columnTextView.setText(userChannelList.get(i).getName());
+            columnTextView.setText(userChannelList.get(i).name);
             columnTextView.setTextColor(getResources().getColorStateList(R.color.top_category_scroll_text_color_day));
             if(columnSelectIndex == i){
                 columnTextView.setSelected(true);
@@ -135,8 +143,8 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
         int count =  userChannelList.size();
         for(int i = 0; i< count;i++){
             Bundle data = new Bundle();
-            data.putString("text", userChannelList.get(i).getName());
-            data.putInt("id", userChannelList.get(i).getId());
+            data.putString("text", userChannelList.get(i).name);
+            data.putInt("id", userChannelList.get(i).tagid);
             GroupCircleFragment newfragment = new GroupCircleFragment();
             newfragment.setArguments(data);
             fragments.add(newfragment);
@@ -171,5 +179,9 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
                 ActivityCreateGroup.open(activity);
                 break;
         }
+    }
+
+    public interface QueryTagListCallback{
+        public void queryTagList(List list);
     }
 }

@@ -4,17 +4,7 @@ import com.meilishuo.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class GroupMemberRankEntity {
-    public static String accountId;
-    public static String accountName;
-    public static String avatar;
-    public static String rankValue;
-    public static String activityValue;
-
-    @SerializedName("status")
-    public boolean status;
-    @SerializedName("message")
-    public String message;
+public class GroupMemberRankEntity extends BaseEntity{
     @SerializedName("content")
     public ContentEntity content;
 

@@ -63,8 +63,8 @@ public class ActivityJubao extends ActivityBase {
                     ToastUtil.makeLongText("输入举报信息");
                     return;
                 }
-                //FIXME:UID
-                RequestUtil.jubaoGroup(ActivityJubao.this,"uid","group",group_id,jubaoInfo);
+                //FIXME:UID  Context context,String fortype,String froid, String jubaoInfo
+                RequestUtil.jubaoGroup(ActivityJubao.this,"group",group_id,jubaoInfo);
             }
         });
     }

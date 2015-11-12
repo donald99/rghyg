@@ -22,6 +22,7 @@ public class ServerConfig {
 
     public static final String URL_GET_RANK_LISR = "/soul/htdocs/im/ranking/user";
     public static final String URL_GET_CONTACT_REPORT = "/soul/htdocs/im/contact/report";
+    public static final String URL_GET_TAG_LIST = "/soul/htdocs/im/tag/list";
 
 
 

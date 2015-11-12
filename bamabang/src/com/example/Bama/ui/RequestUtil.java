@@ -2,15 +2,16 @@ package com.example.Bama.ui;
 
 import android.content.Context;
 import android.text.TextUtils;
+import com.example.Bama.Bean.ChannelItem;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.background.config.ServerConfig;
+import com.example.Bama.ui.fragment.GroupFragment;
 import com.example.Bama.util.Request;
 import com.example.Bama.util.ToastUtil;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +61,29 @@ public class RequestUtil {
 
                 }else{
                     ToastUtil.makeLongText("举报失败");
+                }
+            }
+        });
+    }
+
+    public static void queryTagList(Context context,final GroupFragment.QueryTagListCallback callback){
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        Request.doRequest(context, params, ServerConfig.URL_GET_TAG_LIST, Request.GET, new Request.RequestListener() {
+
+            @Override
+            public void onException(Request.RequestException e) {
+            }
+
+            @Override
+            public void onComplete(String response) {
+
+                if (!TextUtils.isEmpty(response)) {
+                    ChannelItem item = HCApplication.getInstance().getGson().fromJsonWithNoException(response,ChannelItem.class);
+                    if (item!=null && item.content!=null && callback != null){
+                        callback.queryTagList(item.content);
+                    }
+                }else{
+//                    ToastUtil.makeLongText("获取群组失败");
                 }
             }
         });
