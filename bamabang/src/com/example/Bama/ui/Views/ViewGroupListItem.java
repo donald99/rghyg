@@ -17,7 +17,7 @@ public class ViewGroupListItem extends LinearLayout {
 	private TextView mTitle, groupPeople, lastMsgText;
 	private ImageView ivAvatar, hotImage;
 
-	public GroupCircleEntity entity;
+	public GroupCircleEntity.ContentEntity entity;
 
 	public ViewGroupListItem(Context context) {
 		super(context);
@@ -42,23 +42,23 @@ public class ViewGroupListItem extends LinearLayout {
 		lastMsgText = (TextView) findViewById(R.id.lastmsgtext);
 	}
 
-	public void setGroupListItem(GroupCircleEntity entity) {
+	public void setGroupListItem(GroupCircleEntity.ContentEntity entity) {
 		this.entity = entity;
 		if (entity == null) {
 			return;
 		}
-		if (!TextUtils.isEmpty(entity.groupTitle)) {
-			mTitle.setText(entity.groupTitle);
+		if (!TextUtils.isEmpty(entity.name)) {
+			mTitle.setText(entity.name);
 		} else {
 			mTitle.setText("");
 		}
 
-		if (entity.isHot) {
+		if (entity.status) {
 			hotImage.setVisibility(View.VISIBLE);
 		} else {
 			hotImage.setVisibility(View.GONE);
 		}
-		groupPeople.setText(":" + entity.peopleCount);
-		lastMsgText.setText("欢迎加入宝宝群圈" + entity.lastMsg);
+//		groupPeople.setText(":" + entity.);
+//		lastMsgText.setText("欢迎加入宝宝群圈" + entity.lastMsg);
 	}
 }

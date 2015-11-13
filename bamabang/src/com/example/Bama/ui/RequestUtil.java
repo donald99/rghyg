@@ -3,8 +3,11 @@ package com.example.Bama.ui;
 import android.content.Context;
 import android.text.TextUtils;
 import com.example.Bama.Bean.ChannelItem;
+import com.example.Bama.Bean.GroupCircleEntity;
+import com.example.Bama.Bean.GroupCreateInfoEntity;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.background.config.ServerConfig;
+import com.example.Bama.ui.fragment.GroupCircleFragment;
 import com.example.Bama.ui.fragment.GroupFragment;
 import com.example.Bama.util.Request;
 import com.example.Bama.util.ToastUtil;
@@ -72,6 +75,9 @@ public class RequestUtil {
 
             @Override
             public void onException(Request.RequestException e) {
+                if (callback!=null){
+                    callback.onFail();
+                }
             }
 
             @Override
@@ -79,11 +85,77 @@ public class RequestUtil {
 
                 if (!TextUtils.isEmpty(response)) {
                     ChannelItem item = HCApplication.getInstance().getGson().fromJsonWithNoException(response,ChannelItem.class);
-                    if (item!=null && item.content!=null && callback != null){
-                        callback.queryTagList(item.content);
+                    if (item!=null && item.status && item.content!=null && callback != null){
+                        callback.onSuccess(item.content);
                     }
                 }else{
+                    if (callback!=null){
+                        callback.onFail();
+                    }
 //                    ToastUtil.makeLongText("获取群组失败");
+                }
+            }
+        });
+    }
+
+    public static void queryTagGroupList(Context context, String tagId,final GroupCircleFragment.QueryTagGroupListCallback callback){
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        Request.doRequest(context, params, ServerConfig.URL_GET_TAG_DETAIL, Request.GET, new Request.RequestListener() {
+
+            @Override
+            public void onException(Request.RequestException e) {
+                if (callback!=null){
+                    callback.onFail();
+                }
+            }
+
+            @Override
+            public void onComplete(String response) {
+
+                if (!TextUtils.isEmpty(response)) {
+                    GroupCircleEntity item = HCApplication.getInstance().getGson().fromJsonWithNoException(response,GroupCircleEntity.class);
+                    if (item!=null && item.status && item.content!=null && callback != null){
+                        callback.onSuccess(item.content);
+                    }
+                }else{
+                    if (callback!=null){
+                        callback.onFail();
+                    }
+                    ToastUtil.makeLongText("获取群组列表失败");
+                }
+            }
+        });
+    }
+
+    /**
+     * 创建群组
+     * @param uid: 用户id
+     * @param name: 聊天群名称
+     * @param description: 聊天群描述
+     * @param tagid: 聊天群组id
+     * @param callback
+     */
+    public static void createGroup(Context context,final ActivityCreateGroup.CreateGroupCallBack callback){
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        Request.doRequest(context, params, ServerConfig.URL_GROUP_ADD, Request.GET, new Request.RequestListener() {
+
+            @Override
+            public void onException(Request.RequestException e) {
+                ToastUtil.makeLongText("创建群组失败");
+                if(callback!=null){
+                    callback.onFail();
+                }
+            }
+
+            @Override
+            public void onComplete(String response) {
+                if (!TextUtils.isEmpty(response)) {
+                    GroupCreateInfoEntity groupCreateInfo = HCApplication.getInstance().getGson().fromJsonWithNoException(response, GroupCreateInfoEntity.class);
+                    if(groupCreateInfo!=null && groupCreateInfo.status && groupCreateInfo.content != null && callback!=null){
+                        callback.onSuccess(groupCreateInfo.content);
+                    }
+                }else{
+                    ToastUtil.makeLongText("创建群组失败");
                 }
             }
         });

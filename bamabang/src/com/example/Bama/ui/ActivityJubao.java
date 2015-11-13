@@ -38,7 +38,7 @@ public class ActivityJubao extends ActivityBase {
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_jubao);
 		super.onCreate(savedInstanceState);
-        group_id = getIntent().getExtras().getString("group_id");
+        group_id = getIntent().getStringExtra("group_id");
 	}
 
     @Override
@@ -55,6 +55,12 @@ public class ActivityJubao extends ActivityBase {
 
     @Override
     protected void setListeners() {
+        findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         jubaoTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

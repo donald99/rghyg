@@ -64,12 +64,17 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
     private void initColumnData() {
         RequestUtil.queryTagList(activity,new QueryTagListCallback(){
             @Override
-            public void queryTagList(List list) {
+            public void onSuccess(List list) {
                 if(list!=null){
                     userChannelList  = (ArrayList<ChannelItem.ContentEntity>)list;
                     initTabColumn();
                     initFragment();
                 }
+            }
+
+            @Override
+            public void onFail() {
+
             }
         });
     }
@@ -182,6 +187,7 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
     }
 
     public interface QueryTagListCallback{
-        public void queryTagList(List list);
+        public void onSuccess(List list);
+        public void onFail();
     }
 }

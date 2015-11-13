@@ -1,6 +1,7 @@
 package com.example.Bama.ui.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +21,7 @@ import com.example.Bama.R;
 import com.example.Bama.Bean.GroupCircleEntity;
 import com.example.Bama.adapter.GroupCircleAdapter;
 import com.example.Bama.ui.ActivityGroupChat;
+import com.example.Bama.ui.RequestUtil;
 import com.example.Bama.ui.Views.ViewGroupListItem;
 import com.example.Bama.util.ToastUtil;
 import com.example.Bama.widget.RefreshListView;
@@ -33,7 +35,7 @@ import java.util.List;
 public class GroupCircleFragment extends Fragment implements RefreshListView.OnRefreshListener, RefreshListView.OnLoadMoreListener {
 	private final static String TAG = "GroupCircleFragment";
 	private Activity activity;
-	private ArrayList<GroupCircleEntity> groupCircleList = new ArrayList<GroupCircleEntity>();
+	private List<GroupCircleEntity.ContentEntity> groupCircleList = new ArrayList<GroupCircleEntity.ContentEntity>();
 	private RefreshListView mListView;
 	private GroupCircleAdapter mAdapter;
 	private String text;
@@ -44,6 +46,7 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 	/**
 	 * 环信分页*
 	 */
+    private int page = 1;
 	private static final int pageSize = 10;
 	private String cursor = null;
 
@@ -73,7 +76,12 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 		/**制造数据**/
 		if (text.equals("同城")) {
 			new Thread(new Runnable() {
-				@Override
+                @Override
+                public boolean equals(Object o) {
+                    return super.equals(o);
+                }
+
+                @Override
 				public void run() {
 					try {
 						EMCursorResult<EMGroupInfo> cursorResult = EMGroupManager.getInstance().getPublicGroupsFromServer(pageSize, cursor);
@@ -84,15 +92,14 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 								List<EMGroupInfo> datas = cursorResult.getData();
 								groupCircleList.clear();
 								for (EMGroupInfo groupInfo : datas) {
-									GroupCircleEntity entity = new GroupCircleEntity();
-									entity.groupId = groupInfo.getGroupId();
+									GroupCircleEntity.ContentEntity entity = new GroupCircleEntity.ContentEntity();
+									entity.groupid = groupInfo.getGroupId();
 
-									entity.groupTitle = groupInfo.getGroupName();
-									entity.groupImage = "";
-									entity.peopleCount = "20";
-									entity.lastMsg = "lastmsg";
-									entity.masterId = "masterId";
-									entity.masterName = "masterName";
+									entity.name = groupInfo.getGroupName();
+//									entity.peopleCount = "20";
+//									entity.lastMsg = "lastmsg";
+									entity.ownerid = "masterId";
+									entity.owner = "masterName";
 									groupCircleList.add(entity);
 								}
 								getActivity().runOnUiThread(new Runnable() {
@@ -131,31 +138,29 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 			}).start();
 		} else {
 			groupCircleList.clear();
-			for (int i = 0; i < 10; i++) {
-				GroupCircleEntity entity = new GroupCircleEntity();
-				entity.groupId = i + "";
+            RequestUtil.queryTagGroupList(activity,channel_id+"",new QueryTagGroupListCallback(){
+                @Override
+                public void onSuccess(List<GroupCircleEntity.ContentEntity> entitys) {
+                    if(entitys!=null){
+                        groupCircleList.addAll(entitys);
+                        mListView.onLoadMoreComplete();
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
 
-				entity.groupTitle = "群名称";
-				entity.groupImage = "";
-				if (i > 1) {
-					entity.isHot = false;
-				} else {
-					entity.isHot = true;
-				}
-				entity.peopleCount = "20";
-				entity.lastMsg = "lastmsg";
-				entity.masterId = "masterId";
-				entity.masterName = "masterName";
+                @Override
+                public void onFail() {
+                    //TODO:onFail 再次请求逻辑
 
-				groupCircleList.add(entity);
-			}
-			mListView.onRefreshComplete();
-			mAdapter.notifyDataSetChanged();
+                }
+            });
 		}
 	}
 
 	@Override
 	public void onLoadMore() {
+        page++;
+
 		/**制造数据**/
 		if (text.equals("同城")) {
 			new Thread(new Runnable() {
@@ -168,15 +173,14 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 							if (cursorResult.getData() != null && cursorResult.getData().size() > 0) {
 								List<EMGroupInfo> datas = cursorResult.getData();
 								for (EMGroupInfo groupInfo : datas) {
-									GroupCircleEntity entity = new GroupCircleEntity();
-									entity.groupId = groupInfo.getGroupId();
+									GroupCircleEntity.ContentEntity entity = new GroupCircleEntity.ContentEntity();
+									entity.groupid = groupInfo.getGroupId();
 
-									entity.groupTitle = groupInfo.getGroupName();
-									entity.groupImage = "";
-									entity.peopleCount = "20";
-									entity.lastMsg = "lastmsg";
-									entity.masterId = "masterId";
-									entity.masterName = "masterName";
+									entity.name = groupInfo.getGroupName();
+//									entity.peopleCount = "20";
+//									entity.lastMsg = "lastmsg";
+									entity.ownerid = "owner";
+									entity.owner = "owner";
 									groupCircleList.add(entity);
 								}
 								getActivity().runOnUiThread(new Runnable() {
@@ -214,26 +218,23 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 				}
 			}).start();
 		} else {
-			for (int i = 0; i < 10; i++) {
-				GroupCircleEntity entity = new GroupCircleEntity();
-				entity.groupId = i + "";
+            RequestUtil.queryTagGroupList(activity,channel_id+"",new QueryTagGroupListCallback(){
+                @Override
+                public void onSuccess(List<GroupCircleEntity.ContentEntity> entitys) {
+                    if(entitys!=null){
+                        groupCircleList.addAll(entitys);
+                        mListView.onLoadMoreComplete();
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
 
-				entity.groupTitle = "群名称";
-				entity.groupImage = "";
-				if (i > 1) {
-					entity.isHot = false;
-				} else {
-					entity.isHot = true;
-				}
-				entity.peopleCount = "20";
-				entity.lastMsg = "lastmsg";
-				entity.masterId = "masterId";
-				entity.masterName = "masterName";
-
-				groupCircleList.add(entity);
-			}
-			mListView.onLoadMoreComplete();
-			mAdapter.notifyDataSetChanged();
+                @Override
+                public void onFail() {
+                    page--;
+                    mListView.onLoadMoreComplete();
+                    //TODO:onFail 再次请求逻辑
+                }
+            });
 		}
 	}
 
@@ -282,8 +283,8 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 					public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 						if(view instanceof ViewGroupListItem){
 							ViewGroupListItem item = (ViewGroupListItem)view;
-							if(item.entity != null && !TextUtils.isEmpty(item.entity.groupId)){
-								ActivityGroupChat.open(activity,item.entity.groupId);
+							if(item.entity != null && !TextUtils.isEmpty(item.entity.groupid)){
+								ActivityGroupChat.open(activity,item.entity.groupid);
 							}else{
 								ToastUtil.makeShortText("群id为空");
 							}
@@ -304,4 +305,9 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 		super.onDestroyView();
 		mAdapter = null;
 	}
+
+    public interface QueryTagGroupListCallback{
+        public void onSuccess(List<GroupCircleEntity.ContentEntity> entitys);
+        public void onFail();
+    }
 }

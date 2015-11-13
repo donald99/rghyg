@@ -8,12 +8,13 @@ import com.example.Bama.Bean.GroupCircleEntity;
 import com.example.Bama.ui.Views.ViewGroupListItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GroupCircleAdapter extends BaseAdapter{
     private Activity activity;
-    private ArrayList<GroupCircleEntity> groupsList = new ArrayList<GroupCircleEntity>();
+    private List<GroupCircleEntity.ContentEntity> groupsList = new ArrayList<GroupCircleEntity.ContentEntity>();
 
-    public GroupCircleAdapter(Activity activity, ArrayList<GroupCircleEntity> groupsList) {
+    public GroupCircleAdapter(Activity activity, List<GroupCircleEntity.ContentEntity> groupsList) {
         this.activity = activity;
         this.groupsList = groupsList;
     }
@@ -24,7 +25,7 @@ public class GroupCircleAdapter extends BaseAdapter{
     }
 
 	@Override
-	public GroupCircleEntity getItem(int position) {
+	public GroupCircleEntity.ContentEntity getItem(int position) {
 		return groupsList.get(position);
 	}
 
