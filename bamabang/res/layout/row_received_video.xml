@@ -43,6 +43,7 @@
                         android:scaleType="centerCrop"/>
             </FrameLayout>
             <TextView
+                    android:id="@+id/isGroupMater"
                     android:layout_width="30dp"
                     android:layout_height="15dp"
                     android:text="群主"

@@ -22,6 +22,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.text.Spannable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,12 +52,14 @@ import com.example.Bama.chat.chatuidemo.utils.ImageUtils;
 import com.example.Bama.chat.chatuidemo.utils.SmileUtils;
 import com.example.Bama.chat.chatuidemo.utils.UserUtils;
 import com.example.Bama.ui.ActivityGroupChat;
+import com.example.Bama.ui.ChatInfoManager;
 import com.example.Bama.ui.fragment.GroupChatFragment;
+import com.example.Bama.util.Request;
 
 import java.io.File;
 import java.util.*;
 
-public class MessageAdapter extends BaseAdapter{
+public class MessageAdapter extends BaseAdapter {
 
 	private final static String TAG = "msg";
 
@@ -84,7 +87,7 @@ public class MessageAdapter extends BaseAdapter{
 	private String username;
 	private LayoutInflater inflater;
 	private ActivityGroupChat activity;
-	
+
 	private static final int HANDLER_MESSAGE_REFRESH_LIST = 0;
 	private static final int HANDLER_MESSAGE_SELECT_LAST = 1;
 	private static final int HANDLER_MESSAGE_SEEK_TO = 2;
@@ -97,6 +100,11 @@ public class MessageAdapter extends BaseAdapter{
 
 	private Map<String, Timer> timers = new Hashtable<String, Timer>();
 
+	/**
+	 * 群主的id*
+	 */
+	private String ownerId;
+
 	public MessageAdapter(Context context, String username, int chatType) {
 		this.username = username;
 		this.context = context;
@@ -104,7 +112,15 @@ public class MessageAdapter extends BaseAdapter{
 		activity = (ActivityGroupChat) context;
 		this.conversation = EMChatManager.getInstance().getConversation(username);
 	}
-	
+
+	/**
+	 * 设置群主的id*
+	 */
+	public void setOwner(String owner) {
+		this.ownerId = owner;
+		notifyDataSetChanged();
+	}
+
 	Handler handler = new Handler() {
 		private void refreshList() {
 			// UI线程不能直接使用conversation.getAllMessages()
@@ -116,7 +132,7 @@ public class MessageAdapter extends BaseAdapter{
 			}
 			notifyDataSetChanged();
 		}
-		
+
 		@Override
 		public void handleMessage(android.os.Message message) {
 			switch (message.what) {
@@ -125,7 +141,7 @@ public class MessageAdapter extends BaseAdapter{
 				break;
 			case HANDLER_MESSAGE_SELECT_LAST:
 				if (activity instanceof ActivityGroupChat) {
-					ListView listView = ((ActivityGroupChat)activity).fragmentGroupChat.getListView();
+					ListView listView = ((ActivityGroupChat) activity).fragmentGroupChat.getListView();
 					if (messages.length > 0) {
 						listView.setSelection(messages.length - 1);
 					}
@@ -134,7 +150,7 @@ public class MessageAdapter extends BaseAdapter{
 			case HANDLER_MESSAGE_SEEK_TO:
 				int position = message.arg1;
 				if (activity instanceof ActivityGroupChat) {
-					ListView listView = ((ActivityGroupChat)activity).fragmentGroupChat.getListView();
+					ListView listView = ((ActivityGroupChat) activity).fragmentGroupChat.getListView();
 					listView.setSelection(position);
 				}
 				break;
@@ -162,7 +178,7 @@ public class MessageAdapter extends BaseAdapter{
 		android.os.Message msg = handler.obtainMessage(HANDLER_MESSAGE_REFRESH_LIST);
 		handler.sendMessage(msg);
 	}
-	
+
 	/**
 	 * 刷新页面, 选择最后一个
 	 */
@@ -170,7 +186,7 @@ public class MessageAdapter extends BaseAdapter{
 		handler.sendMessage(handler.obtainMessage(HANDLER_MESSAGE_REFRESH_LIST));
 		handler.sendMessage(handler.obtainMessage(HANDLER_MESSAGE_SELECT_LAST));
 	}
-	
+
 	/**
 	 * 刷新页面, 选择Position
 	 */
@@ -191,27 +207,27 @@ public class MessageAdapter extends BaseAdapter{
 	public long getItemId(int position) {
 		return position;
 	}
-	
+
 	/**
 	 * 获取item类型数
 	 */
 	public int getViewTypeCount() {
-        return 16;
-    }
+		return 16;
+	}
 
 	/**
 	 * 获取item类型
 	 */
 	public int getItemViewType(int position) {
-		EMMessage message = getItem(position); 
+		EMMessage message = getItem(position);
 		if (message == null) {
 			return -1;
 		}
 		if (message.getType() == EMMessage.Type.TXT) {
 			if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false))
-			    return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VOICE_CALL : MESSAGE_TYPE_SENT_VOICE_CALL;
+				return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VOICE_CALL : MESSAGE_TYPE_SENT_VOICE_CALL;
 			else if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false))
-			    return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VIDEO_CALL : MESSAGE_TYPE_SENT_VIDEO_CALL;
+				return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VIDEO_CALL : MESSAGE_TYPE_SENT_VIDEO_CALL;
 			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_TXT : MESSAGE_TYPE_SENT_TXT;
 		}
 		if (message.getType() == EMMessage.Type.IMAGE) {
@@ -258,10 +274,10 @@ public class MessageAdapter extends BaseAdapter{
 			if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false))
 				return message.direct == EMMessage.Direct.RECEIVE ? inflater.inflate(R.layout.row_received_voice_call, null) : inflater
 						.inflate(R.layout.row_sent_voice_call, null);
-			// 视频通话
+				// 视频通话
 			else if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false))
-			    return message.direct == EMMessage.Direct.RECEIVE ? inflater.inflate(R.layout.row_received_video_call, null) : inflater
-                        .inflate(R.layout.row_sent_video_call, null);
+				return message.direct == EMMessage.Direct.RECEIVE ? inflater.inflate(R.layout.row_received_video_call, null) : inflater
+						.inflate(R.layout.row_sent_video_call, null);
 			return message.direct == EMMessage.Direct.RECEIVE ? inflater.inflate(R.layout.row_received_message, null) : inflater.inflate(
 					R.layout.row_sent_message, null);
 		}
@@ -277,6 +293,7 @@ public class MessageAdapter extends BaseAdapter{
 			convertView = createViewByMessage(message, position);
 			if (message.getType() == EMMessage.Type.IMAGE) {
 				try {
+					holder.isGroupMaster = (TextView) convertView.findViewById(R.id.isGroupMater);
 					holder.iv = ((ImageView) convertView.findViewById(R.id.iv_sendPicture));
 					holder.iv_avatar = (ImageView) convertView.findViewById(R.id.iv_userhead);
 					holder.tv = (TextView) convertView.findViewById(R.id.percentage);
@@ -285,10 +302,9 @@ public class MessageAdapter extends BaseAdapter{
 					holder.tv_usernick = (TextView) convertView.findViewById(R.id.tv_userid);
 				} catch (Exception e) {
 				}
-
 			} else if (message.getType() == EMMessage.Type.TXT) {
-
 				try {
+					holder.isGroupMaster = (TextView) convertView.findViewById(R.id.isGroupMater);
 					holder.pb = (ProgressBar) convertView.findViewById(R.id.pb_sending);
 					holder.staus_iv = (ImageView) convertView.findViewById(R.id.msg_status);
 					holder.iv_avatar = (ImageView) convertView.findViewById(R.id.iv_userhead);
@@ -297,16 +313,15 @@ public class MessageAdapter extends BaseAdapter{
 					holder.tv_usernick = (TextView) convertView.findViewById(R.id.tv_userid);
 				} catch (Exception e) {
 				}
-
-				// 语音通话及视频通话
+				/**语音通话及视频通话,群里面用不到**/
 				if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false)
-				        || message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false)) {
+						|| message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false)) {
 					holder.iv = (ImageView) convertView.findViewById(R.id.iv_call_icon);
 					holder.tv = (TextView) convertView.findViewById(R.id.tv_chatcontent);
 				}
-
 			} else if (message.getType() == EMMessage.Type.VOICE) {
 				try {
+					holder.isGroupMaster = (TextView) convertView.findViewById(R.id.isGroupMater);
 					holder.iv = ((ImageView) convertView.findViewById(R.id.iv_voice));
 					holder.iv_avatar = (ImageView) convertView.findViewById(R.id.iv_userhead);
 					holder.tv = (TextView) convertView.findViewById(R.id.tv_length);
@@ -318,6 +333,7 @@ public class MessageAdapter extends BaseAdapter{
 				}
 			} else if (message.getType() == EMMessage.Type.LOCATION) {
 				try {
+					holder.isGroupMaster = (TextView) convertView.findViewById(R.id.isGroupMater);
 					holder.iv_avatar = (ImageView) convertView.findViewById(R.id.iv_userhead);
 					holder.tv = (TextView) convertView.findViewById(R.id.tv_location);
 					holder.pb = (ProgressBar) convertView.findViewById(R.id.pb_sending);
@@ -327,6 +343,7 @@ public class MessageAdapter extends BaseAdapter{
 				}
 			} else if (message.getType() == EMMessage.Type.VIDEO) {
 				try {
+					holder.isGroupMaster = (TextView) convertView.findViewById(R.id.isGroupMater);
 					holder.iv = ((ImageView) convertView.findViewById(R.id.chatting_content_iv));
 					holder.iv_avatar = (ImageView) convertView.findViewById(R.id.iv_userhead);
 					holder.tv = (TextView) convertView.findViewById(R.id.percentage);
@@ -342,6 +359,7 @@ public class MessageAdapter extends BaseAdapter{
 				}
 			} else if (message.getType() == EMMessage.Type.FILE) {
 				try {
+					holder.isGroupMaster = (TextView) convertView.findViewById(R.id.isGroupMater);
 					holder.iv_avatar = (ImageView) convertView.findViewById(R.id.iv_userhead);
 					holder.tv_file_name = (TextView) convertView.findViewById(R.id.tv_file_name);
 					holder.tv_file_size = (TextView) convertView.findViewById(R.id.tv_file_size);
@@ -359,16 +377,31 @@ public class MessageAdapter extends BaseAdapter{
 				}
 
 			}
-
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		// 群聊时，显示接收的消息的发送人的名称
-		if ((chatType == ChatType.GroupChat || chatType == chatType.ChatRoom) && message.direct == EMMessage.Direct.RECEIVE){
-		    //demo里使用username代码nick
-			holder.tv_usernick.setText(message.getFrom());
+		/**群聊时，发送者和接收者的的名称**/
+		if ((chatType == ChatType.GroupChat || chatType == chatType.ChatRoom)) {
+			holder.tv_usernick.setVisibility(View.VISIBLE);
+			setUserNickName(message, holder.tv_usernick);
+		}
+		/**判断“群主”标志是否需要显示**/
+		if(!TextUtils.isEmpty(ownerId)){
+			String userId = "";
+			if (message.direct == Direct.SEND) {
+				userId = EMChatManager.getInstance().getCurrentUser();
+			} else {
+				userId = message.getFrom();
+			}
+			if(ownerId.equals(userId)){
+				holder.isGroupMaster.setVisibility(View.VISIBLE);
+			}else{
+				holder.isGroupMaster.setVisibility(View.GONE);
+			}
+		}else{
+			holder.isGroupMaster.setVisibility(View.GONE);
 		}
 		// 如果是发送的消息并且不是群聊消息，显示已读textview
 		if (!(chatType == ChatType.GroupChat || chatType == chatType.ChatRoom) && message.direct == EMMessage.Direct.SEND) {
@@ -408,8 +441,8 @@ public class MessageAdapter extends BaseAdapter{
 				}
 			}
 		}
-		
-		//设置用户头像
+
+		/**设置用户头像**/
 		setUserAvatar(message, holder.iv_avatar);
 
 		switch (message.getType()) {
@@ -419,11 +452,11 @@ public class MessageAdapter extends BaseAdapter{
 			break;
 		case TXT: // 文本
 			if (message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false)
-			        || message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false))
-			    // 音视频通话
-			    handleCallMessage(message, holder, position);
+					|| message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VIDEO_CALL, false))
+				// 音视频通话
+				handleCallMessage(message, holder, position);
 			else
-			    handleTextMessage(message, holder, position);
+				handleTextMessage(message, holder, position);
 			break;
 		case LOCATION: // 位置
 			handleLocationMessage(message, holder, position, convertView);
@@ -472,7 +505,7 @@ public class MessageAdapter extends BaseAdapter{
 
 		} else {
 			final String st = context.getResources().getString(R.string.Into_the_blacklist);
-			if(chatType != ChatType.ChatRoom){
+			if (chatType != ChatType.ChatRoom) {
 				// 长按头像，移入黑名单
 				holder.iv_avatar.setOnLongClickListener(new OnLongClickListener() {
 
@@ -506,25 +539,56 @@ public class MessageAdapter extends BaseAdapter{
 		}
 		return convertView;
 	}
-	
-	
+
+
 	/**
 	 * 显示用户头像
+	 *
 	 * @param message
 	 * @param imageView
 	 */
-	private void setUserAvatar(EMMessage message, ImageView imageView){
-	    if(message.direct == Direct.SEND){
-	        //显示自己头像
-	        UserUtils.setUserAvatar(context, EMChatManager.getInstance().getCurrentUser(), imageView);
-	    }else{
-	        UserUtils.setUserAvatar(context, message.getFrom(), imageView);
-	    }
+	private void setUserAvatar(EMMessage message, ImageView imageView) {
+		if (message.direct == Direct.SEND) {
+			//显示自己头像
+			UserUtils.setUserAvatar(context, EMChatManager.getInstance().getCurrentUser(), imageView);
+		} else {
+			UserUtils.setUserAvatar(context, message.getFrom(), imageView);
+		}
+	}
+
+	/**
+	 * 显示用户昵称*
+	 */
+	private void setUserNickName(EMMessage message, final TextView textView) {
+		String userId = null;
+		if (message.direct == Direct.SEND) {
+			userId = EMChatManager.getInstance().getCurrentUser();
+		} else {
+			userId = message.getFrom();
+		}
+		if (!TextUtils.isEmpty(userId)) {
+			/**自己设置昵称**/
+			ChatInfoManager.getUserInfo((Activity) context, username, new ChatInfoManager.ModelRequestListener<ChatInfoManager.UserInfoModel>() {
+				@Override
+				public void onModelComplete(ChatInfoManager.UserInfoModel model) {
+					if (model != null) {
+						if (!TextUtils.isEmpty(model.name)) {
+							textView.setText(model.name);
+						}
+					}
+				}
+
+				@Override
+				public void onException(Request.RequestException e) {
+
+				}
+			});
+		}
 	}
 
 	/**
 	 * 文本消息
-	 * 
+	 *
 	 * @param message
 	 * @param holder
 	 * @param position
@@ -568,7 +632,7 @@ public class MessageAdapter extends BaseAdapter{
 
 	/**
 	 * 音视频通话记录
-	 * 
+	 *
 	 * @param message
 	 * @param holder
 	 * @param position
@@ -581,7 +645,7 @@ public class MessageAdapter extends BaseAdapter{
 
 	/**
 	 * 图片消息
-	 * 
+	 *
 	 * @param message
 	 * @param holder
 	 * @param position
@@ -695,7 +759,7 @@ public class MessageAdapter extends BaseAdapter{
 
 	/**
 	 * 视频消息
-	 * 
+	 *
 	 * @param message
 	 * @param holder
 	 * @param position
@@ -824,7 +888,7 @@ public class MessageAdapter extends BaseAdapter{
 
 	/**
 	 * 语音消息
-	 * 
+	 *
 	 * @param message
 	 * @param holder
 	 * @param position
@@ -845,7 +909,7 @@ public class MessageAdapter extends BaseAdapter{
 		});
 		if (activity.fragmentGroupChat.playMsgId != null
 				&& (activity).fragmentGroupChat.playMsgId.equals(message
-						.getMsgId())&&VoicePlayClickListener.isPlaying) {
+				.getMsgId()) && VoicePlayClickListener.isPlaying) {
 			AnimationDrawable voiceAnimation;
 			if (message.direct == EMMessage.Direct.RECEIVE) {
 				holder.iv.setImageResource(R.anim.voice_from_icon);
@@ -861,8 +925,7 @@ public class MessageAdapter extends BaseAdapter{
 				holder.iv.setImageResource(R.drawable.chatto_voice_playing);
 			}
 		}
-		
-		
+
 		if (message.direct == EMMessage.Direct.RECEIVE) {
 			if (message.isListened()) {
 				// 隐藏语音未听标志
@@ -934,7 +997,7 @@ public class MessageAdapter extends BaseAdapter{
 
 	/**
 	 * 文件消息
-	 * 
+	 *
 	 * @param message
 	 * @param holder
 	 * @param position
@@ -1039,7 +1102,7 @@ public class MessageAdapter extends BaseAdapter{
 
 	/**
 	 * 处理位置消息
-	 * 
+	 *
 	 * @param message
 	 * @param holder
 	 * @param position
@@ -1084,7 +1147,7 @@ public class MessageAdapter extends BaseAdapter{
 
 	/**
 	 * 发送消息
-	 * 
+	 *
 	 * @param message
 	 * @param holder
 	 * @param
@@ -1099,13 +1162,13 @@ public class MessageAdapter extends BaseAdapter{
 
 			@Override
 			public void onSuccess() {
-				Log.e("hx","message.status"+message.status);
+				Log.e("hx", "message.status" + message.status);
 				updateSendedView(message, holder);
 			}
 
 			@Override
 			public void onError(int code, String error) {
-				
+
 				updateSendedView(message, holder);
 			}
 
@@ -1126,10 +1189,10 @@ public class MessageAdapter extends BaseAdapter{
 		// final ImageMessageBody msgbody = (ImageMessageBody)
 		// message.getBody();
 		final FileMessageBody msgbody = (FileMessageBody) message.getBody();
-		if(holder.pb!=null)
-		holder.pb.setVisibility(View.VISIBLE);
-		if(holder.tv!=null)
-		holder.tv.setVisibility(View.VISIBLE);
+		if (holder.pb != null)
+			holder.pb.setVisibility(View.VISIBLE);
+		if (holder.tv != null)
+			holder.tv.setVisibility(View.VISIBLE);
 
 		msgbody.setDownloadCallback(new EMCallBack() {
 
@@ -1182,7 +1245,7 @@ public class MessageAdapter extends BaseAdapter{
 			holder.pb.setVisibility(View.VISIBLE);
 			holder.tv.setVisibility(View.VISIBLE);
 			holder.tv.setText("0%");
-			
+
 			final long start = System.currentTimeMillis();
 			EMChatManager.getInstance().sendMessage(message, new EMCallBack() {
 
@@ -1200,7 +1263,7 @@ public class MessageAdapter extends BaseAdapter{
 
 				@Override
 				public void onError(int code, String error) {
-					
+
 					activity.runOnUiThread(new Runnable() {
 						public void run() {
 							holder.pb.setVisibility(View.GONE);
@@ -1230,7 +1293,7 @@ public class MessageAdapter extends BaseAdapter{
 
 	/**
 	 * 更新ui上消息发送状态
-	 * 
+	 *
 	 * @param message
 	 * @param holder
 	 */
@@ -1245,18 +1308,18 @@ public class MessageAdapter extends BaseAdapter{
 				EMLog.d(TAG, "message status : " + message.status);
 				if (message.status == EMMessage.Status.SUCCESS) {
 					if (message.getType() == EMMessage.Type.FILE) {
-					holder.pb.setVisibility(View.INVISIBLE);
-					holder.staus_iv.setVisibility(View.INVISIBLE);
+						holder.pb.setVisibility(View.INVISIBLE);
+						holder.staus_iv.setVisibility(View.INVISIBLE);
 					} else {
-					holder.pb.setVisibility(View.GONE);
-					holder.staus_iv.setVisibility(View.GONE);
+						holder.pb.setVisibility(View.GONE);
+						holder.staus_iv.setVisibility(View.GONE);
 					}
 
 				} else if (message.status == EMMessage.Status.FAIL) {
 					if (message.getType() == EMMessage.Type.FILE) {
-					holder.pb.setVisibility(View.INVISIBLE);
+						holder.pb.setVisibility(View.INVISIBLE);
 					} else {
-					holder.pb.setVisibility(View.GONE);
+						holder.pb.setVisibility(View.GONE);
 					}
 					holder.staus_iv.setVisibility(View.VISIBLE);
 					Toast.makeText(activity, activity.getString(R.string.send_fail) + activity.getString(R.string.connect_failuer_toast), Toast.LENGTH_SHORT)
@@ -1270,7 +1333,7 @@ public class MessageAdapter extends BaseAdapter{
 
 	/**
 	 * load image into image view
-	 * 
+	 *
 	 * @param thumbernailPath
 	 * @param iv
 	 * @param
@@ -1290,7 +1353,7 @@ public class MessageAdapter extends BaseAdapter{
 		if (bitmap != null) {
 			// thumbnail image is already loaded, reuse the drawable
 			iv.setImageBitmap(bitmap);
-			iv.setClickable(true); 
+			iv.setClickable(true);
 			iv.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -1334,11 +1397,9 @@ public class MessageAdapter extends BaseAdapter{
 	/**
 	 * 展示视频缩略图
 	 *
-	 * @param localThumb
-	 *            本地缩略图路径
+	 * @param localThumb   本地缩略图路径
 	 * @param iv
-	 * @param thumbnailUrl
-	 *            远程缩略图路径
+	 * @param thumbnailUrl 远程缩略图路径
 	 * @param message
 	 */
 	private void showVideoThumbView(String localThumb, ImageView iv, String thumbnailUrl, final EMMessage message) {
@@ -1385,6 +1446,10 @@ public class MessageAdapter extends BaseAdapter{
 		ImageView staus_iv;
 		ImageView iv_avatar;
 		TextView tv_usernick;
+		/**
+		 * 是否是群主*
+		 */
+		TextView isGroupMaster;
 		ImageView playBtn;
 		TextView timeLength;
 		TextView size;

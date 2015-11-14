@@ -225,33 +225,32 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 					for (final String accountId : accountIds) {
 						GroupMemberEntity entity = new GroupMemberEntity();
 						/**通过自己服务器的accountid去注册环信**/
-						entity.name = accountId;
 						entity.accountId = accountId;
-						entity.avatar = "http://img.name2012.com/uploads/allimg/2015-06/30-023131_451.jpg";
 						if (!TextUtils.isEmpty(ownerId) && ownerId.equals(accountId)) {
 							entity.isMaster = true;
 						} else {
 							entity.isMaster = false;
 						}
 						memberList.add(entity);
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								mRadioGroup_content.removeAllViews();
-								for (int i = 0; i < memberList.size(); i++) {
-									LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-									if (i != memberList.size() - 1) {
-										params.rightMargin = DisplayUtil.dip2px(ActivityGroupChat.this, 13);
-									}
-									ViewMemberHeaderItem item = new ViewMemberHeaderItem(ActivityGroupChat.this);
-									item.setData(memberList.get(i));
-                                    item.setOnClickListener(ClickListener);
-                                    item.setTag(accountId);
-									mRadioGroup_content.addView(item, params);
-								}
-							}
-						});
 					}
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							mRadioGroup_content.removeAllViews();
+							for (int i = 0; i < memberList.size(); i++) {
+								GroupMemberEntity groupMemberEntity = memberList.get(i);
+								LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+								if (i != memberList.size() - 1) {
+									params.rightMargin = DisplayUtil.dip2px(ActivityGroupChat.this, 13);
+								}
+								ViewMemberHeaderItem item = new ViewMemberHeaderItem(ActivityGroupChat.this);
+								item.setData(groupMemberEntity);
+								item.setOnClickListener(ClickListener);
+								item.setTag(groupMemberEntity.accountId);
+								mRadioGroup_content.addView(item, params);
+							}
+						}
+					});
 				} catch (EaseMobException e) {
 					e.printStackTrace();
 				}
