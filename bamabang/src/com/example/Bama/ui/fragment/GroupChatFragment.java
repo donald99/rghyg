@@ -59,7 +59,7 @@ import java.util.List;
 /**
  * 群聊页面*
  */
-public class GroupChatFragment extends Fragment implements View.OnClickListener, EMEventListener,ActivityGroupChat.ATTAListener {
+public class GroupChatFragment extends Fragment implements View.OnClickListener, EMEventListener, ActivityGroupChat.ATTAListener {
 	private static final String TAG = "ChatActivity";
 	private static final int REQUEST_CODE_EMPTY_HISTORY = 2;
 	public static final int REQUEST_CODE_CONTEXT_MENU = 3;
@@ -177,6 +177,11 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	 */
 	private boolean isJoinGroup = false;
 
+	/**
+	 * 群的model*
+	 */
+	private EMGroup emGroup;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_group_chat, container, false);
@@ -189,7 +194,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		this.activityInstance = activity;
-        ((ActivityGroupChat)activityInstance).setATTAListener(this);
+		((ActivityGroupChat) activityInstance).setATTAListener(this);
 	}
 
 	/**
@@ -351,7 +356,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			@Override
 			public void run() {
 				try {
-					EMGroup group = EMGroupManager.getInstance().getGroupFromServer(toChatUsername);
+					emGroup = EMGroupManager.getInstance().getGroupFromServer(toChatUsername);
 					List<String> accountIds = group.getMembers();
 					/**判断自己是否加入群**/
 					if (!TextUtils.isEmpty(account.userId) && accountIds.contains(account.userId)) {
@@ -359,6 +364,14 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 					} else {
 						isJoinGroup = false;
 					}
+					getActivity().runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							if (adapter != null) {
+								adapter.setOwner(emGroup.getOwner());
+							}
+						}
+					});
 				} catch (EaseMobException e) {
 					e.printStackTrace();
 				}
@@ -1161,7 +1174,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 
 	private PowerManager.WakeLock wakeLock;
 
-    /**
+	/**
 	 * 按住说话listener
 	 */
 	class PressToSpeakListen implements View.OnTouchListener {
@@ -1627,8 +1640,8 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 		return listView;
 	}
 
-    @Override
-    public void onAttalistener(String atusername) {
-        mEditTextContent.setText("@"+atusername);
-    }
+	@Override
+	public void onAttalistener(String atusername) {
+		mEditTextContent.setText("@" + atusername);
+	}
 }

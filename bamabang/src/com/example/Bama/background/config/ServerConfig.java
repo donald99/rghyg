@@ -25,5 +25,5 @@ public class ServerConfig {
     public static final String URL_GET_TAG_LIST = "/soul/htdocs/im/tag/list";
     public static final String URL_GET_TAG_DETAIL = "/soul/htdocs/im/tag/detail";
     public static final String URL_GROUP_ADD = "/soul/htdocs/im/group/add";
-
+	public static final String URL_USER_GET = "/soul/htdocs/im/user/get";
 }
