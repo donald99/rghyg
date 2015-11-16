@@ -187,6 +187,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	 */
 	private static final int RequestCodeToActivityGroupMembers = 10012;
 	private boolean isAlreadyToActivityGroupMembers = false;
+	private String atUserId = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -373,7 +374,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 					emGroup = EMGroupManager.getInstance().getGroupFromServer(toChatUsername);
 					List<String> accountIds = emGroup.getMembers();
 					/**判断自己是否加入群**/
-					if (emGroup !=null && !TextUtils.isEmpty(account.userId) && accountIds.contains(account.userId)) {
+					if (emGroup != null && !TextUtils.isEmpty(account.userId) && accountIds.contains(account.userId)) {
 						isJoinGroup = true;
 					} else {
 						isJoinGroup = false;
@@ -466,7 +467,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	}
 
 	protected void onGroupViewCreation(View rootView) {
-        emGroup = EMChatManager.getInstance().getGroup(toChatUsername);
+		emGroup = EMChatManager.getInstance().getGroup(toChatUsername);
 		if (emGroup != null) {
 			((TextView) rootView.findViewById(R.id.name)).setText(emGroup.getGroupName());
 		} else {
@@ -491,9 +492,10 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 		/**输入@符号后的返回结果**/
 		if (requestCode == RequestCodeToActivityGroupMembers && resultCode == getActivity().RESULT_OK) {
 			String userId = data.getStringExtra(ActivityGroupMembers.kUserId);
-			String newContent = "@"+userId;
+			String newContent = "@" + userId;
 			mEditTextContent.setText(newContent);
 			mEditTextContent.setSelection(newContent.length());
+			atUserId = userId;
 		}
 
 		if (requestCode == REQUEST_CODE_CONTEXT_MENU) {
@@ -732,7 +734,6 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 				//单聊消息
 				username = message.getFrom();
 			}
-
 			//如果是当前会话的消息，刷新聊天页面
 			if (username.equals(getToChatUsername())) {
 				refreshUIWithNewMessage();
@@ -742,7 +743,6 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 				//如果消息不是和当前聊天ID的消息
 				HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
 			}
-
 			break;
 		}
 		case EventDeliveryAck: {
@@ -774,7 +774,6 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 		if (adapter == null) {
 			return;
 		}
-
 		activityInstance.runOnUiThread(new Runnable() {
 			public void run() {
 				adapter.refreshSelectLast();
@@ -850,10 +849,14 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	 * @param
 	 */
 	private void sendText(String content) {
+		/**是否需要at功能的实现**/
 		if (content.length() > 0) {
 			EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
 			message.setChatType(EMMessage.ChatType.GroupChat);
-
+			if (content.startsWith("@")) {
+				message.setAttribute("at", atUserId);
+				content = content.replace("@" + atUserId, "");
+			}
 			TextMessageBody txtBody = new TextMessageBody(content);
 			// 设置消息body
 			message.addBody(txtBody);

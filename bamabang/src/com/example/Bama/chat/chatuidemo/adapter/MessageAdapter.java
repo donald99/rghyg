@@ -403,6 +403,9 @@ public class MessageAdapter extends BaseAdapter {
 		}else{
 			holder.isGroupMaster.setVisibility(View.GONE);
 		}
+
+		/**判断背景变化，AT功能的实现**/
+		isAtMe(message,holder.tv);
 		// 如果是发送的消息并且不是群聊消息，显示已读textview
 		if (!(chatType == ChatType.GroupChat || chatType == chatType.ChatRoom) && message.direct == EMMessage.Direct.SEND) {
 			holder.tv_ack = (TextView) convertView.findViewById(R.id.tv_ack);
@@ -553,6 +556,21 @@ public class MessageAdapter extends BaseAdapter {
 			UserUtils.setUserAvatar(context, EMChatManager.getInstance().getCurrentUser(), imageView);
 		} else {
 			UserUtils.setUserAvatar(context, message.getFrom(), imageView);
+		}
+	}
+
+	/**是否是at自己**/
+	private void isAtMe(EMMessage message,final TextView textView){
+		try {
+			String atUserId = message.getStringAttribute("at");
+			String myUserId = EMChatManager.getInstance().getCurrentUser();
+			if(!TextUtils.isEmpty(atUserId) && atUserId.equals(myUserId)){
+				textView.setTextColor(context.getResources().getColor(R.color.common_red));
+			}else{
+				textView.setTextColor(context.getResources().getColor(R.color.common_black));
+			}
+		} catch (EaseMobException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -1489,7 +1507,6 @@ public class MessageAdapter extends BaseAdapter {
 			intent.putExtra("address", address);
 			activity.startActivity(intent);
 		}
-
 	}
 
 }
