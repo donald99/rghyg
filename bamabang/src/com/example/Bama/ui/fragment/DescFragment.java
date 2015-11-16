@@ -16,6 +16,7 @@ import com.example.Bama.R;
 import com.example.Bama.background.Account;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.ActivityBase;
+import com.example.Bama.ui.ActivityGroupChat;
 import com.example.Bama.util.ToastUtil;
 
 import java.util.List;
@@ -117,11 +118,17 @@ public class DescFragment extends Fragment implements View.OnClickListener {
 				public void run() {
 					try {
 						EMGroupManager.getInstance().joinGroup(groupId);//需异步处
+                        final EMGroup group = EMGroupManager.getInstance().getGroupFromServer(groupId);
 						getActivity().runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
 								add_group.setVisibility(View.GONE);
 								added_group.setVisibility(View.VISIBLE);
+                                if(activity instanceof ActivityGroupChat){
+                                    ((ActivityGroupChat)activity).initHeaderColumn();
+                                }
+                                final List<String> accountIds = group.getMembers();
+                                group_people_count.setText(accountIds.size() + "");
 							}
 						});
 					} catch (EaseMobException e) {

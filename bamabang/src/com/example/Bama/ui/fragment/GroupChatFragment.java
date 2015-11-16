@@ -151,7 +151,6 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			micImage.setImageDrawable(micImages[msg.what]);
 		}
 	};
-	public EMGroup group;
 	public EMChatRoom room;
 	public View rootView;
 
@@ -357,9 +356,9 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			public void run() {
 				try {
 					emGroup = EMGroupManager.getInstance().getGroupFromServer(toChatUsername);
-					List<String> accountIds = group.getMembers();
+					List<String> accountIds = emGroup.getMembers();
 					/**判断自己是否加入群**/
-					if (!TextUtils.isEmpty(account.userId) && accountIds.contains(account.userId)) {
+					if (emGroup !=null && !TextUtils.isEmpty(account.userId) && accountIds.contains(account.userId)) {
 						isJoinGroup = true;
 					} else {
 						isJoinGroup = false;
@@ -452,9 +451,9 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	}
 
 	protected void onGroupViewCreation(View rootView) {
-		group = EMChatManager.getInstance().getGroup(toChatUsername);
-		if (group != null) {
-			((TextView) rootView.findViewById(R.id.name)).setText(group.getGroupName());
+        emGroup = EMChatManager.getInstance().getGroup(toChatUsername);
+		if (emGroup != null) {
+			((TextView) rootView.findViewById(R.id.name)).setText(emGroup.getGroupName());
 		} else {
 			((TextView) rootView.findViewById(R.id.name)).setText(toChatUsername);
 		}
@@ -1118,7 +1117,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	 * @param view
 	 */
 	public void toGroupDetails(View view) {
-		if (room == null && group == null) {
+		if (room == null && emGroup == null) {
 			Toast.makeText(activityInstance, R.string.gorup_not_found, Toast.LENGTH_SHORT).show();
 			return;
 		}
@@ -1349,8 +1348,8 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (group != null)
-			((TextView) rootView.findViewById(R.id.name)).setText(group.getGroupName());
+		if (emGroup != null)
+			((TextView) rootView.findViewById(R.id.name)).setText(emGroup.getGroupName());
 
 		if (adapter != null) {
 			adapter.refresh();

@@ -10,11 +10,14 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.exceptions.EaseMobException;
+import com.example.Bama.Bean.ChannelItem;
 import com.example.Bama.Bean.GroupCreateInfoEntity;
 import com.example.Bama.R;
+import com.example.Bama.ui.fragment.GroupFragment;
 import com.example.Bama.util.ToastUtil;
 import com.example.Bama.widget.HCPopListView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +32,7 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 	/**
 	 * poplist data*
 	 */
-	private List<String> groupTypeStrings = Arrays.asList("宝宝大杂烩", "同城交流", "宝宝营养", "宝宝教育", "宝宝生病");
+	private List<ChannelItem.ContentEntity> groupTypeList = new ArrayList<ChannelItem.ContentEntity>();
 
 	public static void open(Activity activity) {
 		Intent intent = new Intent(activity, ActivityCreateGroup.class);
@@ -40,6 +43,7 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_create_group);
 		super.onCreate(savedInstanceState);
+        queryGroupTags();
 	}
 
 
@@ -84,6 +88,10 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 			finish();
 			break;
 		case R.id.groupTypeFL:
+            List<String> groupTypeStrings = new ArrayList<String>();
+            for (int i = 0; i < groupTypeList.size(); i++) {
+                groupTypeStrings.add(groupTypeList.get(i).name);
+            }
 			HCPopListView.showDialog(this, "群组类型", "取消", groupTypeStrings, new HCPopListView.HCPopListViewListener() {
 				@Override
 				public void onItemClicked(int index, String content) {
@@ -167,6 +175,22 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
             }
         });
 	}
+
+    private void queryGroupTags(){
+        RequestUtil.queryTagList(this,new GroupFragment.QueryTagListCallback() {
+            @Override
+            public void onSuccess(List list) {
+                if(list!=null){
+                    groupTypeList = list;
+                }
+            }
+
+            @Override
+            public void onFail() {
+                ToastUtil.makeLongText("获取群分类错误，请检查网络");
+            }
+        });
+    }
 
     public interface CreateGroupCallBack{
         public void onSuccess(GroupCreateInfoEntity.ContentEntity entity);
