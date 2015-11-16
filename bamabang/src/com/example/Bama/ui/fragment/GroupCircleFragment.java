@@ -21,6 +21,7 @@ import com.example.Bama.Bean.GroupCircleEntity;
 import com.example.Bama.adapter.GroupCircleAdapter;
 import com.example.Bama.chat.chatuidemo.Constant;
 import com.example.Bama.ui.ActivityGroupChat;
+import com.example.Bama.ui.ActivityMain;
 import com.example.Bama.ui.RequestUtil;
 import com.example.Bama.ui.Views.ViewGroupListItem;
 import com.example.Bama.util.ToastUtil;
@@ -54,6 +55,11 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 	 */
 	private HashMap<String, EMConversation> conversationMap = new HashMap<String, EMConversation>();
 
+	/**
+	 * 界面显示隐藏*
+	 */
+	private boolean hidden;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = LayoutInflater.from(getActivity()).inflate(R.layout.group_list_fragment, null);
@@ -73,6 +79,23 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 		channel_id = args != null ? args.getInt("id", 0) : 0;
 
 		return view;
+	}
+
+	@Override
+	public void onHiddenChanged(boolean hidden) {
+		super.onHiddenChanged(hidden);
+		this.hidden = hidden;
+		if (!hidden) {
+			refresh();
+		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (!hidden && !((ActivityMain) getActivity()).isConflict) {
+			refresh();
+		}
 	}
 
 	@Override
@@ -170,6 +193,29 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 
 				}
 			});
+		}
+	}
+
+	/**
+	 * 刷新页面
+	 */
+	public void refresh() {
+		/**加载所有的回话**/
+		conversationMap.clear();
+		List<EMConversation> conversations = loadConversationsWithRecentChat();
+		for (EMConversation conversation : conversations) {
+			conversationMap.put(conversation.getUserName(), conversation);
+		}
+		for (GroupCircleEntity.ContentEntity contentEntity : groupCircleList) {
+			if (conversationMap.containsKey(contentEntity.groupid)) {
+				EMConversation conversation = conversationMap.get(contentEntity.groupid);
+				if (conversation.getMsgCount() != 0) {
+					contentEntity.lastMsg = getMessageDigest(conversation.getLastMessage(), getActivity());
+				}
+			}
+		}
+		if (mAdapter != null) {
+			mAdapter.notifyDataSetChanged();
 		}
 	}
 
