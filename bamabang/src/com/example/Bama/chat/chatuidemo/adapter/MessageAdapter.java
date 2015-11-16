@@ -388,24 +388,24 @@ public class MessageAdapter extends BaseAdapter {
 			setUserNickName(message, holder.tv_usernick);
 		}
 		/**判断“群主”标志是否需要显示**/
-		if(!TextUtils.isEmpty(ownerId)){
+		if (!TextUtils.isEmpty(ownerId)) {
 			String userId = "";
 			if (message.direct == Direct.SEND) {
 				userId = EMChatManager.getInstance().getCurrentUser();
 			} else {
 				userId = message.getFrom();
 			}
-			if(ownerId.equals(userId)){
+			if (ownerId.equals(userId)) {
 				holder.isGroupMaster.setVisibility(View.VISIBLE);
-			}else{
+			} else {
 				holder.isGroupMaster.setVisibility(View.GONE);
 			}
-		}else{
+		} else {
 			holder.isGroupMaster.setVisibility(View.GONE);
 		}
 
 		/**判断背景变化，AT功能的实现**/
-		isAtMe(message,holder.tv);
+		isAtMe(message, holder.tv);
 		// 如果是发送的消息并且不是群聊消息，显示已读textview
 		if (!(chatType == ChatType.GroupChat || chatType == chatType.ChatRoom) && message.direct == EMMessage.Direct.SEND) {
 			holder.tv_ack = (TextView) convertView.findViewById(R.id.tv_ack);
@@ -559,14 +559,16 @@ public class MessageAdapter extends BaseAdapter {
 		}
 	}
 
-	/**是否是at自己**/
-	private void isAtMe(EMMessage message,final TextView textView){
+	/**
+	 * 是否是at自己*
+	 */
+	private void isAtMe(EMMessage message, final TextView textView) {
 		try {
 			String atUserId = message.getStringAttribute("at");
 			String myUserId = EMChatManager.getInstance().getCurrentUser();
-			if(!TextUtils.isEmpty(atUserId) && atUserId.equals(myUserId)){
+			if (!TextUtils.isEmpty(atUserId) && atUserId.equals(myUserId)) {
 				textView.setTextColor(context.getResources().getColor(R.color.common_red));
-			}else{
+			} else {
 				textView.setTextColor(context.getResources().getColor(R.color.common_black));
 			}
 		} catch (EaseMobException e) {
@@ -613,7 +615,17 @@ public class MessageAdapter extends BaseAdapter {
 	 */
 	private void handleTextMessage(EMMessage message, ViewHolder holder, final int position) {
 		TextMessageBody txtBody = (TextMessageBody) message.getBody();
-		Spannable span = SmileUtils.getSmiledText(context, txtBody.getMessage());
+		String content = txtBody.getMessage();
+		try {
+			String atUserId = message.getStringAttribute("at");
+			String myUserId = EMChatManager.getInstance().getCurrentUser();
+			if (!TextUtils.isEmpty(atUserId) && atUserId.equals(myUserId)) {
+				content = "@我 " + content;
+			}
+		} catch (EaseMobException e) {
+			e.printStackTrace();
+		}
+		Spannable span = SmileUtils.getSmiledText(context, content);
 		// 设置内容
 		holder.tv.setText(span, BufferType.SPANNABLE);
 		// 设置长按事件监听
