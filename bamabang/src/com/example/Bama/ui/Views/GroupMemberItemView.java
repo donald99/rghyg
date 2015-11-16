@@ -22,7 +22,7 @@ public class GroupMemberItemView extends FrameLayout {
 	private ImageView avatar;
 	private TextView nickName;
 
-	private UserInfoManager.UserInfoModel userInfoModel;
+	public UserInfoManager.UserInfoModel userInfoModel;
 	private ImageLoader imageLoader;
 
 	public GroupMemberItemView(Context context, AttributeSet attrs, int defStyleAttr) {

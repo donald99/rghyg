@@ -91,11 +91,13 @@ public class ActivityGroupMembers extends ActivityBase implements View.OnClickLi
 		mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				String userId = userIds.get(position);
-				Intent intent = new Intent();
-				intent.putExtra(kUserId, userId);
-				setResult(RESULT_OK, intent);
-				finish();
+				if(view instanceof GroupMemberItemView){
+					String userId = ((GroupMemberItemView)view).userInfoModel.id;
+					Intent intent = new Intent();
+					intent.putExtra(kUserId, userId);
+					setResult(RESULT_OK, intent);
+					finish();
+				}
 			}
 		});
 	}
