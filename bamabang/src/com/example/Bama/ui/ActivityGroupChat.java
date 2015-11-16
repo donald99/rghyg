@@ -207,7 +207,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 	/**
 	 * 初始化群成员*
 	 */
-	private void initHeaderColumn() {
+	public void initHeaderColumn() {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -342,7 +342,8 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
                                 }
                             }
                         }).start();
-                        Toast.makeText(ActivityGroupChat.this, "exitGroup", Toast.LENGTH_SHORT).show();
+                        finish();
+                        Toast.makeText(ActivityGroupChat.this, "退出该群", Toast.LENGTH_SHORT).show();
 					}
 
 					@Override

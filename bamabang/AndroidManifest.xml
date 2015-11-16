@@ -48,11 +48,12 @@
     <uses-feature android:name="android.hardware.camera.front"/>
     <application
             android:name=".background.HCApplication"
-            android:icon="@drawable/logo">
+            android:icon="@drawable/logo"
+            >
         <activity
                 android:name=".ui.ActivityMain"
                 android:configChanges="keyboardHidden|orientation|screenSize"
-                android:label="爸妈帮"
+                android:label="妈咪哄"
                 android:launchMode="singleTask"
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.NoTitleBar"
