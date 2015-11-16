@@ -52,7 +52,7 @@ import com.example.Bama.chat.chatuidemo.utils.ImageUtils;
 import com.example.Bama.chat.chatuidemo.utils.SmileUtils;
 import com.example.Bama.chat.chatuidemo.utils.UserUtils;
 import com.example.Bama.ui.ActivityGroupChat;
-import com.example.Bama.ui.ChatInfoManager;
+import com.example.Bama.ui.UserInfoManager;
 import com.example.Bama.ui.fragment.GroupChatFragment;
 import com.example.Bama.util.Request;
 
@@ -568,9 +568,9 @@ public class MessageAdapter extends BaseAdapter {
 		}
 		if (!TextUtils.isEmpty(userId)) {
 			/**自己设置昵称**/
-			ChatInfoManager.getUserInfo((Activity) context, username, new ChatInfoManager.ModelRequestListener<ChatInfoManager.UserInfoModel>() {
+			UserInfoManager.getUserInfo((Activity) context, username, new UserInfoManager.ModelRequestListener<UserInfoManager.UserInfoModel>() {
 				@Override
-				public void onModelComplete(ChatInfoManager.UserInfoModel model) {
+				public void onModelComplete(UserInfoManager.UserInfoModel model) {
 					if (model != null) {
 						if (!TextUtils.isEmpty(model.name)) {
 							textView.setText(model.name);

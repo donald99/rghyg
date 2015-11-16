@@ -13,7 +13,7 @@ import com.example.Bama.Bean.GroupMemberEntity;
 import com.example.Bama.R;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.ActivityBase;
-import com.example.Bama.ui.ChatInfoManager;
+import com.example.Bama.ui.UserInfoManager;
 import com.example.Bama.util.ImageLoaderUtil;
 import com.example.Bama.util.Request;
 
@@ -24,7 +24,7 @@ public class ViewMemberHeaderItem extends LinearLayout {
 	private ActivityBase activity;
 	private TextView name;
 
-	private ChatInfoManager.UserInfoModel userInfoModel;
+	private UserInfoManager.UserInfoModel userInfoModel;
 
 	public ViewMemberHeaderItem(Context context) {
 		super(context);
@@ -54,9 +54,9 @@ public class ViewMemberHeaderItem extends LinearLayout {
 			isMaster.setVisibility(View.GONE);
 		}
 		if(!TextUtils.isEmpty(model.accountId)){
-			ChatInfoManager.getUserInfo((Activity)getContext(),model.accountId,new ChatInfoManager.ModelRequestListener<ChatInfoManager.UserInfoModel>(){
+			UserInfoManager.getUserInfo((Activity) getContext(), model.accountId, new UserInfoManager.ModelRequestListener<UserInfoManager.UserInfoModel>() {
 				@Override
-				public void onModelComplete(ChatInfoManager.UserInfoModel model) {
+				public void onModelComplete(UserInfoManager.UserInfoModel model) {
 					userInfoModel = model;
 					name.setText(userInfoModel.name);
 					if (!TextUtils.isEmpty(userInfoModel.avatar)) {

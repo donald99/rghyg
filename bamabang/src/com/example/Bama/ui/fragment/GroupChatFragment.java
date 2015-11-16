@@ -47,6 +47,7 @@ import com.example.Bama.chat.chatuidemo.utils.SmileUtils;
 import com.example.Bama.chat.chatuidemo.widget.ExpandGridView;
 import com.example.Bama.chat.chatuidemo.widget.PasteEditText;
 import com.example.Bama.ui.ActivityGroupChat;
+import com.example.Bama.ui.ActivityGroupMembers;
 import com.example.Bama.util.ToastUtil;
 
 import java.io.File;
@@ -182,6 +183,12 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	 */
 	private EMGroup emGroup;
 
+	/**
+	 * 跳转到群成员列表页面*
+	 */
+	private static final int RequestCodeToActivityGroupMembers = 10012;
+	private boolean isAlreadyToActivityGroupMembers = false;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_group_chat, container, false);
@@ -301,6 +308,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 				} else {
 					btnMore.setVisibility(View.VISIBLE);
 					buttonSend.setVisibility(View.GONE);
+					isAlreadyToActivityGroupMembers = false;
 				}
 			}
 
@@ -310,7 +318,14 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 
 			@Override
 			public void afterTextChanged(Editable s) {
-
+				if (!isAlreadyToActivityGroupMembers) {
+					/**监听是否输入了@符号**/
+					String content = s.toString();
+					if (!TextUtils.isEmpty(content) && content.startsWith("@")) {
+						ActivityGroupMembers.open(GroupChatFragment.this, toChatUsername, RequestCodeToActivityGroupMembers);
+						isAlreadyToActivityGroupMembers = true;
+					}
+				}
 			}
 		});
 	}
@@ -474,6 +489,14 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			//            finish();
 			return;
 		}
+		/**输入@符号后的返回结果**/
+		if (requestCode == RequestCodeToActivityGroupMembers && resultCode == getActivity().RESULT_OK) {
+			String userId = data.getStringExtra(ActivityGroupMembers.kUserId);
+			String newContent = "@"+userId;
+			mEditTextContent.setText(newContent);
+			mEditTextContent.setSelection(newContent.length());
+		}
+
 		if (requestCode == REQUEST_CODE_CONTEXT_MENU) {
 			switch (resultCode) {
 			case RESULT_CODE_COPY: // 复制消息

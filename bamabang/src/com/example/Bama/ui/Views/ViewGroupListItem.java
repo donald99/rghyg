@@ -58,7 +58,7 @@ public class ViewGroupListItem extends LinearLayout {
 		} else {
 			hotImage.setVisibility(View.GONE);
 		}
-//		groupPeople.setText(":" + entity.);
+		groupPeople.setText(":" + entity.peopleCount);
 //		lastMsgText.setText("欢迎加入宝宝群圈" + entity.lastMsg);
 	}
 }

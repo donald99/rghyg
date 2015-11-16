@@ -88,6 +88,14 @@
         </activity>
 
         <activity
+                android:name=".ui.ActivityGroupMembers"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide"
+                android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity
                 android:name=".ui.ActivityGroupChat"
                 android:launchMode="singleTop"
                 android:screenOrientation="portrait"

@@ -43,5 +43,8 @@ public class GroupCircleEntity extends BaseEntity{
         public boolean status;
         @SerializedName("created")
         public int created;
+
+		/**xiaoyu增加**/
+		public int peopleCount;
     }
 }

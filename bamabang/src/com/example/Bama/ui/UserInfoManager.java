@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * 用户信息缓存类*
  */
-public class ChatInfoManager {
+public class UserInfoManager {
 	private static HashMap<String, UserInfoModel> userInfoMap = new HashMap<String, UserInfoModel>();
 
 	/**

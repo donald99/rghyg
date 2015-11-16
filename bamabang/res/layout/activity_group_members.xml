@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:id="@+id/rootView"
+             android:background="@color/common_white">
+    <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <!--title-->
+        <FrameLayout
+                android:id="@+id/title_parent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:background="@color/title_bg">
+
+            <ImageView
+                    android:id="@+id/back_btn"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/backwhite"
+                    android:layout_gravity="left|center_vertical"/>
+            <TextView
+                    android:text="群成员"
+                    android:textSize="18dp"
+                    android:gravity="center"
+                    android:textColor="@color/common_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"/>
+
+            <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/more"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/more"
+                    android:layout_gravity="right|center_vertical"/>
+        </FrameLayout>
+        <com.example.Bama.widget.RefreshListView
+                android:id="@+id/mListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/common_black"
+                android:cacheColorHint="@android:color/transparent"
+                android:dividerHeight="1dp"
+                android:fadingEdge="none"
+                android:scrollbars="none" />
+    </LinearLayout>
+</FrameLayout>

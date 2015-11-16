@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import com.easemob.chat.EMCursorResult;
+import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupInfo;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.exceptions.EaseMobException;
@@ -94,9 +95,10 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
 								for (EMGroupInfo groupInfo : datas) {
 									GroupCircleEntity.ContentEntity entity = new GroupCircleEntity.ContentEntity();
 									entity.groupid = groupInfo.getGroupId();
-
 									entity.name = groupInfo.getGroupName();
-//									entity.peopleCount = "20";
+									/**计算人数**/
+									EMGroup group = EMGroupManager.getInstance().getGroupFromServer(groupInfo.getGroupId());
+									entity.peopleCount = group.getMembers().size();
 //									entity.lastMsg = "lastmsg";
 									entity.ownerid = "masterId";
 									entity.owner = "masterName";
