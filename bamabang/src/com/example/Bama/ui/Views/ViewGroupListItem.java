@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.Bama.Bean.GroupCircleEntity;
 import com.example.Bama.R;
+import com.example.Bama.chat.chatuidemo.utils.SmileUtils;
 
 public class ViewGroupListItem extends LinearLayout {
 	private Context context;
@@ -59,6 +60,10 @@ public class ViewGroupListItem extends LinearLayout {
 			hotImage.setVisibility(View.GONE);
 		}
 		groupPeople.setText(":" + entity.peopleCount);
-//		lastMsgText.setText("欢迎加入宝宝群圈" + entity.lastMsg);
+		if (!TextUtils.isEmpty(entity.lastMsg)) {
+			lastMsgText.setText(SmileUtils.getSmiledText(getContext(), entity.lastMsg), TextView.BufferType.SPANNABLE);
+		} else {
+			lastMsgText.setText("欢迎来到" + entity.name);
+		}
 	}
 }

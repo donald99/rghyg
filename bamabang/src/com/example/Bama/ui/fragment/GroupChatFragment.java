@@ -1123,7 +1123,6 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			btnMore.setVisibility(View.GONE);
 			buttonSend.setVisibility(View.VISIBLE);
 		}
-
 	}
 
 	/**

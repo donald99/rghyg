@@ -46,5 +46,6 @@ public class GroupCircleEntity extends BaseEntity{
 
 		/**xiaoyu增加**/
 		public int peopleCount;
+		public String lastMsg;
     }
 }

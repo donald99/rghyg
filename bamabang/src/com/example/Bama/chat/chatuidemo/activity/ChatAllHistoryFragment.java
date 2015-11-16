@@ -31,7 +31,6 @@ import java.util.*;
  * 显示所有会话记录，比较简单的实现，更好的可能是把陌生人存入本地，这样取到的聊天记录是可控的
  */
 public class ChatAllHistoryFragment extends Fragment {
-
     private InputMethodManager inputMethodManager;
     private ListView listView;
     private ChatAllHistoryAdapter adapter;
