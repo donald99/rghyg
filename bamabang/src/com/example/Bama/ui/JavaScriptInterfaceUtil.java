@@ -17,7 +17,7 @@ public class JavaScriptInterfaceUtil {
     public void initWebView(WebView mWebView,String url){
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.addJavascriptInterface(this, "mimihong");
+        mWebView.addJavascriptInterface(this, "mamihong");
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
