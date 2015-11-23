@@ -29,7 +29,7 @@ public class JavaScriptInterfaceUtil {
     }
 
     @JavascriptInterface //sdk17版本以上加上注解
-    public void openGroupChat(ActivityBase activityBase,String groupId) {
-        ActivityGroupChat.open(activityBase, groupId);
+    public void openGroupChat(String groupId) {
+        ActivityGroupChat.open((ActivityBase)mContxt, groupId);
     }
 }

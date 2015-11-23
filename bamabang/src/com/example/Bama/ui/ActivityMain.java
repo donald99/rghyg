@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.example.Bama.R;
 import com.example.Bama.ui.fragment.*;
+import com.umeng.analytics.AnalyticsConfig;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +50,8 @@ public class ActivityMain extends ActivityBase {
     public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.main);
         super.onCreate(savedInstanceState);
-
+        MobclickAgent.updateOnlineConfig(ActivityMain.this);
+        AnalyticsConfig.enableEncrypt(false);
     }
 
     @Override
@@ -114,10 +117,10 @@ public class ActivityMain extends ActivityBase {
             @Override
             public void onClick(View view) {
                 updateImageViewsStatus(1);
-				if (fragmentFind == null) {
+                if (fragmentFind == null) {
                     fragmentFind = new FindFragment();
-				}
-				switchContent(mFragmentCurrent, fragmentFind);
+                }
+                switchContent(mFragmentCurrent, fragmentFind);
             }
         });
 

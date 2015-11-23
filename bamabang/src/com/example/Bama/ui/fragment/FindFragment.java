@@ -31,7 +31,7 @@ public class FindFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		activity = (ActivityBase) getActivity();
-        JavaScriptInterfaceUtil util = new JavaScriptInterfaceUtil(getActivity());
+        JavaScriptInterfaceUtil util = new JavaScriptInterfaceUtil(activity);
         util.initWebView(webView, Base.findUrl);
 	}
 }

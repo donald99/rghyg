@@ -41,15 +41,15 @@ public abstract class ActivityBase extends FragmentActivity {
 		super.onStart();
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-	}
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-	}
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
 	@Override
 	protected void onStop() {

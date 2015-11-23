@@ -345,5 +345,14 @@
         <meta-data
                 android:name="com.baidu.lbsapi.API_KEY"
                 android:value="dIT9HXhhjjcyI28HCCG1rUh1"/>
+
+
+
+        <meta-data android:value="5653315367e58e342b001ddc" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="MyChannel" android:name="UMENG_CHANNEL"/>
+
     </application>
+
+
+
 </manifest>
