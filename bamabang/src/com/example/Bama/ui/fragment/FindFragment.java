@@ -1,11 +1,11 @@
 package com.example.Bama.ui.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -15,24 +15,23 @@ import com.example.Bama.ui.Base;
 import com.example.Bama.ui.JavaScriptInterfaceUtil;
 
 /**
- * 咨询界面*
+ * 发现界面*
  */
-public class NewsFragment extends Fragment {
+public class FindFragment extends Fragment {
 	private ActivityBase activity;
 	private WebView webView;
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_news, null);
+		View rootView = inflater.inflate(R.layout.fragment_find, null);
         webView = (WebView) rootView.findViewById(R.id.webView);
-        return rootView;
+		return rootView;
 	}
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        activity = (ActivityBase) getActivity();
-        JavaScriptInterfaceUtil util = new JavaScriptInterfaceUtil(activity);
-        util.initWebView(webView, Base.newsUrl);
-    }
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		activity = (ActivityBase) getActivity();
+        JavaScriptInterfaceUtil util = new JavaScriptInterfaceUtil(getActivity());
+        util.initWebView(webView, Base.findUrl);
+	}
 }

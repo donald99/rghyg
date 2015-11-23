@@ -34,6 +34,28 @@
                         android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
+                        android:id="@+id/mainLL">
+                    <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:id="@+id/mainImage"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icon_news_selector"
+                            android:layout_marginBottom="4dp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="首页"
+                            android:textSize="12sp"
+                            android:textColor="@color/common_white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:id="@+id/newsLL">
                     <ImageView
                             android:layout_width="16dp"
@@ -50,28 +72,7 @@
                             android:textColor="@color/common_white"/>
                 </LinearLayout>
 
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:id="@+id/groupLL">
 
-                    <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:id="@+id/groupImage"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/icon_group_selector"
-                            android:layout_marginBottom="4dp"/>
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="群组"
-                            android:textSize="12sp"
-                            android:textColor="@color/common_white"/>
-                </LinearLayout>
 
                 <LinearLayout
                         android:layout_width="0dp"
@@ -92,6 +93,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="商城"
+                            android:textSize="12sp"
+                            android:textColor="@color/common_white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:id="@+id/findLL">
+
+                    <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:id="@+id/findImage"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icon_group_selector"
+                            android:layout_marginBottom="4dp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="发现"
                             android:textSize="12sp"
                             android:textColor="@color/common_white"/>
                 </LinearLayout>

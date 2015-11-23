@@ -11,35 +11,30 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.example.Bama.R;
-import com.example.Bama.ui.fragment.GroupFragment;
-import com.example.Bama.ui.fragment.MeFragment;
-import com.example.Bama.ui.fragment.NewsFragment;
-import com.example.Bama.ui.fragment.ShopFragment;
+import com.example.Bama.ui.fragment.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityMain extends ActivityBase {
-
-    /**
-     * Called when the activity is first created.
-     */
-
     public static boolean isConflict = false;
 
+    private LinearLayout mainLL;
+    private ImageView mainImage;
     private LinearLayout newsLL;
     private ImageView newsImage;
-    private LinearLayout groupLL;
-    private ImageView groupImage;
     private LinearLayout shopLL;
     private ImageView shopImage;
+    private LinearLayout findLL;
+    private ImageView findImage;
     private LinearLayout mineLL;
     private ImageView mineImage;
 
     private Fragment mFragmentCurrent;
+    private MainFragment fragmentMain;
     private NewsFragment fragmentNews;
-    private GroupFragment fragmentGroup;
     private ShopFragment fragmentShop;
+    private FindFragment fragmentFind;
     private MeFragment fragmentMine;
 
     private List<ImageView> imageViews = new ArrayList<ImageView>();
@@ -58,18 +53,21 @@ public class ActivityMain extends ActivityBase {
 
     @Override
     protected void getViews() {
+        mainLL = (LinearLayout) findViewById(R.id.mainLL);
+        mainImage = (ImageView) findViewById(R.id.mainImage);
         newsLL = (LinearLayout) findViewById(R.id.newsLL);
         newsImage = (ImageView) findViewById(R.id.newsImage);
-        groupLL = (LinearLayout) findViewById(R.id.groupLL);
-        groupImage = (ImageView) findViewById(R.id.groupImage);
         shopLL = (LinearLayout) findViewById(R.id.shopLL);
         shopImage = (ImageView) findViewById(R.id.shopImage);
+        findLL = (LinearLayout) findViewById(R.id.findLL);
+        findImage = (ImageView) findViewById(R.id.findImage);
         mineLL = (LinearLayout) findViewById(R.id.mineLL);
         mineImage = (ImageView) findViewById(R.id.mineImage);
 
+        imageViews.add(mainImage);
         imageViews.add(newsImage);
-        imageViews.add(groupImage);
         imageViews.add(shopImage);
+        imageViews.add(findImage);
         imageViews.add(mineImage);
     }
 
@@ -80,6 +78,16 @@ public class ActivityMain extends ActivityBase {
 
     @Override
     protected void setListeners() {
+        mainLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateImageViewsStatus(1);
+				if (fragmentMain == null) {
+                    fragmentMain = new MainFragment();
+				}
+				switchContent(mFragmentCurrent, fragmentMain);
+            }
+        });
         newsLL.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -88,17 +96,6 @@ public class ActivityMain extends ActivityBase {
 					fragmentNews = new NewsFragment();
 				}
 				switchContent(mFragmentCurrent, fragmentNews);
-			}
-		});
-
-        groupLL.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				updateImageViewsStatus(1);
-				if (fragmentGroup == null) {
-					fragmentGroup = new GroupFragment();
-				}
-				switchContent(mFragmentCurrent, fragmentGroup);
 			}
 		});
 
@@ -112,6 +109,17 @@ public class ActivityMain extends ActivityBase {
 				switchContent(mFragmentCurrent, fragmentShop);
 			}
 		});
+
+        findLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateImageViewsStatus(1);
+				if (fragmentFind == null) {
+                    fragmentFind = new FindFragment();
+				}
+				switchContent(mFragmentCurrent, fragmentFind);
+            }
+        });
 
         mineLL.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -158,10 +166,10 @@ public class ActivityMain extends ActivityBase {
     private void setDefaultFragment() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        fragmentNews = new NewsFragment();
-        transaction.add(R.id.fragementLayout, fragmentNews);
+        fragmentMain = new MainFragment();
+        transaction.add(R.id.fragementLayout, fragmentMain);
         transaction.commit();
-        mFragmentCurrent = fragmentNews;
+        mFragmentCurrent = fragmentMain;
         updateImageViewsStatus(0);
     }
 }

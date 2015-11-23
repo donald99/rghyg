@@ -10,6 +10,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import com.example.Bama.R;
 import com.example.Bama.ui.ActivityBase;
+import com.example.Bama.ui.Base;
+import com.example.Bama.ui.JavaScriptInterfaceUtil;
 
 /**
  * 购物界面*
@@ -21,7 +23,7 @@ public class ShopFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_shop, null);
-		initWebView(rootView);
+        webView = (WebView) rootView.findViewById(R.id.webView);
 		return rootView;
 	}
 
@@ -29,21 +31,9 @@ public class ShopFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		activity = (ActivityBase) getActivity();
+        JavaScriptInterfaceUtil util = new JavaScriptInterfaceUtil(activity);
+        util.initWebView(webView, Base.shopUrl);
 	}
 
-	private void initWebView(View rootView) {
-		webView = (WebView) rootView.findViewById(R.id.webView);
-		WebSettings settings = webView.getSettings();
-		settings.setJavaScriptEnabled(true);
-		webView.loadUrl("http://www.baidu.com");
-		//        webView.loadUrl("file:///android_asset/example.html");
-		webView.setWebViewClient(new WebViewClient() {
-			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				view.loadUrl(url);
-				return true;
-			}
-		});
 
-	}
 }
