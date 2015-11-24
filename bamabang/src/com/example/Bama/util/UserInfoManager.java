@@ -99,5 +99,9 @@ public class UserInfoManager {
 
 		@SerializedName("privilege")
 		public List<String> privilege;
+
+		/**需要新增加的字段**/
+		@SerializedName("phoneNumber")
+		public String phoneNumber;
 	}
 }

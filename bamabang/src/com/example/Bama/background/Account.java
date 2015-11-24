@@ -16,7 +16,6 @@ public class Account {
     public static final String kAvatar = "key_avatar";
     public static final String kUserName = "key_user_name";
 
-
     public String phoneNumber;
     public String password;
     public String userId;

@@ -13,6 +13,7 @@ import com.example.Bama.Bean.GroupMemberEntity;
 import com.example.Bama.R;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.ActivityBase;
+import com.example.Bama.util.ModelRequestListener;
 import com.example.Bama.util.UserInfoManager;
 import com.example.Bama.util.ImageLoaderUtil;
 import com.example.Bama.util.Request;
@@ -54,7 +55,7 @@ public class ViewMemberHeaderItem extends LinearLayout {
 			isMaster.setVisibility(View.GONE);
 		}
 		if(!TextUtils.isEmpty(model.accountId)){
-			UserInfoManager.getUserInfo((Activity) getContext(), model.accountId, new UserInfoManager.ModelRequestListener<UserInfoManager.UserInfoModel>() {
+			UserInfoManager.getUserInfo((Activity) getContext(), model.accountId, new ModelRequestListener<UserInfoManager.UserInfoModel>() {
 				@Override
 				public void onModelComplete(UserInfoManager.UserInfoModel model) {
 					userInfoModel = model;

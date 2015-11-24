@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.chatuidemo.domain.User;
+import com.example.Bama.util.ModelRequestListener;
 import com.example.Bama.util.UserInfoManager;
 import com.example.Bama.util.ImageLoaderUtil;
 import com.example.Bama.util.Request;
@@ -40,7 +41,7 @@ public class UserUtils {
 	public static void setUserAvatar(Context context, String username, final ImageView imageView) {
 		final ImageLoader imageLoader = HCApplication.getInstance().getImageLoader();
 		/**自己设置头像**/
-		UserInfoManager.getUserInfo((Activity) context, username, new UserInfoManager.ModelRequestListener<UserInfoManager.UserInfoModel>() {
+		UserInfoManager.getUserInfo((Activity) context, username, new ModelRequestListener<UserInfoManager.UserInfoModel>() {
 			@Override
 			public void onModelComplete(UserInfoManager.UserInfoModel model) {
 				if (model != null) {

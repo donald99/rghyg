@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.Bama.R;
 import com.example.Bama.background.HCApplication;
+import com.example.Bama.util.ModelRequestListener;
 import com.example.Bama.util.UserInfoManager;
 import com.example.Bama.util.ImageLoaderUtil;
 import com.example.Bama.util.Request;
@@ -54,7 +55,7 @@ public class GroupMemberItemView extends FrameLayout {
 			return;
 		}
 
-		UserInfoManager.getUserInfo((Activity) getContext(), userId, new UserInfoManager.ModelRequestListener<UserInfoManager.UserInfoModel>() {
+		UserInfoManager.getUserInfo((Activity) getContext(), userId, new ModelRequestListener<UserInfoManager.UserInfoModel>() {
 			@Override
 			public void onModelComplete(UserInfoManager.UserInfoModel model) {
 				userInfoModel = model;
