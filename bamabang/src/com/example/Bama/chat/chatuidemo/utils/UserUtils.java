@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.chatuidemo.domain.User;
-import com.example.Bama.ui.UserInfoManager;
+import com.example.Bama.util.UserInfoManager;
 import com.example.Bama.util.ImageLoaderUtil;
 import com.example.Bama.util.Request;
 import com.nostra13.universalimageloader.core.ImageLoader;

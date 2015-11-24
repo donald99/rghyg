@@ -1,4 +1,4 @@
-package com.example.Bama.ui;
+package com.example.Bama.util;
 
 /**
  * Created by xiaoyu on 15-11-13.
@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.text.TextUtils;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.background.config.ServerConfig;
-import com.example.Bama.util.Request;
 import com.meilishuo.gson.annotations.SerializedName;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -22,18 +21,6 @@ import java.util.List;
  */
 public class UserInfoManager {
 	private static HashMap<String, UserInfoModel> userInfoMap = new HashMap<String, UserInfoModel>();
-
-	/**
-	 * 根据传入的model自动解析成相应的类型*
-	 */
-	public static abstract class ModelRequestListener<T> extends Request.RequestListener {
-		@Override
-		public void onComplete(String response) {
-
-		}
-
-		public abstract void onModelComplete(T model);
-	}
 
 	public static void getUserInfo(Activity activity, final String userId, final ModelRequestListener<UserInfoModel> listener) {
 		/**返回测试的数据***/

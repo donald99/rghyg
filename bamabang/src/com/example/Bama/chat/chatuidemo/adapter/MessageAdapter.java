@@ -52,7 +52,7 @@ import com.example.Bama.chat.chatuidemo.utils.ImageUtils;
 import com.example.Bama.chat.chatuidemo.utils.SmileUtils;
 import com.example.Bama.chat.chatuidemo.utils.UserUtils;
 import com.example.Bama.ui.ActivityGroupChat;
-import com.example.Bama.ui.UserInfoManager;
+import com.example.Bama.util.UserInfoManager;
 import com.example.Bama.ui.fragment.GroupChatFragment;
 import com.example.Bama.util.Request;
 

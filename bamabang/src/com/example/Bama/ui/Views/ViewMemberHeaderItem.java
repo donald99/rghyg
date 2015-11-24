@@ -13,7 +13,7 @@ import com.example.Bama.Bean.GroupMemberEntity;
 import com.example.Bama.R;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.ActivityBase;
-import com.example.Bama.ui.UserInfoManager;
+import com.example.Bama.util.UserInfoManager;
 import com.example.Bama.util.ImageLoaderUtil;
 import com.example.Bama.util.Request;
 
