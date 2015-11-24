@@ -12,4 +12,6 @@
 
     <item name="xy_group_customer_dialog" type="id"/>
 
+    <item name="view_alert_dlg" type="id"/>
+
 </resources>

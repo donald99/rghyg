@@ -2,7 +2,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:id="@+id/rootView"
-        android:background="@color/common_white">
+             android:background="@color/common_white">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="#dadae5" />
+                    android:background="#dadae5"/>
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -71,7 +71,6 @@
                             android:textSize="12sp"
                             android:textColor="@color/common_white"/>
                 </LinearLayout>
-
 
 
                 <LinearLayout
