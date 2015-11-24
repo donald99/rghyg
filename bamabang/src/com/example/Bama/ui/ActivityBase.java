@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.Bama.R;
 import com.example.Bama.util.Request;
 import com.example.Bama.util.ToastUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,15 +42,17 @@ public abstract class ActivityBase extends FragmentActivity {
 		super.onStart();
 	}
 
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
+	@Override
+	protected void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
 
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
-    }
+	@Override
+	protected void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
 
 	@Override
 	protected void onStop() {
