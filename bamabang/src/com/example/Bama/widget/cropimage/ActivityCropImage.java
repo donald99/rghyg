@@ -16,9 +16,6 @@ import com.example.Bama.util.BitmapUtil;
 import com.example.Bama.util.FileUtil;
 import com.example.Bama.util.ToastUtil;
 
-/**
- * Created by sreay on 14-9-15.
- */
 public class ActivityCropImage extends ActivityBase implements View.OnClickListener {
 	private TextView cancel;
 	private TextView finish;

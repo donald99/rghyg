@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="clip_vertical"
-            android:background="#00ccff">
+            android:background="@color/title_bg">
 
         <FrameLayout android:layout_width="wrap_content"
                      android:layout_height="match_parent">

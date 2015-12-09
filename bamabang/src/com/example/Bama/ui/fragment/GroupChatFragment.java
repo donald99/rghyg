@@ -48,6 +48,7 @@ import com.example.Bama.chat.chatuidemo.widget.ExpandGridView;
 import com.example.Bama.chat.chatuidemo.widget.PasteEditText;
 import com.example.Bama.ui.ActivityGroupChat;
 import com.example.Bama.ui.ActivityGroupMembers;
+import com.example.Bama.ui.RequestUtil;
 import com.example.Bama.util.ToastUtil;
 
 import java.io.File;
@@ -190,7 +191,8 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	private String atUserId = null;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_group_chat, container, false);
 		initView(rootView);
 		setUpView(rootView);
@@ -853,6 +855,9 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 		if (content.length() > 0) {
 			EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
 			message.setChatType(EMMessage.ChatType.GroupChat);
+
+            setMessageAttribute(message);
+
 			if (content.startsWith("@")) {
 				message.setAttribute("at", atUserId);
 				content = content.replace("@" + atUserId, "");
@@ -868,6 +873,9 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			adapter.refreshSelectLast();
 			mEditTextContent.setText("");
 			activityInstance.setResult(activityInstance.RESULT_OK);
+            if(account!=null){
+               RequestUtil.imUserPing((Context)activityInstance,account.userId,Long.valueOf(content.length()));
+            }
 		}
 	}
 
@@ -888,7 +896,10 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			// 如果是群聊，设置chattype,默认是单聊
 			message.setChatType(EMMessage.ChatType.GroupChat);
 			message.setReceipt(toChatUsername);
-			int len = Integer.parseInt(length);
+
+            setMessageAttribute(message);
+
+            int len = Integer.parseInt(length);
 			VoiceMessageBody body = new VoiceMessageBody(new File(filePath), len);
 			message.addBody(body);
 
@@ -897,6 +908,13 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			//setResult(RESULT_OK);
 			// send file
 			// sendVoiceSub(filePath, fileName, message);
+
+            if(account!=null){
+                File file = new File(filePath);
+                if (file.exists()) {
+                    RequestUtil.imUserPing((Context)activityInstance,account.userId,file.length());
+                }
+            }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -914,6 +932,8 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 		// 如果是群聊，设置chattype,默认是单聊
 		message.setChatType(EMMessage.ChatType.GroupChat);
 
+        setMessageAttribute(message);
+
 		message.setReceipt(to);
 		ImageMessageBody body = new ImageMessageBody(new File(filePath));
 		// 默认超过100k的图片会压缩后发给对方，可以设置成发送原图
@@ -925,6 +945,13 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 		adapter.refreshSelectLast();
 		//setResult(RESULT_OK);
 		// more(more);
+
+        if(account!=null){
+            File file = new File(filePath);
+            if (file.exists()) {
+                RequestUtil.imUserPing((Context)activityInstance,account.userId,file.length());
+            }
+        }
 	}
 
 	/**
@@ -975,6 +1002,14 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 				toast.show();
 				return;
 			}
+
+            if(account!=null){
+                File file = new File(selectedImage.getPath());
+                if (file.exists()) {
+                    RequestUtil.imUserPing((Context)activityInstance,account.userId,file.length());
+                }
+            }
+
 			sendPicture(picturePath);
 		} else {
 			File file = new File(selectedImage.getPath());
@@ -985,6 +1020,9 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 				return;
 
 			}
+            if(account!=null){
+                RequestUtil.imUserPing((Context)activityInstance,account.userId,file.length());
+            }
 			sendPicture(file.getAbsolutePath());
 		}
 
@@ -1047,6 +1085,10 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			return;
 		}
 
+        if(account!=null){
+            RequestUtil.imUserPing((Context)activityInstance,account.userId,file.length());
+        }
+
 		// 创建一个文件消息
 		EMMessage message = EMMessage.createSendMessage(EMMessage.Type.FILE);
 		// 如果是群聊，设置chattype,默认是单聊
@@ -1071,12 +1113,23 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 		// msg.setBackSend(true);
 		msg.status = EMMessage.Status.CREATE;
 		adapter.refreshSeekTo(resendPos);
+        if(account!=null){
+            RequestUtil.imUserPing((Context)activityInstance,account.userId,Long.valueOf(msg.getBody().describeContents()));
+        }
 	}
+
+    private void setMessageAttribute(EMMessage msg){
+        if(msg!=null){
+            Account account=HCApplication.getInstance().getAccount();
+            msg.setAttribute("nickname",account.userName);
+            msg.setAttribute("username",account.userName);
+            msg.setAttribute("uid",account.userId);
+            msg.setAttribute("headImg",account.avatar);
+        }
+    }
 
 	/**
 	 * 显示语音图标按钮
-	 *
-	 * @param view
 	 */
 	public void setModeVoice() {
 		hideKeyboard();
@@ -1664,7 +1717,6 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 		return listView;
 	}
 
-	@Override
 	public void onAttalistener(String atusername) {
 		mEditTextContent.setText("@" + atusername);
 	}

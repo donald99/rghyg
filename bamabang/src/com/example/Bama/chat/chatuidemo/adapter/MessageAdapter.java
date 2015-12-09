@@ -594,7 +594,7 @@ public class MessageAdapter extends BaseAdapter {
 				public void onModelComplete(UserInfoManager.UserInfoModel model) {
 					if (model != null) {
 						if (!TextUtils.isEmpty(model.name)) {
-							textView.setText(model.name);
+							textView.setText(model.content.get(0).name);
 						}
 					}
 				}

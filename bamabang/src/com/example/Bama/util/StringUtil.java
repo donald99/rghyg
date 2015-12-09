@@ -1,13 +1,15 @@
 package com.example.Bama.util;
 
+import android.net.Uri;
 import com.example.Bama.R;
 import com.example.Bama.background.HCApplication;
+import com.example.Bama.ui.Base;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
-/**
- * Created by xiaoyu on 2015/7/4.
- */
 public class StringUtil {
 
     // 几分钟前，几小时前，昨天，几天前，一年前，仿照微信的展现形式
@@ -130,4 +132,17 @@ public class StringUtil {
             return time;
         }
     }
+
+    public static String getUrlInfo(String url){
+        String urlStr = null;
+        try {
+            urlStr = URLDecoder.decode(url, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return Uri.parse(urlStr).getQueryParameter("ClientOperation");
+
+    }
 }
+//http://dev.8mbang.com/app/?ClientOperation={"jump":"group","break":1,"jumpindex":0}

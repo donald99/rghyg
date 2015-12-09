@@ -1,20 +1,28 @@
 package com.example.Bama.ui;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import com.example.Bama.Bean.ChannelItem;
 import com.example.Bama.Bean.GroupCircleEntity;
 import com.example.Bama.Bean.GroupCreateInfoEntity;
+import com.example.Bama.Bean.VersionModel;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.background.config.ServerConfig;
 import com.example.Bama.ui.fragment.GroupCircleFragment;
 import com.example.Bama.ui.fragment.GroupFragment;
+import com.example.Bama.util.DownLoadTask;
 import com.example.Bama.util.Request;
 import com.example.Bama.util.ToastUtil;
+import com.example.Bama.util.VersionCompareUtil;
+import com.example.Bama.widget.HGAlertDlg;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,8 +106,11 @@ public class RequestUtil {
         });
     }
 
-    public static void queryTagGroupList(Context context, String tagId,final GroupCircleFragment.QueryTagGroupListCallback callback){
+    public static void queryTagGroupList(Context context, String channel_id,int page ,int pageSize,final GroupCircleFragment.QueryTagGroupListCallback callback){
         List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tagid",channel_id));
+        params.add(new BasicNameValuePair("page",page+""));
+        params.add(new BasicNameValuePair("pageSize",pageSize+""));
         Request.doRequest(context, params, ServerConfig.URL_GET_TAG_DETAIL, Request.GET, new Request.RequestListener() {
 
             @Override
@@ -114,7 +125,7 @@ public class RequestUtil {
 
                 if (!TextUtils.isEmpty(response)) {
                     GroupCircleEntity item = HCApplication.getInstance().getGson().fromJsonWithNoException(response,GroupCircleEntity.class);
-                    if (item!=null && item.status && item.content!=null && callback != null){
+                    if (item!=null && item.content!=null && callback != null){
                         callback.onSuccess(item.content);
                     }
                 }else{
@@ -135,8 +146,14 @@ public class RequestUtil {
      * @param tagid: 聊天群组id
      * @param callback
      */
-    public static void createGroup(Context context,final ActivityCreateGroup.CreateGroupCallBack callback){
+    public static void createGroup(Context context,String picUrl,String groupName,String groupType,String groupDesc,
+                                   final ActivityCreateGroup.CreateGroupCallBack callback){
         List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("uid",HCApplication.getInstance().getAccount().userId));
+        params.add(new BasicNameValuePair("picurl",picUrl));
+        params.add(new BasicNameValuePair("name",groupName));
+        params.add(new BasicNameValuePair("tagid",groupType));
+        params.add(new BasicNameValuePair("description",groupDesc));
         Request.doRequest(context, params, ServerConfig.URL_GROUP_ADD, Request.GET, new Request.RequestListener() {
 
             @Override
@@ -160,4 +177,97 @@ public class RequestUtil {
             }
         });
     }
+
+    /**
+     * 检查版本更新*
+     */
+    public static void checkVersion(final Context context) {
+        Request.doRequest(context, new ArrayList<NameValuePair>(), ServerConfig.URL_VERSION_UPDATE, Request.GET, new Request.RequestListener() {
+            @Override
+            public void onException(Request.RequestException e) {
+
+            }
+
+            @Override
+            public void onComplete(String response) {
+                final VersionModel versionModel = HCApplication.getInstance().getGson().fromJsonWithNoException(response, VersionModel.class);
+                if (versionModel != null) {
+                    if (!TextUtils.isEmpty(versionModel.version_code) && !TextUtils.isEmpty(versionModel.feature) && !TextUtils.isEmpty(versionModel.url)) {
+                        try {
+                            PackageInfo packInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+                            String version = packInfo.versionName;
+                            if (!TextUtils.isEmpty(version) && VersionCompareUtil.compareVersion(versionModel.version_code, version) > 0) {
+                                HGAlertDlg.showDlg("发现新版本", versionModel.feature, (ActivityBase)context, new HGAlertDlg.HGAlertDlgClickListener() {
+                                    @Override
+                                    public void onAlertDlgClicked(boolean isConfirm) {
+                                        if (isConfirm) {
+                                            new DownLoadTask(context).startDownLoad(versionModel.url);
+                                        }
+                                    }
+                                });
+                            }
+                        } catch (PackageManager.NameNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    public static void imUserPing(final Context context,String uid,Long param) {
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("uid",uid));
+        params.add(new BasicNameValuePair("type","chat"));
+        params.add(new BasicNameValuePair("param",param+""));
+        Request.doRequest(context, params ,ServerConfig.URL_IM_USER_PING, Request.GET, new Request.RequestListener() {
+            @Override
+            public void onException(Request.RequestException e) {
+
+            }
+
+            @Override
+            public void onComplete(String response) {
+
+            }
+        });
+    }
+
+    public static void getUserInfo(final Context context,String data, final JavaScriptInterfaceUtil.GetJsonLinister linister) {
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("data",data));
+        Request.doRequest(context, params ,ServerConfig.URL_USER_GET, Request.GET, new Request.RequestListener() {
+            @Override
+            public void onException(Request.RequestException e) {
+                if (linister!=null)
+                    linister.onFail();
+            }
+
+            @Override
+            public void onComplete(String response) {
+                if (linister !=null)
+                    linister.onSuccess(response);
+            }
+        });
+    }
+
+    public static void uploadFile(final Context context,File file, final JavaScriptInterfaceUtil.GetJsonLinister linister) {
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        Request.doFileUploadRequest(context, params ,file ,ServerConfig.URL_FILE_UP,new Request.RequestListener() {
+            @Override
+            public void onException(Request.RequestException e) {
+                if (linister!=null)
+                    linister.onFail();
+            }
+
+            @Override
+            public void onComplete(String response) {
+                if (linister !=null)
+                    linister.onSuccess(response);
+            }
+        });
+
+    }
+
+
 }

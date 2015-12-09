@@ -3,9 +3,6 @@ package com.example.Bama.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by xiaoyuPC on 2015/6/7.
- */
 public class CommonUtil {
 
     //判断电话号码是否合法的方法

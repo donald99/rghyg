@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import com.example.Bama.background.HCApplication;
 
-/**
- * Created by sreay on 14-8-19.
- */
 public class CommonPreference {
     private static String PreferenceName = "child_help_common";
 

@@ -47,6 +47,9 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
         super.onActivityCreated(savedInstanceState);
         activity = (ActivityBase) getActivity();
         mScreenWidth = DisplayUtil.getWindowsWidth(activity);
+        if(activity.getIntent() != null){
+            columnSelectIndex = activity.getIntent().getIntExtra("tab",0);
+        }
         initColumnData();
     }
 
@@ -59,6 +62,13 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
         shade_right = (ImageView) rootView.findViewById(R.id.shade_right);
 
         creatGroup.setOnClickListener(this);
+
+        rootView.findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
     }
 
     private void initColumnData() {
@@ -90,16 +100,17 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
         mColumnHorizontalScrollView.setParam(activity, DisplayUtil.getWindowsWidth(activity), mRadioGroup_content, shade_left, shade_right);
         for(int i = 0; i< count; i++){
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.leftMargin = 5;
-            params.rightMargin = 5;
+            params.leftMargin = 2;
+            params.rightMargin = 2;
             TextView columnTextView = new TextView(activity);
             columnTextView.setTextAppearance(activity, R.style.top_category_scroll_view_item_text);
             columnTextView.setBackgroundResource(R.drawable.radio_buttong_bg);
             columnTextView.setGravity(Gravity.CENTER);
-            columnTextView.setPadding(25, 5, 25, 5);
+            columnTextView.setPadding(3, 3, 3, 3);
             columnTextView.setId(i);
             columnTextView.setText(userChannelList.get(i).name);
             columnTextView.setTextColor(getResources().getColorStateList(R.color.top_category_scroll_text_color_day));
+
             if(columnSelectIndex == i){
                 columnTextView.setSelected(true);
             }
@@ -158,6 +169,8 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
 		mViewPager.setOffscreenPageLimit(6);
         mViewPager.setAdapter(mAdapetr);
         mViewPager.setOnPageChangeListener(pageListener);
+
+        mViewPager.setCurrentItem(columnSelectIndex);
     }
 
     public ViewPager.OnPageChangeListener pageListener= new ViewPager.OnPageChangeListener(){

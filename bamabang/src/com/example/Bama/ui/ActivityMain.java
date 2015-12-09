@@ -1,10 +1,12 @@
 package com.example.Bama.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,6 +22,7 @@ import com.example.Bama.util.DownLoadTask;
 import com.example.Bama.util.Request;
 import com.example.Bama.util.VersionCompareUtil;
 import com.example.Bama.widget.HGAlertDlg;
+import com.example.Bama.widget.MoreWindow;
 import com.meilishuo.gson.annotations.SerializedName;
 import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
@@ -30,6 +33,9 @@ import java.util.List;
 
 public class ActivityMain extends ActivityBase {
 	public static boolean isConflict = false;
+    private final int SPLASH_DISPLAY_LENGHT = 3000; //延迟三秒
+
+    private MoreWindow mMoreWindow;
 
 	private LinearLayout mainLL;
 	private ImageView mainImage;
@@ -62,6 +68,15 @@ public class ActivityMain extends ActivityBase {
 		super.onCreate(savedInstanceState);
 		MobclickAgent.updateOnlineConfig(ActivityMain.this);
 		AnalyticsConfig.enableEncrypt(false);
+        RequestUtil.checkVersion(ActivityMain.this);
+        new Handler().postDelayed(new Runnable(){
+
+            @Override
+            public void run() {
+                findViewById(R.id.splashview).setVisibility(View.GONE);
+            }
+
+        }, SPLASH_DISPLAY_LENGHT);
 	}
 
 	@Override
@@ -94,7 +109,7 @@ public class ActivityMain extends ActivityBase {
 		mainLL.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				updateImageViewsStatus(1);
+				updateImageViewsStatus(0);
 				if (fragmentMain == null) {
 					fragmentMain = new MainFragment();
 				}
@@ -104,7 +119,7 @@ public class ActivityMain extends ActivityBase {
 		newsLL.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				updateImageViewsStatus(0);
+				updateImageViewsStatus(1);
 				if (fragmentNews == null) {
 					fragmentNews = new NewsFragment();
 				}
@@ -126,18 +141,16 @@ public class ActivityMain extends ActivityBase {
 		findLL.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				updateImageViewsStatus(1);
-				if (fragmentFind == null) {
-					fragmentFind = new FindFragment();
-				}
-				switchContent(mFragmentCurrent, fragmentFind);
+
+                showMoreWindow(view);
+
 			}
 		});
 
 		mineLL.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				updateImageViewsStatus(3);
+				updateImageViewsStatus(4);
 				if (fragmentMine == null) {
 					fragmentMine = new MeFragment();
 				}
@@ -186,51 +199,33 @@ public class ActivityMain extends ActivityBase {
 		updateImageViewsStatus(0);
 	}
 
-	/**
-	 * 检查版本更新*
-	 */
-	private void showUpdateDialog() {
-		Request.doRequest(this, new ArrayList<NameValuePair>(), ServerConfig.URL_VERSION_UPDATE, Request.GET, new Request.RequestListener() {
-			@Override
-			public void onException(Request.RequestException e) {
+    private void showMoreWindow(View view) {
+        if (null == mMoreWindow) {
+            mMoreWindow = new MoreWindow(this);
+            mMoreWindow.init();
+        }
+        mMoreWindow.setListener(new onMoreClickLinister() {
+            @Override
+            public void onClickOpertion(String string) {
+                updateImageViewsStatus(3);
+                fragmentFind = new FindFragment();
+                switchContent(mFragmentCurrent, fragmentFind);
+                fragmentFind.url = string;
+            }
+        });
+        mMoreWindow.showMoreWindow(view,100);
+    }
 
-			}
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != mMoreWindow){
+            mMoreWindow.destroy();
+        }
+    }
 
-			@Override
-			public void onComplete(String response) {
-				final VersionModel versionModel = HCApplication.getInstance().getGson().fromJsonWithNoException(response, VersionModel.class);
-				if (versionModel != null) {
-					if (!TextUtils.isEmpty(versionModel.version_code) && !TextUtils.isEmpty(versionModel.feature) && !TextUtils.isEmpty(versionModel.url)) {
-						try {
-							PackageInfo packInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-							String version = packInfo.versionName;
-							if (!TextUtils.isEmpty(version) && VersionCompareUtil.compareVersion(versionModel.version_code, version) > 0) {
-								HGAlertDlg.showDlg("发现新版本", versionModel.feature, ActivityMain.this, new HGAlertDlg.HGAlertDlgClickListener() {
-									@Override
-									public void onAlertDlgClicked(boolean isConfirm) {
-										if (isConfirm) {
-											new DownLoadTask(ActivityMain.this).startDownLoad(versionModel.url);
-										}
-									}
-								});
-							}
-						} catch (PackageManager.NameNotFoundException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-		});
-	}
-
-	class VersionModel {
-		@SerializedName("version_code")
-		public String version_code;
-
-		@SerializedName("feature")
-		public String feature;
-
-		@SerializedName("url")
-		public String url;
-	}
+    public onMoreClickLinister moreClickLinister;
+    public interface onMoreClickLinister{
+        public void onClickOpertion(String string);
+    }
 }

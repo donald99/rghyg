@@ -19,9 +19,6 @@ import com.example.Bama.widget.RefreshListView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by xiaoyu on 15-11-16.
- */
 public class ActivityGroupMembers extends ActivityBase implements View.OnClickListener {
 	private ImageView back_btn;
 	private RefreshListView mListView;

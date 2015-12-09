@@ -5,9 +5,6 @@ import com.example.Bama.background.config.CommonPreference;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by xiaoyuPC on 2015/6/7.
- */
 public class Account {
     public static final String kUsrInfo = "key_user_info";
     public static final String kPhoneNumber = "key_phone_number";

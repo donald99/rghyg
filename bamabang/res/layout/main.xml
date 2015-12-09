@@ -2,7 +2,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:id="@+id/rootView"
-             android:background="@color/common_white">
+             android:background="@color/common_white_gray">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -22,11 +22,10 @@
 
             <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="44dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:id="@+id/tabLayout"
-                    android:baselineAligned="false"
-                    android:background="#FF6699">
+                    android:baselineAligned="false">
 
                 <LinearLayout
                         android:layout_width="0dp"
@@ -36,18 +35,17 @@
                         android:gravity="center"
                         android:id="@+id/mainLL">
                     <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:id="@+id/mainImage"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/icon_news_selector"
+                            android:src="@drawable/icon_main_selector"
                             android:layout_marginBottom="4dp"/>
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="首页"
                             android:textSize="12sp"
-                            android:textColor="@color/common_white"/>
+                            android:textColor="@color/black_deep"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -58,8 +56,8 @@
                         android:gravity="center"
                         android:id="@+id/newsLL">
                     <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:id="@+id/newsImage"
                             android:scaleType="centerCrop"
                             android:src="@drawable/icon_news_selector"
@@ -69,9 +67,31 @@
                             android:layout_height="wrap_content"
                             android:text="资讯"
                             android:textSize="12sp"
-                            android:textColor="@color/common_white"/>
+                            android:textColor="@color/black_deep"/>
                 </LinearLayout>
 
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        >
+
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/find"
+                            android:layout_marginBottom="4dp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="发现"
+                            android:textSize="12sp"
+                            android:textColor="@color/black_deep"/>
+                </LinearLayout>
 
                 <LinearLayout
                         android:layout_width="0dp"
@@ -82,8 +102,8 @@
                         android:id="@+id/shopLL">
 
                     <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:id="@+id/shopImage"
                             android:scaleType="centerCrop"
                             android:src="@drawable/icon_shop_selector"
@@ -93,30 +113,7 @@
                             android:layout_height="wrap_content"
                             android:text="商城"
                             android:textSize="12sp"
-                            android:textColor="@color/common_white"/>
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:id="@+id/findLL">
-
-                    <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:id="@+id/findImage"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/icon_group_selector"
-                            android:layout_marginBottom="4dp"/>
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="发现"
-                            android:textSize="12sp"
-                            android:textColor="@color/common_white"/>
+                            android:textColor="@color/black_deep"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -127,8 +124,8 @@
                         android:gravity="center"
                         android:id="@+id/mineLL">
                     <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:id="@+id/mineImage"
                             android:scaleType="centerCrop"
                             android:src="@drawable/icon_mine_selector"
@@ -138,7 +135,7 @@
                             android:layout_height="wrap_content"
                             android:text="我的"
                             android:textSize="12sp"
-                            android:textColor="@color/common_white"/>
+                            android:textColor="@color/black_deep"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -147,6 +144,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/fragementLayout"
-                android:layout_above="@id/layout"></FrameLayout>
+                android:layout_above="@id/layout"/>
     </RelativeLayout>
+
+    <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="95dp"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal|bottom"
+            android:gravity="center"
+            android:id="@+id/findLL">
+
+        <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/findImage"
+                android:scaleType="centerCrop"
+                android:src="@drawable/find"
+                android:layout_marginBottom="4dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发现"
+                android:textSize="12sp"
+                android:textColor="@color/black_deep"
+                />
+    </LinearLayout>
+    <View android:id="@+id/splashview"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@drawable/splash"
+            />
 </FrameLayout>

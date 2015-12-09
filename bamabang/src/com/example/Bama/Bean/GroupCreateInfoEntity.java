@@ -28,20 +28,3 @@ public class GroupCreateInfoEntity extends BaseEntity {
         public int created;
     }
 }
-//{
-//        "status": true,
-//        "code": 0,
-//        "message": "",
-//        "content": {
-//        "id": 1,
-//        "groupid": "127035778260796004",
-//        "name": "测试群1",
-//        "tagid": 1,
-//        "description": "测试群",
-//        "bulletin": "这是衣蛾测试的群",
-//        "ownerid": "1",
-//        "owner": "test1",
-//        "status": 0,
-//        "created": 11231233
-//        }
-//        }

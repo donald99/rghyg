@@ -12,16 +12,6 @@ import com.example.Bama.R;
 import com.example.Bama.util.PicassoUtil;
 import com.squareup.picasso.RequestCreator;
 
-/**
- * 
- * @title:
- * @description:
- * @company: 美丽说（北京）网络科技有限公司
- * @author yinxinya
- * @version 1.0
- * @created
- * @changeRecord
- */
 public class PhotoAlbumAdapter extends PhotoAdapter {
 
 	public PhotoAlbumAdapter(Context context, Cursor cursor) {

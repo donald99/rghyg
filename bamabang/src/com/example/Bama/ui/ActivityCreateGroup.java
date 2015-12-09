@@ -1,10 +1,15 @@
 package com.example.Bama.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.*;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroup;
@@ -13,10 +18,19 @@ import com.easemob.exceptions.EaseMobException;
 import com.example.Bama.Bean.ChannelItem;
 import com.example.Bama.Bean.GroupCreateInfoEntity;
 import com.example.Bama.R;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.fragment.GroupFragment;
+import com.example.Bama.util.ImageLoaderUtil;
+import com.example.Bama.util.IntentUtils;
 import com.example.Bama.util.ToastUtil;
 import com.example.Bama.widget.HCPopListView;
+import com.example.Bama.widget.cropimage.ActivityCropImage;
+import com.example.Bama.widget.photo.ActivityCapture;
+import com.example.Bama.widget.photo.PhotoAlbumActivity;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +43,14 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 	private FrameLayout groupTypeFL;
 	private TextView mCreateGroup;
 
+    public static final int kRequestCameraOne = 101;
+    public static final int kRequestAlbumOne = 102;
+    public static final int kRequestCameraTwo = 103;
+    public static final int kRequestAlbumTwo = 104;
+    public static final int kRequestcodeCropImage = 105;
+
+    private String serverImage = "";
+    private String tagId = "";
 	/**
 	 * poplist data*
 	 */
@@ -87,6 +109,9 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 		case R.id.back_btn:
 			finish();
 			break;
+        case R.id.groupImage:
+            showPicChooseDialog(kRequestCameraOne, kRequestAlbumOne);
+			break;
 		case R.id.groupTypeFL:
             List<String> groupTypeStrings = new ArrayList<String>();
             for (int i = 0; i < groupTypeList.size(); i++) {
@@ -97,6 +122,7 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 				public void onItemClicked(int index, String content) {
 					if (!TextUtils.isEmpty(content)) {
 						et_input_group_category.setText(content);
+                        tagId = ""+groupTypeList.get(index).tagid;
 					}
 				}
 
@@ -131,46 +157,48 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 		/**调用环信sdk的方法注册群组,环信的只需要群名称和群简介，这里创建公开群**/
 		showDialog("正在创建群...");
 
-        RequestUtil.createGroup(ActivityCreateGroup.this,new CreateGroupCallBack(){
+        RequestUtil.createGroup(ActivityCreateGroup.this,serverImage,groupName,groupType,groupDesc,new CreateGroupCallBack(){
             @Override
             public void onSuccess(final GroupCreateInfoEntity.ContentEntity entity) {
                 if (entity==null){
                     ToastUtil.makeShortText("群创建失败");
                     return;
                 }
+                dismissDialog();
                 ToastUtil.makeShortText("群创建成功");
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            /**创建公开群，此种方式创建的群，可以自由加入,环信上线是2000人
-                             创建公开群，此种方式创建的群，用户需要申请，等群主同意后才能加入此群**/
-                            /**得到群的对象,得到了群ID后就可以把群的头像，类型等一系列信息放到自己的服务器上面**/
-                            EMGroup emGroup = EMGroupManager.getInstance().createPublicGroup(entity.groupid, entity.description, null, false, 2000);
-                            final String groupId = emGroup.getGroupId();
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    dismissDialog();
-                                    ToastUtil.makeShortText("群创建成功");
-                                    setResult(RESULT_OK);
-                                    finish();
-                                }
-                            });
-                        } catch (final EaseMobException e) {
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    dismissDialog();
-                                    ToastUtil.makeShortText("群创建失败");
-                                }
-                            });
-                        }
-
-                    }
-                }).start();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            /**创建公开群，此种方式创建的群，可以自由加入,环信上线是2000人
+//                             创建公开群，此种方式创建的群，用户需要申请，等群主同意后才能加入此群**/
+//                            /**得到群的对象,得到了群ID后就可以把群的头像，类型等一系列信息放到自己的服务器上面**/
+//                            EMGroup emGroup = EMGroupManager.getInstance().createPublicGroup(entity.groupid, entity.description, null, false, 2000);
+//                            final String groupId = emGroup.getGroupId();
+//                            runOnUiThread(new Runnable() {
+//                                public void run() {
+//                                    dismissDialog();
+//                                    ToastUtil.makeShortText("群创建成功");
+//                                    setResult(RESULT_OK);
+//                                    finish();
+//                                }
+//                            });
+//                        } catch (final EaseMobException e) {
+//                            runOnUiThread(new Runnable() {
+//                                public void run() {
+//                                    dismissDialog();
+//                                    ToastUtil.makeShortText("群创建失败");
+//                                }
+//                            });
+//                        }
+//
+//                    }
+//                }).start();
             }
 
             @Override
             public void onFail() {
+                dismissDialog();
                 ToastUtil.makeLongText("群创建失败");
             }
         });
@@ -195,5 +223,93 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
     public interface CreateGroupCallBack{
         public void onSuccess(GroupCreateInfoEntity.ContentEntity entity);
         public void onFail();
+    }
+
+    private void showPicChooseDialog(final int cameraRequestCode, final int albumRequest) {
+        final AlertDialog dlg = new AlertDialog.Builder(this).create();
+        dlg.setCanceledOnTouchOutside(true);
+        dlg.setCancelable(true);
+        dlg.show();
+        Window window = dlg.getWindow();
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.alert_camera, null);
+        window.setContentView(layout);
+
+        TextView title = (TextView) layout.findViewById(R.id.nametip);
+        title.setText("请选择" + "                 ");
+        TextView camera = (TextView) layout.findViewById(R.id.privatechatwithsomebody);
+        TextView gallery = (TextView) layout.findViewById(R.id.jubao);
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivityForResult(IntentUtils.goToCameraIntent(ActivityCreateGroup.this, 750, 750), cameraRequestCode);
+                dlg.dismiss();
+            }
+        });
+
+        gallery.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivityForResult(IntentUtils.goToAlbumIntent(new ArrayList<String>(), 1, "预览",true,ActivityCreateGroup.this), albumRequest);
+                dlg.dismiss();
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == kRequestAlbumOne && resultCode == RESULT_OK) {
+            if (data == null) {
+                return;
+            } else {
+                String[] selectPaths = data.getStringArrayExtra(PhotoAlbumActivity.Key_SelectPaths);
+                if (selectPaths != null && selectPaths.length > 0 && !TextUtils.isEmpty(selectPaths[0])) {
+                    ActivityCropImage.openForResult(ActivityCreateGroup.this, selectPaths[0], 750, 750, true,kRequestcodeCropImage);
+                    return;
+                }
+            }
+        } else if (requestCode == kRequestCameraOne && resultCode == RESULT_OK) {
+            String path = data.getStringExtra(ActivityCapture.kPhotoPath);
+            ActivityCropImage.openForResult(ActivityCreateGroup.this, path, 750, 750,true, kRequestcodeCropImage);
+            return;
+        } else if (requestCode == kRequestAlbumTwo && resultCode == RESULT_OK) {
+            if (data == null) {
+                return;
+            } else {
+                String path = data.getStringExtra(ActivityCapture.kPhotoPath);
+                HCApplication.getInstance().getImageLoader().displayImage(path,headerView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
+            }
+        } else if (requestCode == kRequestCameraTwo && resultCode == RESULT_OK) {
+            String path = data.getStringExtra(ActivityCapture.kPhotoPath);
+            HCApplication.getInstance().getImageLoader().displayImage(path,headerView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
+        }else if (requestCode == kRequestcodeCropImage && resultCode == RESULT_OK) {
+            String path = data.getStringExtra(ActivityCropImage.kCropImagePath);
+            HCApplication.getInstance().getImageLoader().displayImage("file://" + path, headerView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
+            if(!TextUtils.isEmpty(path)){
+                RequestUtil.uploadFile(this,new File(path),new JavaScriptInterfaceUtil.GetJsonLinister(){
+
+                    @Override
+                    public void onSuccess(String json) {
+                        if(!TextUtils.isEmpty(json)){
+                            try {
+                                JSONObject object = new JSONObject(json);
+                                if(object.has("content")){
+                                    serverImage = object.optString("content");
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+
+                        }
+                    }
+
+                    @Override
+                    public void onFail() {
+
+                    }
+                });
+            }
+        }
     }
 }

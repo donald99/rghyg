@@ -19,21 +19,99 @@
     <shared>
       <config />
     </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/res/layout/main.xml">
+        <config>
+          <theme>@android:style/Theme.Holo</theme>
+        </config>
+      </layout>
+    </layouts>
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.Bama" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a15794bf-f364-4cba-9f1e-aaeb8c77e01c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/adapter/GroupMemberRankAdapter.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/adapter/GroupMemberRankAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/Bean/GroupMemberRankEntity.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/Bean/GroupMemberRankEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/RankFragment.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/RankFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/morewindow_bg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/tabbar_compose_camera.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/tabbar_compose_idea.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/tabbar_compose_lbs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/tabbar_compose_more.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/tabbar_compose_photo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/tabbar_compose_review.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupCircle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityWeb.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/FastBlur.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/KickBackAnimator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/MLS.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/MoreWindow.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/Bama/Bean/VersionModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/actity_groupcircle.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/activity_web.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/center_music_more_window.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/libs2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/umeng_analytics_v5_6_1.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/splash.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/background/Account.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/background/Account.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/cropimage/ActivityCropImage.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/cropimage/ActivityCropImage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupChat.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupChat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupMembers.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupMembers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/account/ActivityLogin.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/account/ActivityLogin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityMain.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/account/ActivityRegister.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/account/ActivityRegister.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/Base.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/Base.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/Bean/BaseEntity.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/Bean/BaseEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/background/CommonModel.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/background/CommonModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/background/config/CommonPreference.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/background/config/CommonPreference.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/util/CommonUtil.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/util/CommonUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/FindFragment.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/FindFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/cropimage/FloatDrawable.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/cropimage/FloatDrawable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupChatFragment.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupChatFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/Bean/GroupCircleEntity.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/Bean/GroupCircleEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupCircleFragment.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupCircleFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/Bean/GroupCreateInfoEntity.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/Bean/GroupCreateInfoEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupFragment.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/Views/GroupMemberItemView.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/Views/GroupMemberItemView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/background/HCApplication.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/background/HCApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/util/ImageLoaderUtil.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/util/ImageLoaderUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/JavaScriptInterfaceUtil.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/JavaScriptInterfaceUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/LoadingWrapperFrame.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/LoadingWrapperFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/LoadingWrapperLinear.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/LoadingWrapperLinear.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/chat/chatuidemo/adapter/MessageAdapter.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/chat/chatuidemo/adapter/MessageAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/util/ModelRequestListener.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/util/ModelRequestListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/background/PathManager.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/background/PathManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoActivity.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoAlbum.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoAlbum.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoAlbumActivity.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoAlbumActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoAlbumAdapter.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoAlbumAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoChooseActicity.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoChooseActicity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoChooseImplActivity.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoChooseImplActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoChooseView.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoChooseView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/util/PicassoUtil.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/util/PicassoUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PreviewAdapter.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PreviewAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/RequestUtil.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/RequestUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/background/config/ServerConfig.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/background/config/ServerConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupMemberRankItem.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupMemberRankItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/util/ShowFooterUtil.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/util/ShowFooterUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/util/StringUtil.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/util/StringUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/util/UserInfoManager.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/util/UserInfoManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/chat/chatuidemo/video/util/Utils.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/chat/chatuidemo/video/util/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/util/VersionCompareUtil.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/util/VersionCompareUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupListItem.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupListItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/Bama/widget/XYGroupCustomerDialog.java" afterPath="$PROJECT_DIR$/src/com/example/Bama/widget/XYGroupCustomerDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bamabang.iml" afterPath="$PROJECT_DIR$/bamabang.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/dimens.xml" afterPath="$PROJECT_DIR$/res/values/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_mygroup.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_mygroup.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/group_list_fragment.xml" afterPath="$PROJECT_DIR$/res/layout/group_list_fragment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/icon_mine_selector.xml" afterPath="$PROJECT_DIR$/res/drawable/icon_mine_selector.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/icon_news_selector.xml" afterPath="$PROJECT_DIR$/res/drawable/icon_news_selector.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/icon_shop_selector.xml" afterPath="$PROJECT_DIR$/res/drawable/icon_shop_selector.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/item_grouplist.xml" afterPath="$PROJECT_DIR$/res/layout/item_grouplist.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/layout_header.xml" afterPath="$PROJECT_DIR$/res/layout/layout_header.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/proguard-project.txt" afterPath="$PROJECT_DIR$/proguard-project.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bamabang.iws" />
@@ -177,112 +255,116 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GroupChatFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupChatFragment.java">
+      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="14317" max-vertical-offset="35002">
-              <caret line="692" column="30" selection-start-line="692" selection-start-column="30" selection-end-line="692" selection-end-column="30" />
+            <state vertical-scroll-proportion="-5.6896553" vertical-offset="3432" max-vertical-offset="4048">
+              <caret line="171" column="19" selection-start-line="171" selection-start-column="19" selection-end-line="171" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityCreateGroup.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="440" max-vertical-offset="6204">
+              <caret line="73" column="46" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="group_list_fragment.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/group_list_fragment.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.6551723" vertical-offset="0" max-vertical-offset="814">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityMain.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.0543131" vertical-offset="176" max-vertical-offset="4136">
+              <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#5976#6306#0" expanded="true" />
+                <element signature="e#6295#6296#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RankFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/RankFragment.java">
+      <file leaf-file-name="JavaScriptInterfaceUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/JavaScriptInterfaceUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="821" max-vertical-offset="2332">
-              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2807" max-vertical-offset="6116">
+              <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MenuIndexLinster.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/MenuIndexLinster.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="242">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FindFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/FindFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="363" max-vertical-offset="946">
+              <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoreWindow.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/widget/MoreWindow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2937" max-vertical-offset="4576">
+              <caret line="186" column="23" selection-start-line="186" selection-start-column="23" selection-end-line="186" selection-end-column="23" />
               <folding>
-                <element signature="e#1215#1263#0" expanded="true" />
-                <element signature="e#1351#1399#0" expanded="true" />
-                <element signature="e#1490#1538#0" expanded="true" />
-                <element signature="e#2052#2067#0" expanded="true" />
+                <element signature="e#6961#6962#0" expanded="true" />
+                <element signature="e#7005#7006#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewGroupListItem.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupListItem.java">
+      <file leaf-file-name="GroupFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="644" max-vertical-offset="1320">
-              <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupMemberRankAdapter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/adapter/GroupMemberRankAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="770">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="4092">
+              <caret line="68" column="39" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
               <folding>
-                <element signature="e#596#644#0" expanded="true" />
+                <element signature="e#2667#2826#0" expanded="true" />
+                <element signature="e#2815#2816#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewGroupMemberRankItem.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupMemberRankItem.java">
+      <file leaf-file-name="MainFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/MainFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71732956" vertical-offset="529" max-vertical-offset="1298">
-              <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ListView.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/../../../../../software/sdk/platforms/android-19/android.jar!/android/widget/ListView.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2097" max-vertical-offset="2948">
-              <caret line="104" column="19" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupMemberRankEntity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/Bean/GroupMemberRankEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.574074" vertical-offset="407" max-vertical-offset="1144">
-              <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Request.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/util/Request.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4965" max-vertical-offset="5676">
-              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerConfig.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/background/config/ServerConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="682">
-              <caret line="22" column="48" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewMemberHeaderItem.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewMemberHeaderItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1078" max-vertical-offset="2024">
-              <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="704">
+              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -301,64 +383,65 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/HCPopListView.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/background/HCApplicaton.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupChat.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewMemberHeaderItem.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/chat/chatuidemo/utils/SmileUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/util/UserInfoManager.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupChatFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/chat/chatuidemo/adapter/MessageAdapter.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/chat/chatuidemo/utils/UserUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/LoadingWrapperFrame.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/LoadingWrapperLinear.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoAlbum.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoAlbumAdapter.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoChooseActicity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoChooseImplActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoChooseView.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PreviewAdapter.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/util/CommonUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/util/ImageLoaderUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/util/ModelRequestListener.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/util/PicassoUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/util/ShowFooterUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/util/StringUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/util/VersionCompareUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/cropimage/ActivityCropImage.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/cropimage/FloatDrawable.java" />
         <option value="$PROJECT_DIR$/src/com/example/Bama/background/HCApplication.java" />
-        <option value="$PROJECT_DIR$/res/layout/activity_create_group.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/background/Account.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityLogin.java" />
-        <option value="$PROJECT_DIR$/res/layout/activity_register_hc.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/account/ActivityRegister.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/account/ActivityLogin.java" />
-        <option value="$PROJECT_DIR$/res/layout/activity_login_hc.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/MeFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/ShopFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/NewsFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/DescFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityMain.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/background/config/CommonPreference.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/background/config/ServerConfig.java" />
+        <option value="$PROJECT_DIR$/res/layout/alert_camera.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoAlbumActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/photo/ActivityCapture.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/background/PathManager.java" />
+        <option value="$PROJECT_DIR$/res/layout/layout_header.xml" />
         <option value="$PROJECT_DIR$/res/drawable/icon_mine_selector.xml" />
         <option value="$PROJECT_DIR$/res/drawable/icon_shop_selector.xml" />
-        <option value="$PROJECT_DIR$/res/drawable/icon_group_selector.xml" />
         <option value="$PROJECT_DIR$/res/drawable/icon_news_selector.xml" />
-        <option value="$PROJECT_DIR$/res/layout/fragment_mygroup.xml" />
+        <option value="$PROJECT_DIR$/res/drawable/icon_main_selector.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/SplashActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/activity_mysplash.xml" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/RequestUtil.java" />
+        <option value="$PROJECT_DIR$/res/layout/tab_layout.xml" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/Bean/ChannelManage.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/RefreshListView.java" />
-        <option value="$PROJECT_DIR$/res/layout/group_list_fragment.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/adapter/GroupCircleAdapter.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupListItem.java" />
-        <option value="$PROJECT_DIR$/res/layout/item_grouplist.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/Bean/GroupCircleEntity.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupCircleFragment.java" />
-        <option value="$PROJECT_DIR$/res/layout/view_group_member.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/XYBottomDialog.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityJubao.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupTipsOnOff.java" />
-        <option value="$PROJECT_DIR$/res/layout/activity_group_chat.xml" />
-        <option value="$PROJECT_DIR$/res/layout/xy_bottom_dialog.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewMemberHeaderItem.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupChat.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/XYTipsDialog.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/XYGroupCustomerDialog.java" />
-        <option value="$PROJECT_DIR$/res/values/layout_ids.xml" />
-        <option value="$PROJECT_DIR$/res/layout/xy_group_customer_dialog.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/background/config/ServerConfig.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/adapter/GroupMemberRankAdapter.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/Bean/GroupMemberRankEntity.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/RankFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupMemberRankItem.java" />
+        <option value="$PROJECT_DIR$/res/layout/fragment_mygroup.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/fragment/FindFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/widget/MoreWindow.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/MenuIndexLinster.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/JavaScriptInterfaceUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/example/Bama/ui/ActivityMain.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1316" />
-    <option name="y" value="-258" />
-    <option name="width" value="1545" />
-    <option name="height" value="1029" />
+    <option name="x" value="21" />
+    <option name="y" value="22" />
+    <option name="width" value="1247" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -386,20 +469,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -418,184 +488,9 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bama" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bama" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bama" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bama" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Views" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bama" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fragment" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bama" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="background" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bamabang" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bama" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="background" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="bamabang">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -617,20 +512,41 @@
     <property name="DEBUGGABLE_DEVICE" value="huawei-h60_l02-DU2TAN147S025527" />
     <property name="DEBUGGABLE_PROCESS" value="com.example.Bama" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.SHOW" value="false" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/desk/anything/WeiBoePop" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.Bama.widget" />
+      <recent name="com.example.Bama.ui.fragment" />
       <recent name="com.example.Bama.ui.account" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/res/layout" />
-      <recent name="$PROJECT_DIR$/src/com/example/Bama/widget" />
+      <recent name="$PROJECT_DIR$/res/drawable-xhdpi" />
       <recent name="$PROJECT_DIR$/res/drawable-hdpi" />
+      <recent name="$PROJECT_DIR$/res/drawable-mdpi" />
       <recent name="$PROJECT_DIR$/res/drawable" />
-      <recent name="$PROJECT_DIR$/src/com/example/Bama/ui" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.bamabang">
+    <configuration default="false" name="Base64Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.Bama.util.Base64Util" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="bamabang" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -776,9 +692,15 @@
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Android Application.bamabang" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Base64Util" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.Base64Util" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -823,34 +745,34 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1316" y="-258" width="1545" height="1029" extended-state="0" />
-    <editor active="true" />
+    <frame x="21" y="22" width="1247" height="772" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23372465" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35970148" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45891142" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.51911765" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44183564" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41764706" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985073" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20384204" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49519745" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32870865" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22205882" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12205882" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2955224" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16044143" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20625415" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32123798" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2406639" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14852941" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -903,29 +825,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java</url>
-          <line>110</line>
-          <properties />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java</url>
-          <line>134</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java</url>
-          <line>133</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java</url>
-          <line>130</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupMemberRankItem.java</url>
           <line>55</line>
           <properties />
@@ -937,8 +836,137 @@
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupCircleFragment.java</url>
+          <line>45</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupCircleFragment.java</url>
+          <line>130</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupChatFragment.java</url>
+          <line>366</line>
+          <properties />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupChatFragment.java</url>
+          <line>375</line>
+          <properties />
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupChatFragment.java</url>
+          <line>353</line>
+          <properties />
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupFragment.java</url>
+          <line>49</line>
+          <properties />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupFragment.java</url>
+          <line>114</line>
+          <properties />
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupFragment.java</url>
+          <line>172</line>
+          <properties />
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java</url>
+          <line>259</line>
+          <properties />
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/RequestUtil.java</url>
+          <line>150</line>
+          <properties />
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/RequestUtil.java</url>
+          <line>160</line>
+          <properties />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/RequestUtil.java</url>
+          <line>168</line>
+          <properties />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java</url>
+          <line>119</line>
+          <properties />
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java</url>
+          <line>210</line>
+          <properties />
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/RequestUtil.java</url>
+          <line>93</line>
+          <properties />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java</url>
+          <line>162</line>
+          <properties />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java</url>
+          <line>200</line>
+          <properties />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityMain.java</url>
+          <line>212</line>
+          <properties />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityMain.java</url>
+          <line>211</line>
+          <properties />
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/FindFragment.java</url>
+          <line>26</line>
+          <properties />
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/FindFragment.java</url>
+          <line>33</line>
+          <properties />
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="10" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="65" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -946,412 +974,418 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/ShopFragment.java">
+    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="22" max-vertical-offset="1012">
-          <caret line="14" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1298">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/NewsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="22" max-vertical-offset="990">
-          <caret line="15" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/MeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
-          <caret line="14" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/DescFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="22" max-vertical-offset="748">
-          <caret line="11" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/news1.png">
-      <provider selected="true" editor-type-id="images">
+    <entry file="file://$PROJECT_DIR$/res/layout/alert_camera.xml">
+      <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2027" max-vertical-offset="3168">
-          <caret line="129" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.6896553" vertical-offset="0" max-vertical-offset="1254">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/icon_mine_selector.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.04238921" vertical-offset="0" max-vertical-offset="519">
-          <caret line="1" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6710">
+          <caret line="0" column="37" selection-start-line="0" selection-start-column="37" selection-end-line="0" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/icon_shop_selector.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/background/PathManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16955684" vertical-offset="0" max-vertical-offset="519">
-          <caret line="4" column="74" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1584">
+          <caret line="65" column="24" selection-start-line="65" selection-start-column="24" selection-end-line="65" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_capture.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2002">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/background/config/ServerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="188" max-vertical-offset="770">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/widget/photo/ActivityCapture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.076923" vertical-offset="0" max-vertical-offset="15114">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/util/IntentUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="579" max-vertical-offset="1254">
+          <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/widget/photo/PhotoAlbumActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="638" max-vertical-offset="4356">
+          <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_photoalbum.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.413793" vertical-offset="0" max-vertical-offset="1034">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/layout_header.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6896553" vertical-offset="154" max-vertical-offset="1958">
+          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/background/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1606">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/background/HCApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2067" max-vertical-offset="2992">
+          <caret line="133" column="32" selection-start-line="133" selection-start-column="32" selection-end-line="133" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/Bean/GroupCreateInfoEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="770">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/util/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1572" max-vertical-offset="5676">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable/icon_group_selector.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16955684" vertical-offset="0" max-vertical-offset="519">
-          <caret line="4" column="75" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="242">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/fragment_mygroup.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16019417" vertical-offset="0" max-vertical-offset="3806">
-          <caret line="3" column="49" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
+    <entry file="file://$PROJECT_DIR$/res/drawable-xhdpi/mypress.png">
+      <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+    <entry file="file://$PROJECT_DIR$/res/drawable/icon_mine_selector.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.321429" vertical-offset="147" max-vertical-offset="2970">
-          <caret line="16" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="242">
+          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable/icon_shop_selector.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="242">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-xhdpi/find.png">
+      <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/Bean/ChannelItem.java">
+    <entry file="file://$PROJECT_DIR$/res/drawable/icon_main_selector.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0501193" vertical-offset="0" max-vertical-offset="968">
-          <caret line="20" column="11" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62945366" vertical-offset="2903" max-vertical-offset="4092">
-          <caret line="144" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/Bean/ChannelManage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30151844" vertical-offset="103" max-vertical-offset="726">
-          <caret line="12" column="54" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/widget/RefreshListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14168">
-          <caret line="0" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/group_list_fragment.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="6" max-vertical-offset="814">
-          <caret line="22" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/easemobchat_2.1.9.jar!/com/easemob/chat/EMCursorResult.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5641026" vertical-offset="0" max-vertical-offset="468">
-          <caret line="13" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/easemobchat_2.1.9.jar!/com/easemob/chat/EMGroupInfo.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23504274" vertical-offset="0" max-vertical-offset="594">
-          <caret line="6" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/easemobchat_2.1.9.jar!/com/easemob/chat/EMGroupManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.8290598" vertical-offset="518" max-vertical-offset="5852">
-          <caret line="106" column="73" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/easemobchat_2.1.9.jar!/com/easemob/chat/EMGroup.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23504274" vertical-offset="0" max-vertical-offset="858">
-          <caret line="6" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/adapter/GroupCircleAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59130436" vertical-offset="674" max-vertical-offset="1166">
-          <caret line="43" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/Bean/GroupCircleEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36438924" vertical-offset="0" max-vertical-offset="483">
-          <caret line="8" column="30" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39130434" vertical-offset="1021" max-vertical-offset="7612">
-          <caret line="55" column="46" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/item_grouplist.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10161663" vertical-offset="0" max-vertical-offset="2134">
-          <caret line="2" column="73" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupCircleFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41092637" vertical-offset="3809" max-vertical-offset="6864">
-          <caret line="181" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="242">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable/icon_news_selector.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23861171" vertical-offset="0" max-vertical-offset="461">
-          <caret line="5" column="11" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/widget/ColumnHorizontalScrollView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19642857" vertical-offset="0" max-vertical-offset="1826">
-          <caret line="9" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/circle_header_path_white.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/circle_header_path.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/view_group_member.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5929919" vertical-offset="0" max-vertical-offset="682">
-          <caret line="10" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityJubao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27892235" vertical-offset="0" max-vertical-offset="814">
-          <caret line="13" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_group_chat.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26597583" vertical-offset="0" max-vertical-offset="4114">
-          <caret line="7" column="47" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/xy_bottom_dialog.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0898101" vertical-offset="0" max-vertical-offset="1386">
-          <caret line="55" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/widget/XYTipsDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37991267" vertical-offset="1168" max-vertical-offset="2200">
-          <caret line="68" column="84" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/layout_ids.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56050956" vertical-offset="0" max-vertical-offset="471">
-          <caret line="12" column="40" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_jubao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1914">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="242">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/logo.png">
+      <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupTipsOnOff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48034933" vertical-offset="22" max-vertical-offset="1430">
-          <caret line="11" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/xy_group_customer_dialog.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.0022573" vertical-offset="0" max-vertical-offset="3366">
-          <caret line="141" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_splash.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupChat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5544" max-vertical-offset="6930">
-          <caret line="252" column="9" selection-start-line="252" selection-start-column="8" selection-end-line="252" selection-end-column="8" />
+        <state vertical-scroll-proportion="-3.0172415" vertical-offset="727" max-vertical-offset="1254">
+          <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_mysplash.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.275862" vertical-offset="0" max-vertical-offset="308">
+          <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/widget/XYBottomDialog.java">
+    <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/icon.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/icon.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/splash.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-xhdpi/icon.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-xhdpi/splash.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/SplashActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="792" max-vertical-offset="3916">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="484" max-vertical-offset="1518">
+          <caret line="29" column="0" selection-start-line="28" selection-start-column="4" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/widget/XYGroupCustomerDialog.java">
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1034" max-vertical-offset="3322">
-          <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1163" max-vertical-offset="8976">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewMemberHeaderItem.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/RequestUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1078" max-vertical-offset="2024">
-          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2790" max-vertical-offset="5544">
+          <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+          <folding>
+            <element signature="e#5790#5805#0" expanded="true" />
+            <element signature="e#9930#9945#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/tab_layout.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.37931034" vertical-offset="0" max-vertical-offset="3542">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupChatFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="14317" max-vertical-offset="35002">
-          <caret line="692" column="30" selection-start-line="692" selection-start-column="30" selection-end-line="692" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="35772">
+          <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupCircleFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="209" max-vertical-offset="3344">
+          <caret line="47" column="76" selection-start-line="47" selection-start-column="76" selection-end-line="47" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityGroupCircle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="284" max-vertical-offset="858">
+          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_create_group.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6896553" vertical-offset="176" max-vertical-offset="2992">
+          <caret line="23" column="55" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/fragment_mygroup.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="4026">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/actity_groupcircle.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0344827" vertical-offset="0" max-vertical-offset="374">
+          <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/group_list_fragment.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6551723" vertical-offset="0" max-vertical-offset="814">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityCreateGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="440" max-vertical-offset="6204">
+          <caret line="73" column="46" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/GroupFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="4092">
+          <caret line="68" column="39" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2667#2826#0" expanded="true" />
+            <element signature="e#2815#2816#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/util/Request.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/MainFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4965" max-vertical-offset="5676">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="704">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/background/config/ServerConfig.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="682">
-          <caret line="22" column="48" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="48" />
+        <state vertical-scroll-proportion="-5.6896553" vertical-offset="3432" max-vertical-offset="4048">
+          <caret line="171" column="19" selection-start-line="171" selection-start-column="19" selection-end-line="171" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/Bean/GroupMemberRankEntity.java">
+    <entry file="jar://$PROJECT_DIR$/../../../../../software/sdk/platforms/android-19/android.jar!/android/webkit/WebView.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.574074" vertical-offset="407" max-vertical-offset="1144">
-          <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8580">
+          <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/FindFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="363" max-vertical-offset="946">
+          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/widget/MoreWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2937" max-vertical-offset="4576">
+          <caret line="186" column="23" selection-start-line="186" selection-start-column="23" selection-end-line="186" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#6961#6962#0" expanded="true" />
+            <element signature="e#7005#7006#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/adapter/GroupMemberRankAdapter.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/MenuIndexLinster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="770">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="242">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/JavaScriptInterfaceUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2807" max-vertical-offset="6116">
+          <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/ActivityMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0543131" vertical-offset="176" max-vertical-offset="4136">
+          <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
           <folding>
-            <element signature="e#596#644#0" expanded="true" />
+            <element signature="e#5976#6306#0" expanded="true" />
+            <element signature="e#6295#6296#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/fragment/RankFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="764" max-vertical-offset="2332">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding>
-            <element signature="e#1215#1263#0" expanded="true" />
-            <element signature="e#1351#1399#0" expanded="true" />
-            <element signature="e#1490#1538#0" expanded="true" />
-            <element signature="e#2052#2067#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../../software/sdk/platforms/android-19/android.jar!/android/widget/ListView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2097" max-vertical-offset="2948">
-          <caret line="104" column="19" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupListItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="558" max-vertical-offset="1320">
-          <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/Bama/ui/Views/ViewGroupMemberRankItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71732956" vertical-offset="529" max-vertical-offset="1298">
-          <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>

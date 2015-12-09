@@ -32,9 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by xiaoyuPC on 2015/6/7.
- */
 public class ActivityLogin extends ActivityBase implements View.OnClickListener {
 	private FrameLayout backFL;
 	private TextView register;

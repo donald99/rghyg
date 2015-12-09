@@ -22,7 +22,7 @@ public class PathManager {
 
     //存储剪裁后的图片的文件夹
     public static File getCropPhotoDir() {
-        String path = FileUtil.getRootPath() + "/childHelp/crop/";
+        String path = FileUtil.getRootPath() + "/bamabang/crop/";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -38,7 +38,7 @@ public class PathManager {
 
     //调用系统相机拍照后图片所在的文件夹
     public static File getCameraPhotoDir() {
-        String path = FileUtil.getRootPath() + "/childHelp/photo/";
+        String path = FileUtil.getRootPath() + "/bamabang/photo/";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -48,7 +48,7 @@ public class PathManager {
 
     //存储私聊和群聊后的图片的文件夹
     public static File getSavePicDir() {
-        String path = FileUtil.getRootPath() + "/childHelp/chat/";
+        String path = FileUtil.getRootPath() + "/bamabang/chat/";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -58,7 +58,7 @@ public class PathManager {
 
     //文件缓存目录
     public static File getImageLoaderCacheDir() {
-        String path = FileUtil.getRootPath() + "childHelp/imageloader/cache";
+        String path = FileUtil.getRootPath() + "/bamabang/imageloader/cache";
         File cacheDir = new File(path);
         if (!cacheDir.exists()) {
             cacheDir.mkdirs();

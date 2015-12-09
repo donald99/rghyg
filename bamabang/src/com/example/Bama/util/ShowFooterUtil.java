@@ -2,9 +2,6 @@ package com.example.Bama.util;
 
 import com.example.Bama.widget.RefreshListView;
 
-/**
- * Created by sreay on 14-11-7.
- */
 public class ShowFooterUtil {
 	public static boolean showFooter(int total, int pageSize, int currentPage, RefreshListView listView) {
 		if (listView == null) {

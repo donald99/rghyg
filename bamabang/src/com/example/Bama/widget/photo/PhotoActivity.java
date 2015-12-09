@@ -24,15 +24,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
-/**
- * @author yinxinya
- * @version 1.0
- * @title:
- * @description:
- * @company: 美丽说（北京）网络科技有限公司
- * @created
- * @changeRecord
- */
 // 单个目录中照片的展示的Activity
 public class PhotoActivity extends ActivityBase implements OnClickListener {
 	private ImageView headLeft;

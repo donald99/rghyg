@@ -20,15 +20,6 @@ import com.example.Bama.ui.ActivityBase;
 
 import java.util.ArrayList;
 
-/**
- * @author yinxinya
- * @version 1.0
- * @title:
- * @description:
- * @company: 美丽说（北京）网络科技有限公司
- * @created
- * @changeRecord
- */
 //照片的目录选择
 public class PhotoAlbumActivity extends ActivityBase implements OnClickListener {
 	private ImageView headLeft;

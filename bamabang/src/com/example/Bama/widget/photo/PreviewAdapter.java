@@ -22,9 +22,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author wanyuyong
- */
 public class PreviewAdapter extends PagerAdapter {
 	private Context mContext;
 	private ImageLoader imageLoader = HCApplication.getInstance().getImageLoader();

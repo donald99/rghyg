@@ -17,6 +17,8 @@
      <dimen name="image_thumbnail_size">100dp</dimen>
     <dimen name="image_thumbnail_spacing">1dp</dimen>
 
+    <dimen name="more_window_item_margin">12dp</dimen>
+
     <!--appDimen-->
     <dimen name="photo_activity_space">5dp</dimen>
     <dimen name="hc_pop_listview_item_text_size">10sp</dimen>

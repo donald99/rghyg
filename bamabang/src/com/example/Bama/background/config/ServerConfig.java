@@ -1,8 +1,5 @@
 package com.example.Bama.background.config;
 
-/**
- * Created by sreay on 14-8-18.
- */
 public class ServerConfig {
 	// 测试环境
 	public static String BASE_URL_TEST = "http://ghzofhit.dev.codevm.com";
@@ -27,4 +24,6 @@ public class ServerConfig {
 	public static final String URL_USER_GET = "/soul/htdocs/im/user/get";
 	public static final String URL_GROUP_INFO_GET = "/soul/htdocs/im/group/get";
 	public static final String URL_VERSION_UPDATE = "xxxx";
+	public static final String URL_IM_USER_PING = "/soul/htdocs/im/user/ping";//用户对话接口  获取积分
+	public static final String URL_FILE_UP = "/soul/htdocs/im/file/up";//文件
 }

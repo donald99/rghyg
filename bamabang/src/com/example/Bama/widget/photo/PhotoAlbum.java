@@ -2,16 +2,6 @@ package com.example.Bama.widget.photo;
 
 import java.io.Serializable;
 
-/**
- * 
- * @title:
- * @description:
- * @company: 美丽说（北京）网络科技有限公司
- * @author yinxinya
- * @version 1.0
- * @created
- * @changeRecord
- */
 public class PhotoAlbum implements Serializable {
 
 	private static final long serialVersionUID = 1L;

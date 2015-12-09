@@ -9,9 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.Bama.R;
 
-/**
- * Created by xiaoyu on 15-11-3.
- */
 public class XYGroupCustomerDialog extends FrameLayout implements View.OnClickListener {
     private ImageView avatar;
     private TextView nickName;

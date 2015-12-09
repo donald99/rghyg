@@ -22,14 +22,6 @@ import java.util.List;
 
 /**
  * 照片选择控件
- * 
- * @title:
- * @description:
- * @company: 美丽说（北京）网络科技有限公司
- * @author yinxinya
- * @version 1.0
- * @created
- * @changeRecord
  */
 public class PhotoChooseView extends GridView implements OnItemClickListener,
 		DragGridView.OnChanageListener {

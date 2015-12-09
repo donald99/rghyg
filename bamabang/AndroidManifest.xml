@@ -48,7 +48,7 @@
     <uses-feature android:name="android.hardware.camera.front"/>
     <application
             android:name=".background.HCApplication"
-            android:icon="@drawable/logo"
+            android:icon="@drawable/icon"
             >
         <activity
                 android:name=".ui.ActivityMain"
@@ -58,6 +58,10 @@
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.NoTitleBar"
                 android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <activity
@@ -74,10 +78,7 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/horizontal_slide"
                 android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <activity
@@ -98,6 +99,22 @@
 
         <activity
                 android:name=".ui.ActivityGroupChat"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide"
+                android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity
+                android:name=".ui.ActivityGroupCircle"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:theme="@style/horizontal_slide"
+                android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity
+                android:name=".ui.ActivityWeb"
                 android:launchMode="singleTop"
                 android:screenOrientation="portrait"
                 android:theme="@style/horizontal_slide"
@@ -312,6 +329,33 @@
                 android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
 
+        <activity
+                android:name="com.example.Bama.widget.photo.ActivityCapture"
+                android:screenOrientation="landscape"
+                android:theme="@android:style/Theme.NoTitleBar"
+                android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+
+        <activity
+                android:name=".widget.cropimage.ActivityCropImage"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.NoTitleBar"
+                android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+                android:name="com.example.Bama.widget.photo.PhotoAlbumActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.NoTitleBar"
+                android:windowSoftInputMode="adjustResize|stateHidden"/>
+
+        <activity
+                android:name="com.example.Bama.widget.photo.PhotoActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.NoTitleBar"
+                android:windowSoftInputMode="adjustResize|stateHidden"/>
+
         <!-- iOS offline push nick -->
         <activity
                 android:name=".chat.chatuidemo.activity.OfflinePushNickActivity"
@@ -333,7 +377,7 @@
         <!-- 设置环信应用的appkey -->
         <meta-data
                 android:name="EASEMOB_APPKEY"
-                android:value="lyaixy#bamabang"/>
+                android:value="8mbang#8mbang"/>
         <!-- 声明sdk所需的service -->
         <service android:name="com.easemob.chat.EMChatService"/>
 

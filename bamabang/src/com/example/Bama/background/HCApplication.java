@@ -18,9 +18,6 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 import java.util.Map;
 
-/**
- * Created by xiaoyuPC on 2015/6/5.
- */
 public class HCApplication extends Application {
     private static HCApplication mApplication;
     public static boolean android_show_filter = false;

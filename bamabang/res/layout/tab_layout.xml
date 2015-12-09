@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="65.32999dip"
+    android:layout_alignParentBottom="true"
+    android:background="@color/common_white">
+
+    <LinearLayout
+   
+        android:layout_width="fill_parent"
+        android:layout_height="48.0dip"
+        android:layout_gravity="bottom"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <FrameLayout      
+            android:layout_width="fill_parent"
+            android:layout_height="48.0dip"
+            android:layout_weight="1.0" >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/mainLL">
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/mainImage"
+                        android:src="@drawable/icon_main_selector"
+                        android:layout_marginBottom="4dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="首页"
+                        android:textSize="12sp"
+                        android:textColor="@color/black_deep"/>
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+        
+            android:layout_width="fill_parent"
+            android:layout_height="48.0dip"
+            android:layout_marginRight="10.0dip"
+            android:layout_weight="1.0" >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:id="@+id/newsLL">
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/newsImage"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_news_selector"
+                        android:layout_marginBottom="4dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="资讯"
+                        android:textSize="12sp"
+                        android:textColor="@color/black_deep"/>
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0" />
+
+        <FrameLayout
+          
+            android:layout_width="fill_parent"
+            android:layout_height="48.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_weight="1.0" >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:id="@+id/shopLL">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/shopImage"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_shop_selector"
+                        android:layout_marginBottom="4dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="商城"
+                        android:textSize="12sp"
+                        android:textColor="@color/black_deep"/>
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+         
+            android:layout_width="fill_parent"
+            android:layout_height="48.0dip"
+            android:layout_weight="1.0" >
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/mineLL">
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/mineImage"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_mine_selector"
+                        android:layout_marginBottom="4dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我的"
+                        android:textSize="12sp"
+                        android:textColor="@color/black_deep"/>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.0"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/findLL">
+
+        <ImageView
+                android:layout_width="66.666595dip"
+                android:layout_height="65.33328dip"
+                android:layout_gravity="center"
+                android:id="@+id/findImage"
+                android:scaleType="centerCrop"
+                android:src="@drawable/find"
+                android:layout_marginBottom="4dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发现"
+                android:textSize="12sp"
+                android:textColor="@color/black_deep"/>
+    </LinearLayout>
+</FrameLayout>

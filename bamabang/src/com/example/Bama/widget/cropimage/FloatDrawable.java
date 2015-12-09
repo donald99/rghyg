@@ -8,8 +8,6 @@ import com.example.Bama.R;
 
 /**
  * 头像图片选择框的浮层
- *
- * @author Administrator
  */
 public class FloatDrawable extends Drawable {
 

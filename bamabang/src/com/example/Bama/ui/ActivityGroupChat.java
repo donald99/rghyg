@@ -62,7 +62,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 	 * intent data*
 	 */
 	public static final String kGroupId = "group_id";
-	private String groupId;
+	private String groupId = "1446979957636";
 
 	public static void open(Activity activity, String groupId) {
 		Intent intent = new Intent(activity, ActivityGroupChat.class);
@@ -73,7 +73,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		if (getIntent() != null) {
-			groupId = getIntent().getStringExtra(kGroupId);
+            groupId = getIntent().getStringExtra(kGroupId);
 		}
 		account = HCApplication.getInstance().getAccount();
 		setContentView(R.layout.activity_group_chat);

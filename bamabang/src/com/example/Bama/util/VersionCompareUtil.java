@@ -1,8 +1,5 @@
 package com.example.Bama.util;
 
-/**
- * Created by sreay on 15-11-24.
- */
 public class VersionCompareUtil {
 	//可以比较不同的大版本和小版本
 	//1 需要更新  0，－1 不需要更新

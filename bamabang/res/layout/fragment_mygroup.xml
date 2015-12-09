@@ -13,6 +13,16 @@
             android:background="@color/title_bg"
             >
 
+        <ImageView
+                android:id="@+id/back_btn"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="20dp"
+                android:src="@drawable/backwhite"
+                android:layout_gravity="left|center_vertical"/>
+
         <TextView
                 android:id="@+id/title"
                 android:text="群组"

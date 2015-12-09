@@ -9,9 +9,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.easemob.util.ImageUtils;
 import com.example.Bama.Bean.GroupCircleEntity;
 import com.example.Bama.R;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.chat.chatuidemo.utils.SmileUtils;
+import com.example.Bama.util.ImageLoaderUtil;
 
 public class ViewGroupListItem extends LinearLayout {
 	private Context context;
@@ -54,16 +57,22 @@ public class ViewGroupListItem extends LinearLayout {
 			mTitle.setText("");
 		}
 
-		if (entity.status) {
-			hotImage.setVisibility(View.VISIBLE);
-		} else {
+//		if (entity.status) {
+//			hotImage.setVisibility(View.VISIBLE);
+//		} else {
 			hotImage.setVisibility(View.GONE);
-		}
-		groupPeople.setText(":" + entity.peopleCount);
-		if (!TextUtils.isEmpty(entity.lastMsg)) {
-			lastMsgText.setText(SmileUtils.getSmiledText(getContext(), entity.lastMsg), TextView.BufferType.SPANNABLE);
-		} else {
-			lastMsgText.setText("欢迎来到" + entity.name);
-		}
+//		}
+//		groupPeople.setText(":" + entity.peopleCount);
+//		if (!TextUtils.isEmpty(entity.lastMsg)) {
+//			lastMsgText.setText(SmileUtils.getSmiledText(getContext(), entity.lastMsg), TextView.BufferType.SPANNABLE);
+//		} else {
+//			lastMsgText.setText(entity.bulletin);
+//		}
+
+        lastMsgText.setText(entity.description);
+        if(!TextUtils.isEmpty(entity.picurl)){
+            HCApplication.getInstance().getImageLoader().displayImage(entity.picurl,ivAvatar, ImageLoaderUtil.Options_Memory_Rect_Avatar);
+        }
+
 	}
 }

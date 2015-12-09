@@ -16,9 +16,6 @@ import com.example.Bama.util.ImageLoaderUtil;
 import com.example.Bama.util.Request;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-/**
- * Created by sreay on 15-11-16.
- */
 public class GroupMemberItemView extends FrameLayout {
 	private ImageView avatar;
 	private TextView nickName;

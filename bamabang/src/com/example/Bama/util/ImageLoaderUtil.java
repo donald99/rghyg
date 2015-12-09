@@ -8,9 +8,6 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 import java.io.File;
 
-/**
- * Created by sreay on 14-8-21.
- */
 public class ImageLoaderUtil {
 	public static DisplayImageOptions Options_Common_Disc_Pic = new DisplayImageOptions.Builder().
 			imageScaleType(ImageScaleType.IN_SAMPLE_INT).bitmapConfig(Bitmap.Config.RGB_565)

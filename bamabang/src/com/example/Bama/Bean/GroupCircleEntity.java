@@ -5,32 +5,28 @@ import com.meilishuo.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class GroupCircleEntity extends BaseEntity{
+public class GroupCircleEntity{
+    @SerializedName("code")
+    public String code;
+    @SerializedName("status")
+    public String status;
+    @SerializedName("message")
+    public String message;
     @SerializedName("content")
     public List<ContentEntity> content;
 
-    public static class ContentEntity {
-        /**
-         * id : 1
-         * groupid : 127035778260796004
-         * name : 测试群1
-         * tagid : 1
-         * description : 测试群
-         * bulletin : 这是衣蛾测试的群
-         * ownerid : 1
-         * owner : test1
-         * status : 0
-         * created : 11231233
-         */
 
+    public class ContentEntity {
         @SerializedName("id")
-        public int id;
+        public String id;
         @SerializedName("groupid")
         public String groupid;
         @SerializedName("name")
         public String name;
         @SerializedName("tagid")
-        public int tagid;
+        public String tagid;
+        @SerializedName("picurl")
+        public String picurl;
         @SerializedName("description")
         public String description;
         @SerializedName("bulletin")
@@ -40,12 +36,9 @@ public class GroupCircleEntity extends BaseEntity{
         @SerializedName("owner")
         public String owner;
         @SerializedName("status")
-        public boolean status;
+        public String status;
         @SerializedName("created")
-        public int created;
-
-		/**xiaoyu增加**/
-		public int peopleCount;
-		public String lastMsg;
+        public String created;
     }
+
 }

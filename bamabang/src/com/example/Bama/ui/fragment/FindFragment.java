@@ -20,6 +20,8 @@ import com.example.Bama.ui.JavaScriptInterfaceUtil;
 public class FindFragment extends Fragment {
 	private ActivityBase activity;
 	private WebView webView;
+
+    public static String url = "";
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_find, null);
@@ -31,7 +33,17 @@ public class FindFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		activity = (ActivityBase) getActivity();
-        JavaScriptInterfaceUtil util = new JavaScriptInterfaceUtil(activity);
-        util.initWebView(webView, Base.findUrl);
+        webLoadUrl(url);
 	}
+
+    private void webLoadUrl(String url) {
+        JavaScriptInterfaceUtil util = new JavaScriptInterfaceUtil(activity);
+        util.initWebView(webView, url);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        webLoadUrl(url);
+    }
 }

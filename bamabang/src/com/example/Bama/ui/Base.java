@@ -2,17 +2,26 @@ package com.example.Bama.ui;
 
 public class Base {
     //首页：
-    public static String mainUrl = "http://ghzofhit.dev.codevm.com/sense/htdocs/hong/";
+    public static String mainUrl = "http://dev.8mbang.com/app/home.html";
 
     //资讯：
-    public static String newsUrl = "http://8mbang.com/?q=category";
+    public static String newsUrl = "http://dev.8mbang.com/app/news.html";
 
     //商城：
-    public static String shopUrl = "http://ghzofhit.dev.codevm.com/sense/htdocs/mall/";
+    public static String shopUrl = "http://dev.8mbang.com/app/mall.html";
 
     //发现：
     public static String findUrl = "http://ghzofhit.dev.codevm.com/sense/htdocs/look/";
 
     //我的：
-    public static String mineUrl = "http://8mbang.com/?q=user/index";
+    public static String mineUrl = "http://dev.8mbang.com/app/mine.html";
+
+    public static String groupUrl = "http://dev.8mbang.com/app/group.html";
+    public static String pictureUrl = "http://dev.8mbang.com/app/album.html";
+    public static String taskUrl = "http://dev.8mbang.com/app/task.html";
+    public static String froumUrl = "http://dev.8mbang.com/app/forum.html";
+    public static String searchUrl = "http://dev.8mbang.com/app/search.html";
+
+    //url OperationParam
+    public static String OperationParam = "ClientOperation";
 }

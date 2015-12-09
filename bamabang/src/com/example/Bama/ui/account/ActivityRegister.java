@@ -18,9 +18,6 @@ import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.ActivityBase;
 import com.example.Bama.util.ToastUtil;
 
-/**
- * Created by xiaoyuPC on 2015/6/7.
- */
 public class ActivityRegister extends ActivityBase implements View.OnClickListener {
 
 	private Account account;
