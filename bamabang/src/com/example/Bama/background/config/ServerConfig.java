@@ -23,6 +23,7 @@ public class ServerConfig {
 	public static final String URL_GROUP_ADD = "/soul/htdocs/im/group/add";
 	public static final String URL_USER_GET = "/soul/htdocs/im/user/get";
 	public static final String URL_GROUP_INFO_GET = "/soul/htdocs/im/group/get";
+	public static final String URL_GROUP_INFO_EDIT = "/soul/htdocs/im/group/edit";
 	public static final String URL_VERSION_UPDATE = "xxxx";
 	public static final String URL_IM_USER_PING = "/soul/htdocs/im/user/ping";//用户对话接口  获取积分
 	public static final String URL_FILE_UP = "/soul/htdocs/im/file/up";//文件

@@ -12,11 +12,16 @@ import android.widget.TextView;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.exceptions.EaseMobException;
+import com.example.Bama.Bean.GroupCircleEntity;
+import com.example.Bama.Bean.GroupCreateInfoEntity;
 import com.example.Bama.R;
 import com.example.Bama.background.Account;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.ActivityBase;
+import com.example.Bama.ui.ActivityCreateGroup;
 import com.example.Bama.ui.ActivityGroupChat;
+import com.example.Bama.ui.RequestUtil;
+import com.example.Bama.util.ImageLoaderUtil;
 import com.example.Bama.util.ToastUtil;
 
 import java.util.List;
@@ -26,8 +31,7 @@ import java.util.List;
  */
 public class DescFragment extends Fragment implements View.OnClickListener {
 	private ActivityBase activity;
-	public static final String kGroupId = "kGroupId";
-	private String groupId = "";
+
 	private Account account;
 
 	private ImageView groupAvatar;
@@ -37,9 +41,14 @@ public class DescFragment extends Fragment implements View.OnClickListener {
 	private TextView add_group;
 	private TextView added_group;
 
+    public static final String kGroupInfo = "kGroupId";
+    private String groupInfo = "";
+
+    private GroupCircleEntity.ContentEntity entity;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		groupId = getArguments().getString(kGroupId);
+        groupInfo = getArguments().getString(kGroupInfo);
+        entity = HCApplication.getInstance().getGson().fromJsonWithNoException(groupInfo,GroupCircleEntity.ContentEntity.class);
 		account = HCApplication.getInstance().getAccount();
 		View rootView = inflater.inflate(R.layout.fragment_group_desc, container, false);
 		initView(rootView);
@@ -65,24 +74,33 @@ public class DescFragment extends Fragment implements View.OnClickListener {
 		add_group.setOnClickListener(this);
 		added_group.setOnClickListener(this);
 
-		isInGroup();
+        if ((entity.owner).equals(HCApplication.getInstance().getAccount().userId)){
+            edit_group_desc.setVisibility(View.VISIBLE);
+        }else{
+            edit_group_desc.setVisibility(View.GONE);
+        }
+
+        HCApplication.getInstance().getImageLoader().displayImage(entity.picurl, groupAvatar, ImageLoaderUtil.Options_Common_memory_Pic);
+        group_desc.setText(entity.description);
+
+        isInGroup();
 	}
 
-	private void isInGroup() {
+    private void isInGroup() {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					EMGroup group = EMGroupManager.getInstance().getGroupFromServer(groupId);
-					final List<String> accountIds = group.getMembers();
+					EMGroup group = EMGroupManager.getInstance().getGroupFromServer(entity.groupid);
+					final List<String> userNames = group.getMembers();
 					getActivity().runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
-							group_people_count.setText(accountIds.size() + "");
+							group_people_count.setText(userNames.size() + "");
 						}
 					});
 					/**判断自己是否加入群**/
-					if (!TextUtils.isEmpty(account.userId) && accountIds.contains(account.userId)) {
+					if (!TextUtils.isEmpty(account.userName) && userNames.contains(account.userName)) {
 						getActivity().runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
@@ -117,8 +135,8 @@ public class DescFragment extends Fragment implements View.OnClickListener {
 				@Override
 				public void run() {
 					try {
-						EMGroupManager.getInstance().joinGroup(groupId);//需异步处
-                        final EMGroup group = EMGroupManager.getInstance().getGroupFromServer(groupId);
+						EMGroupManager.getInstance().joinGroup(entity.groupid);//需异步处
+                        final EMGroup group = EMGroupManager.getInstance().getGroupFromServer(entity.groupid);
 						getActivity().runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
@@ -151,6 +169,11 @@ public class DescFragment extends Fragment implements View.OnClickListener {
 				}
 			}).start();
 			break;
+            case R.id.edit_group_desc:
+                if(activity!=null && !TextUtils.isEmpty(groupInfo)){
+                    ActivityCreateGroup.open(activity,groupInfo);
+                }
+                break;
 		}
 	}
 }

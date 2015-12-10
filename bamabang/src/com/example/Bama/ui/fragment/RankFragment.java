@@ -18,17 +18,18 @@ import com.example.Bama.background.HCApplication;
 import com.example.Bama.background.config.ServerConfig;
 import com.example.Bama.util.Request;
 import com.example.Bama.util.ToastUtil;
+import com.example.Bama.widget.RefreshListView;
 import com.meilishuo.gson.annotations.SerializedName;
 import org.apache.http.NameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RankFragment extends Fragment implements View.OnClickListener{
+public class RankFragment extends Fragment implements RefreshListView.OnRefreshListener, View.OnClickListener{
     private Activity activity;
     private FrameLayout weekRankFl,monthRankFL;
     private TextView weekRankText,monthRankText;
-    private ListView mListView;
+    private RefreshListView mListView;
     private GroupMemberRankAdapter mAdapter;
 
     public List<GroupMemberRankEntity.ContentEntity.RankEntity> all = new ArrayList<GroupMemberRankEntity.ContentEntity.RankEntity>();
@@ -47,36 +48,7 @@ public class RankFragment extends Fragment implements View.OnClickListener{
         super.onAttach(activity);
         this.activity = activity;
 
-
-        queryRankList();
-    }
-
-    private void queryRankList() {
-
-        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-
-        Request.doRequest(activity,pairs, ServerConfig.URL_GET_RANK_LISR,Request.GET,new Request.RequestListener(){
-
-            @Override
-            public void onException(Request.RequestException e) {
-            }
-
-            @Override
-            public void onComplete(String response) {
-
-                if(!TextUtils.isEmpty(response)){
-                    GroupMemberRankEntity entity = HCApplication.getInstance().getGson().fromJsonWithNoException(response,GroupMemberRankEntity.class);
-
-                    if (entity!=null && entity.content != null){
-                        all = entity.content.all;
-                        week = entity.content.week;
-                        current = week;
-                        mAdapter = new GroupMemberRankAdapter(activity, current);
-                        mListView.setAdapter(mAdapter);
-                    }
-                }
-            }
-        });
+        onRefresh();
     }
 
     private void initView(View view){
@@ -90,7 +62,10 @@ public class RankFragment extends Fragment implements View.OnClickListener{
         monthRankFL.setOnClickListener(this);
         monthRankText.setOnClickListener(this);
 
-        mListView = (ListView) view.findViewById(R.id.listview);
+        mListView = (RefreshListView) view.findViewById(R.id.listview);
+        mListView.setCanRefresh(true);
+        mListView.setCanLoadMore(false);
+        mListView.setOnRefreshListener(this);
 
         mAdapter = new GroupMemberRankAdapter(activity, current);
         mListView.setAdapter(mAdapter);
@@ -119,5 +94,34 @@ public class RankFragment extends Fragment implements View.OnClickListener{
 
                 break;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+
+        Request.doRequest(activity,pairs, ServerConfig.URL_GET_RANK_LISR,Request.GET,new Request.RequestListener(){
+
+            @Override
+            public void onException(Request.RequestException e) {
+                mListView.onRefreshComplete();
+            }
+
+            @Override
+            public void onComplete(String response) {
+                mListView.onRefreshComplete();
+                if(!TextUtils.isEmpty(response)){
+                    GroupMemberRankEntity entity = HCApplication.getInstance().getGson().fromJsonWithNoException(response,GroupMemberRankEntity.class);
+
+                    if (entity!=null && entity.content != null){
+                        all = entity.content.all;
+                        week = entity.content.week;
+                        current = week;
+                        mAdapter = new GroupMemberRankAdapter(activity, current);
+                        mListView.setAdapter(mAdapter);
+                    }
+                }
+            }
+        });
     }
 }

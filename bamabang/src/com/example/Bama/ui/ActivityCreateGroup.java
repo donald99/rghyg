@@ -49,27 +49,60 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
     public static final int kRequestAlbumTwo = 104;
     public static final int kRequestcodeCropImage = 105;
 
+    private static String KGroupInfo = "groupInfo";
+
+    private String groupInfo = "";
     private String serverImage = "";
     private String tagId = "";
+    private String groupId = "";
+
+    private static boolean isEditGroupInfo = false;
 	/**
 	 * poplist data*
 	 */
 	private List<ChannelItem.ContentEntity> groupTypeList = new ArrayList<ChannelItem.ContentEntity>();
 
-	public static void open(Activity activity) {
-		Intent intent = new Intent(activity, ActivityCreateGroup.class);
-		activity.startActivity(intent);
-	}
+    public static void open(Activity activity) {
+        Intent intent = new Intent(activity, ActivityCreateGroup.class);
+        isEditGroupInfo = false;
+        activity.startActivity(intent);
+    }
+
+    public static void open(Activity activity,String groupInfo) {
+        Intent intent = new Intent(activity, ActivityCreateGroup.class);
+        intent.putExtra(KGroupInfo,groupInfo);
+        isEditGroupInfo = true;
+        activity.startActivity(intent);
+    }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_create_group);
 		super.onCreate(savedInstanceState);
+        groupInfo = getIntent().getStringExtra(KGroupInfo);
+        if(isEditGroupInfo){
+            initGroupInfoView();
+        }
         queryGroupTags();
 	}
 
+    private void initGroupInfoView() {
+        if (!TextUtils.isEmpty(groupInfo)){
+            GroupCreateInfoEntity.ContentEntity entity = HCApplication.getInstance().getGson().fromJsonWithNoException(groupInfo, GroupCreateInfoEntity.ContentEntity.class);
+            HCApplication.getInstance().getImageLoader().displayImage(entity.picurl,headerView,ImageLoaderUtil.Options_Memory_Rect_Avatar);
+            etInputGroupName.setText(entity.name);
+            et_description.setText(entity.description);
+            tagId = entity.tagid;
+            groupId = entity.groupid;
+            serverImage = entity.picurl;
+            mCreateGroup.setText("编辑");
+        }else{
+            mCreateGroup.setText("创建");
+        }
+    }
 
-	@Override
+
+    @Override
 	protected void getViews() {
 		backBtn = findViewById(R.id.back_btn);
 		headerView = (ImageView) findViewById(R.id.groupImage);
@@ -133,7 +166,7 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 			});
 			break;
 		case R.id.creategroup:
-			tryToPublishGroup();
+            tryToPublishGroup();
 			break;
 		}
 	}
@@ -157,7 +190,7 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 		/**调用环信sdk的方法注册群组,环信的只需要群名称和群简介，这里创建公开群**/
 		showDialog("正在创建群...");
 
-        RequestUtil.createGroup(ActivityCreateGroup.this,serverImage,groupName,groupType,groupDesc,new CreateGroupCallBack(){
+        RequestUtil.createGroup(ActivityCreateGroup.this,groupId,serverImage,groupName,tagId,groupDesc,new CreateGroupCallBack(){
             @Override
             public void onSuccess(final GroupCreateInfoEntity.ContentEntity entity) {
                 if (entity==null){
@@ -166,6 +199,7 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
                 }
                 dismissDialog();
                 ToastUtil.makeShortText("群创建成功");
+                finish();
 //                new Thread(new Runnable() {
 //                    @Override
 //                    public void run() {
@@ -210,6 +244,17 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
             public void onSuccess(List list) {
                 if(list!=null){
                     groupTypeList = list;
+                    for (final ChannelItem.ContentEntity entity : groupTypeList){
+                        if(tagId.equals(""+entity.tagid)){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    et_input_group_category.setText(entity.name);
+                                }
+                            });
+                            break;
+                        }
+                    }
                 }
             }
 

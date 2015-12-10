@@ -15,6 +15,7 @@ public class ImageLoaderUtil {
 
 	public static DisplayImageOptions Options_Common_memory_Pic = new DisplayImageOptions.Builder()
 			.imageScaleType(ImageScaleType.IN_SAMPLE_INT).bitmapConfig(Bitmap.Config.RGB_565)
+            .showImageOnLoading(R.drawable.logo).showImageOnFail(R.drawable.logo).showImageForEmptyUri(R.drawable.logo)
 			.resetViewBeforeLoading(true).cacheInMemory(true).cacheOnDisk(true).build();
 
 	public static DisplayImageOptions Options_Memory_Rect_Avatar =

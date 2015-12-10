@@ -374,9 +374,9 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			public void run() {
 				try {
 					emGroup = EMGroupManager.getInstance().getGroupFromServer(toChatUsername);
-					List<String> accountIds = emGroup.getMembers();
+					List<String> userNames = emGroup.getMembers();
 					/**判断自己是否加入群**/
-					if (emGroup != null && !TextUtils.isEmpty(account.userId) && accountIds.contains(account.userId)) {
+					if (emGroup != null && !TextUtils.isEmpty(account.userName) && userNames.contains(account.userName)) {
 						isJoinGroup = true;
 					} else {
 						isJoinGroup = false;
@@ -400,6 +400,9 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	 * 初始化群的会话*
 	 */
 	protected void onConversationInit() {
+        if(TextUtils.isEmpty(toChatUsername)){
+            return;
+        }
 		conversation = EMChatManager.getInstance().getConversationByType(toChatUsername, EMConversation.EMConversationType.GroupChat);
 		// 把此会话的未读数置为0
 		conversation.markAllMessagesAsRead();
@@ -1121,7 +1124,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
     private void setMessageAttribute(EMMessage msg){
         if(msg!=null){
             Account account=HCApplication.getInstance().getAccount();
-            msg.setAttribute("nickname",account.userName);
+            msg.setAttribute("nickname",account.name);
             msg.setAttribute("username",account.userName);
             msg.setAttribute("uid",account.userId);
             msg.setAttribute("headImg",account.avatar);

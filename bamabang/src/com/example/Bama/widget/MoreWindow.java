@@ -95,21 +95,27 @@ public class MoreWindow extends PopupWindow implements OnClickListener{
 		final RelativeLayout layout = (RelativeLayout)LayoutInflater.from(mContext).inflate(R.layout.center_music_more_window, null);
 		setContentView(layout);
 
-        ImageView close= (ImageView)layout.findViewById(R.id.center_music_window_close);
-        LayoutParams params =new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-        params.bottomMargin = bottomMargin;
-        params.addRule(RelativeLayout.BELOW, R.id.more_window_fourm);
-        params.addRule(RelativeLayout.RIGHT_OF, R.id.more_window_search);
-        params.topMargin = 200;
-        params.leftMargin = 18;
-        close.setLayoutParams(params);
+
+        layout.findViewById(R.id.more_window_group).setOnClickListener(this);
+        layout.findViewById(R.id.more_window_picture).setOnClickListener(this);
+        layout.findViewById(R.id.more_window_risk).setOnClickListener(this);
+        layout.findViewById(R.id.more_window_fourm).setOnClickListener(this);
+        layout.findViewById(R.id.more_window_search).setOnClickListener(this);
+
+//        LayoutParams params =new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+//        params.bottomMargin = bottomMargin;
+//        params.addRule(RelativeLayout.BELOW, R.id.more_window_fourm);
+//        params.addRule(RelativeLayout.RIGHT_OF, R.id.more_window_search);
+//        params.topMargin = 200;
+//        params.leftMargin = 18;
 
         layout.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if (isShowing()) {
-					closeAnimation(layout);
+//					closeAnimation(layout);
+                    dismiss();
 				}
 			}
 
@@ -123,32 +129,33 @@ public class MoreWindow extends PopupWindow implements OnClickListener{
 	}
 
 	private void showAnimation(ViewGroup layout){
-		for(int i=0;i<layout.getChildCount();i++){
-			final View child = layout.getChildAt(i);
-
-			child.setOnClickListener(this);
-			child.setVisibility(View.INVISIBLE);
-			mHandler.postDelayed(new Runnable() {
-				
-				@Override
-				public void run() {
-					child.setVisibility(View.VISIBLE);
-					ValueAnimator fadeAnim = ObjectAnimator.ofFloat(child, "translationY", 600, 0);
-					fadeAnim.setDuration(300);
-					KickBackAnimator kickAnimator = new KickBackAnimator();
-					kickAnimator.setDuration(150);
-					fadeAnim.setEvaluator(kickAnimator);
-					fadeAnim.start();
-				}
-			}, i * 50);
-		}
+//		for(int i=0;i<layout.getChildCount();i++){
+//			final View child = layout.getChildAt(i);
+//
+//			child.setOnClickListener(this);
+//			child.setVisibility(View.INVISIBLE);
+//			mHandler.postDelayed(new Runnable() {
+//
+//				@Override
+//				public void run() {
+//					child.setVisibility(View.VISIBLE);
+//					ValueAnimator fadeAnim = ObjectAnimator.ofFloat(child, "translationY", 600, 0);
+//					fadeAnim.setDuration(300);
+//					KickBackAnimator kickAnimator = new KickBackAnimator();
+//					kickAnimator.setDuration(150);
+//					fadeAnim.setEvaluator(kickAnimator);
+//					fadeAnim.start();
+//				}
+//			}, i * 50);
+//		}
 		
 	}
 
 	private void closeAnimation(ViewGroup layout){
-		for(int i=0;i<layout.getChildCount();i++){
-			final View child = layout.getChildAt(i);
-			child.setOnClickListener(this);
+        dismiss();
+//		for(int i=0;i<layout.getChildCount();i++){
+//			final View child = layout.getChildAt(i);
+//			child.setOnClickListener(this);
 //			mHandler.postDelayed(new Runnable() {
 //
 //				@Override
@@ -187,17 +194,17 @@ public class MoreWindow extends PopupWindow implements OnClickListener{
 //					});
 //				}
 //			}, (layout.getChildCount()-i-1) * 30);
-			
-			if(child.getId() == R.id.more_window_group){
-				mHandler.postDelayed(new Runnable() {
-
-					@Override
-					public void run() {
-						dismiss();
-					}
-				}, (layout.getChildCount()-i) * 30 + 80);
-			}
-		}
+//
+//			if(child.getId() == R.id.more_window_group){
+//				mHandler.postDelayed(new Runnable() {
+//
+//					@Override
+//					public void run() {
+//						dismiss();
+//					}
+//				}, (layout.getChildCount()-i) * 30 + 80);
+//			}
+//		}
 		
 	}
 

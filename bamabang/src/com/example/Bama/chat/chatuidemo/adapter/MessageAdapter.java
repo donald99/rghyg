@@ -593,8 +593,8 @@ public class MessageAdapter extends BaseAdapter {
 				@Override
 				public void onModelComplete(UserInfoManager.UserInfoModel model) {
 					if (model != null) {
-						if (!TextUtils.isEmpty(model.name)) {
-							textView.setText(model.content.get(0).name);
+						if (!TextUtils.isEmpty(model.username)) {
+							textView.setText(model.content.get(0).username);
 						}
 					}
 				}

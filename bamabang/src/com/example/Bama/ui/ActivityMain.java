@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.example.Bama.R;
+import com.example.Bama.background.Account;
 import com.example.Bama.background.HCApplication;
 import com.example.Bama.background.config.ServerConfig;
 import com.example.Bama.ui.fragment.*;
@@ -31,7 +32,7 @@ import org.apache.http.NameValuePair;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityMain extends ActivityBase {
+public class ActivityMain extends ActivityBase implements MenuIndexLinster {
 	public static boolean isConflict = false;
     private final int SPLASH_DISPLAY_LENGHT = 3000; //延迟三秒
 
@@ -77,6 +78,11 @@ public class ActivityMain extends ActivityBase {
             }
 
         }, SPLASH_DISPLAY_LENGHT);
+
+        Account account = HCApplication.getInstance().getAccount();
+        if(!TextUtils.isEmpty(account.userName)){
+            account.toLoginChatServer(this,account.userName,account.password);
+        }
 	}
 
 	@Override
@@ -110,9 +116,7 @@ public class ActivityMain extends ActivityBase {
 			@Override
 			public void onClick(View view) {
 				updateImageViewsStatus(0);
-				if (fragmentMain == null) {
-					fragmentMain = new MainFragment();
-				}
+				fragmentMain = new MainFragment();
 				switchContent(mFragmentCurrent, fragmentMain);
 			}
 		});
@@ -120,9 +124,7 @@ public class ActivityMain extends ActivityBase {
 			@Override
 			public void onClick(View view) {
 				updateImageViewsStatus(1);
-				if (fragmentNews == null) {
-					fragmentNews = new NewsFragment();
-				}
+				fragmentNews = new NewsFragment();
 				switchContent(mFragmentCurrent, fragmentNews);
 			}
 		});
@@ -131,9 +133,7 @@ public class ActivityMain extends ActivityBase {
 			@Override
 			public void onClick(View view) {
 				updateImageViewsStatus(2);
-				if (fragmentShop == null) {
-					fragmentShop = new ShopFragment();
-				}
+				fragmentShop = new ShopFragment();
 				switchContent(mFragmentCurrent, fragmentShop);
 			}
 		});
@@ -151,9 +151,7 @@ public class ActivityMain extends ActivityBase {
 			@Override
 			public void onClick(View view) {
 				updateImageViewsStatus(4);
-				if (fragmentMine == null) {
-					fragmentMine = new MeFragment();
-				}
+				fragmentMine = new MeFragment();
 				switchContent(mFragmentCurrent, fragmentMine);
 			}
 		});
@@ -227,5 +225,34 @@ public class ActivityMain extends ActivityBase {
     public onMoreClickLinister moreClickLinister;
     public interface onMoreClickLinister{
         public void onClickOpertion(String string);
+    }
+
+    public MenuIndexLinster onmenuIndexLinster;
+    public interface MenuIndexLinster{
+        public void onMenuIndex(int index);
+    }
+
+    @Override
+    public void onMenuIndex(int index) {
+        updateImageViewsStatus(index);
+        Fragment tofragment = null;
+        switch (index){
+            case 0:
+                tofragment = fragmentMain = new MainFragment();
+                break;
+            case 1:
+                tofragment = fragmentNews = new NewsFragment();
+                break;
+            case 2:
+                tofragment = fragmentFind = new FindFragment();
+                break;
+            case 3:
+                tofragment = fragmentShop = new ShopFragment();
+                break;
+            case 4:
+                tofragment = fragmentMine = new MeFragment();
+                break;
+        }
+        switchContent(mFragmentCurrent, tofragment);
     }
 }

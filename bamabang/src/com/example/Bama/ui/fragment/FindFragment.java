@@ -40,10 +40,4 @@ public class FindFragment extends Fragment {
         JavaScriptInterfaceUtil util = new JavaScriptInterfaceUtil(activity);
         util.initWebView(webView, url);
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        webLoadUrl(url);
-    }
 }

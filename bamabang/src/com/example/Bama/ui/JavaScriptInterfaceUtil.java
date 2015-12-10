@@ -82,15 +82,15 @@ public class JavaScriptInterfaceUtil {
 	 */
 	public void loginSuccess(String json) {
 		UserInfoManager.UserInfoModel userInfoModel = HCApplication.getInstance().getGson().fromJsonWithNoException(json, UserInfoManager.UserInfoModel.class);
-		if (userInfoModel != null) {
+		if (userInfoModel != null && userInfoModel.content!=null && userInfoModel.content.size()>0) {
 			Account account = HCApplication.getInstance().getAccount();
 			account.password = userInfoModel.content.get(0).password;
 			/**这个username是环信的userid**/
-			account.userId = userInfoModel.content.get(0).username;
-			account.userName = userInfoModel.content.get(0).name;
+			account.userId = userInfoModel.content.get(0).uid;
+			account.userName = userInfoModel.content.get(0).username;
 			account.avatar = userInfoModel.content.get(0).avatar;
 			account.saveMeInfoToPreference();
-            toLoginChatServer(account.userId,account.password);
+            account.toLoginChatServer(mContxt,account.userId,account.password);
 		}
 	}
 
@@ -99,12 +99,12 @@ public class JavaScriptInterfaceUtil {
 	 */
 	public void registerSuccess(String json) {
 		UserInfoManager.UserInfoModel userInfoModel = HCApplication.getInstance().getGson().fromJsonWithNoException(json, UserInfoManager.UserInfoModel.class);
-		if (userInfoModel != null) {
+		if (userInfoModel != null && userInfoModel.content!=null && userInfoModel.content.size()>0) {
 			Account account = HCApplication.getInstance().getAccount();
 			account.password = userInfoModel.content.get(0).password;
 			/**这个username是环信的userid**/
-			account.userId = userInfoModel.content.get(0).username;
-			account.userName = userInfoModel.content.get(0).name;
+			account.userId = userInfoModel.content.get(0).uid;
+			account.userName = userInfoModel.content.get(0).username;
 			account.avatar = userInfoModel.content.get(0).avatar;
 			account.saveMeInfoToPreference();
 		}
@@ -155,7 +155,7 @@ public class JavaScriptInterfaceUtil {
 
                     JSONArray array = new JSONArray();
                     JSONObject object1 = new JSONObject();
-                    object1.put("id",uid);
+                    object1.put("username",uid);
                     array.put(object1);
 
                     RequestUtil.getUserInfo(mContxt,array.toString(),new GetJsonLinister(){
@@ -180,14 +180,19 @@ public class JavaScriptInterfaceUtil {
                 int menuIndex = object.optInt("menuindex");
                 //显示底部菜单，并且 选中这个menuIndex索引
 
+
             }
 
             if(object.has("menu")){
                 //http://www.baidu.com?ClientOperation={"menu”:1}
                 //menu字段，int类型，有该字段时，1表示不显示底部菜单，
                 // 其他值表示显示菜单没有该字段默认当前菜单显示状态
-
                 int menu = object.optInt("menu");
+                if (menu == 1){
+
+                }else{
+
+                }
             }
 
             if(object.has("break")){
@@ -210,108 +215,5 @@ public class JavaScriptInterfaceUtil {
     public interface GetJsonLinister{
         public void onSuccess(String json);
         public void onFail();
-    }
-
-    private void toLoginChatServer(final String userId,final String password) {
-        EMChatManager.getInstance().login(userId, password, new EMCallBack() {
-            @Override
-            public void onSuccess() {
-                HCApplication.getInstance().setUserName(userId);
-                HCApplication.getInstance().setPassword(password);
-                try {
-                    EMChatManager.getInstance().loadAllLocalGroups();
-                    EMChatManager.getInstance().loadAllConversations();
-                    processContactsAndGroups();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return;
-                }
-                boolean updatenick = EMChatManager.getInstance().updateCurrentUserNick(
-                        HCApplication.currentUserNick.trim());
-                if (!updatenick) {
-                    Log.e("LoginActivity", "update current user nick fail");
-                }
-            }
-
-            @Override
-            public void onProgress(int progress, String status) {
-            }
-
-            @Override
-            public void onError(final int code, final String message) {
-            }
-        });
-    }
-
-    private void processContactsAndGroups() throws EaseMobException {
-        List<String> usernames = EMContactManager.getInstance().getContactUserNames();
-        EMLog.d("roster", "contacts size: " + usernames.size());
-        Map<String, User> userlist = new HashMap<String, User>();
-        for (String username : usernames) {
-            User user = new User();
-            user.setUsername(username);
-            setUserHearder(username, user);
-            userlist.put(username, user);
-        }
-
-        User addFriends = new User();
-        String addFriendStr = mContxt.getString(R.string.add_friend);
-        addFriends.setUsername(Constant.ADD_FRIEND);
-        addFriends.setNick(addFriendStr);
-        addFriends.setHeader("");
-        userlist.put(Constant.ADD_FRIEND, addFriends);
-
-        User newFriends = new User();
-        newFriends.setUsername(Constant.NEW_FRIENDS_USERNAME);
-        String strChat = mContxt.getString(R.string.Application_and_notify);
-        newFriends.setNick(strChat);
-
-        userlist.put(Constant.NEW_FRIENDS_USERNAME, newFriends);
-
-        User groupUser = new User();
-        String strGroup = mContxt.getString(R.string.group_chat);
-        groupUser.setUsername(Constant.GROUP_USERNAME);
-        groupUser.setNick(strGroup);
-        groupUser.setHeader("");
-        userlist.put(Constant.GROUP_USERNAME, groupUser);
-
-        User chatRoomItem = new User();
-        String strChatRoom = mContxt.getString(R.string.chat_room);
-        chatRoomItem.setUsername(Constant.CHAT_ROOM);
-        chatRoomItem.setNick(strChatRoom);
-        chatRoomItem.setHeader("");
-        userlist.put(Constant.CHAT_ROOM, chatRoomItem);
-
-        HCApplication.getInstance().setContactList(userlist);
-        System.out.println("----------------" + userlist.values().toString());
-        UserDao dao = new UserDao(mContxt);
-        List<User> users = new ArrayList<User>(userlist.values());
-        dao.saveContactList(users);
-
-        List<String> blackList = EMContactManager.getInstance().getBlackListUsernamesFromServer();
-        EMContactManager.getInstance().saveBlackList(blackList);
-
-        EMChatManager.getInstance().fetchJoinedGroupsFromServer();
-    }
-
-    protected void setUserHearder(String username, User user) {
-        String headerName = null;
-        if (!TextUtils.isEmpty(user.getNick())) {
-            headerName = user.getNick();
-        } else {
-            headerName = user.getUsername();
-        }
-        if (username.equals(Constant.NEW_FRIENDS_USERNAME)) {
-            user.setHeader("");
-        } else if (Character.isDigit(headerName.charAt(0))) {
-            user.setHeader("#");
-        } else {
-            user.setHeader(HanziToPinyin.getInstance().get(headerName.substring(0, 1)).get(0).target.substring(0, 1)
-                    .toUpperCase());
-            char header = user.getHeader().toLowerCase().charAt(0);
-            if (header < 'a' || header > 'z') {
-                user.setHeader("#");
-            }
-        }
     }
 }

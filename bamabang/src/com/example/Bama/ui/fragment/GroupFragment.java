@@ -104,7 +104,7 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
             params.rightMargin = 2;
             TextView columnTextView = new TextView(activity);
             columnTextView.setTextAppearance(activity, R.style.top_category_scroll_view_item_text);
-            columnTextView.setBackgroundResource(R.drawable.radio_buttong_bg);
+//            columnTextView.setBackgroundResource(R.drawable.radio_buttong_bg);
             columnTextView.setGravity(Gravity.CENTER);
             columnTextView.setPadding(3, 3, 3, 3);
             columnTextView.setId(i);

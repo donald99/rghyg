@@ -1,15 +1,15 @@
 <component name="libraryTable">
   <library name="libs">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/android-async-http-1.4.4.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/gson-2.2.5.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/picasso.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/shiro-all-1.2.3.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/baidumapapi_v3_2_0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/easemobchat_2.1.9.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/universal-image-loader-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-async-http-1.4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/baidumapapi_v3_2_0.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/locSDK_3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/easemobchat_2.1.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gson-2.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/shiro-all-1.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/picasso.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

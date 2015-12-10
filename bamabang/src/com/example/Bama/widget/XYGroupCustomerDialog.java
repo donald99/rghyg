@@ -8,6 +8,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.Bama.R;
+import com.example.Bama.background.HCApplication;
+import com.example.Bama.util.ImageLoaderUtil;
+import com.example.Bama.util.UserInfoManager;
 
 public class XYGroupCustomerDialog extends FrameLayout implements View.OnClickListener {
     private ImageView avatar;
@@ -19,6 +22,7 @@ public class XYGroupCustomerDialog extends FrameLayout implements View.OnClickLi
     private TextView report;
     private TextView delete;
     private TextView cancel;
+    private View layout;
 
     private FrameLayout rootView;
     private Activity activity;
@@ -34,16 +38,18 @@ public class XYGroupCustomerDialog extends FrameLayout implements View.OnClickLi
         public void onCancelClicked();
     }
 
-    public static void showDialog(Activity context, XYGroupCustomerDialogListener listener) {
-        new XYGroupCustomerDialog(context, listener).show();
+    public static void showDialog(Activity context, View view,XYGroupCustomerDialogListener listener) {
+        new XYGroupCustomerDialog(context, view,listener).show();
     }
 
-    public XYGroupCustomerDialog(Activity context, XYGroupCustomerDialogListener listener) {
+    public XYGroupCustomerDialog(Activity context, View view,XYGroupCustomerDialogListener listener) {
         super(context);
         this.listener = listener;
         this.activity = context;
         LayoutInflater li = LayoutInflater.from(context);
         li.inflate(R.layout.xy_group_customer_dialog, this, true);
+
+        UserInfoManager.UserInfoModel member = (UserInfoManager.UserInfoModel) view.getTag();
 
         avatar = (ImageView) findViewById(R.id.avatar);
         nickName = (TextView) findViewById(R.id.nickName);
@@ -54,11 +60,25 @@ public class XYGroupCustomerDialog extends FrameLayout implements View.OnClickLi
         report = (TextView) findViewById(R.id.report);
         delete = (TextView) findViewById(R.id.delete);
         cancel = (TextView) findViewById(R.id.cancel);
+        layout = (View) findViewById(R.id.layout);
 
         atTa.setOnClickListener(this);
         report.setOnClickListener(this);
         delete.setOnClickListener(this);
         cancel.setOnClickListener(this);
+        layout.setOnClickListener(this);
+
+        if(member!=null){
+            HCApplication.getInstance().getImageLoader().displayImage(member.avatar,avatar, ImageLoaderUtil.Options_Common_memory_Pic);
+            nickName.setText(member.username);
+            if("0".equals(member.gender)){
+                sexImage.setBackground(getResources().getDrawable(R.drawable.girl));
+            }else{
+                sexImage.setBackground(getResources().getDrawable(R.drawable.boy));
+            }
+            isGroupMater.setVisibility(GONE);
+            groupAge.setText(member.baby);
+        }
 
         setVisibility(View.GONE);
         rootView = getRootView(context);
@@ -138,6 +158,7 @@ public class XYGroupCustomerDialog extends FrameLayout implements View.OnClickLi
                     listener.onDeleteClicked();
                 }
                 break;
+            case R.id.layout:
             case R.id.cancel:
                 if (listener != null) {
                     listener.onCancelClicked();

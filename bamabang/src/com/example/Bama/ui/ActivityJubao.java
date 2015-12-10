@@ -70,10 +70,18 @@ public class ActivityJubao extends ActivityBase {
                     return;
                 }
                 //FIXME:UID  Context context,String fortype,String froid, String jubaoInfo
-                RequestUtil.jubaoGroup(ActivityJubao.this,"group",group_id,jubaoInfo);
+                RequestUtil.jubaoGroup(ActivityJubao.this,"group",group_id,jubaoInfo,new JubaoListener(){
+                    @Override
+                    public void onSucess() {
+                        ActivityJubao.this.finish();
+                    }
+                });
             }
         });
     }
 
 
+    public interface JubaoListener{
+        void onSucess();
+    }
 }

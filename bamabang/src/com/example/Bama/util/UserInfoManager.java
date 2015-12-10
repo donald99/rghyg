@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * 用户信息缓存类*
@@ -23,7 +24,7 @@ import java.util.List;
 public class UserInfoManager {
 	private static HashMap<String, UserInfoModel> userInfoMap = new HashMap<String, UserInfoModel>();
 
-	public static void getUserInfo(Activity activity, final String userId, final ModelRequestListener<UserInfoModel> listener) {
+	public static void getUserInfo(Activity activity, final String userName, final ModelRequestListener<UserInfoModel> listener) {
 		/**返回测试的数据***/
 		UserInfoModel userInfoModel = new UserInfoModel();
 		if (listener != null) {
@@ -31,14 +32,14 @@ public class UserInfoManager {
 			return;
 		}
 		/**测试end***/
-		if (TextUtils.isEmpty(userId)) {
+		if (TextUtils.isEmpty(userName)) {
 			if (listener != null) {
 				listener.onModelComplete(null);
 			}
 		}
-		if (userInfoMap.containsKey(userId)) {
+		if (userInfoMap.containsKey(userName)) {
 			if (listener != null) {
-				listener.onModelComplete(userInfoMap.get(userId));
+				listener.onModelComplete(userInfoMap.get(userName));
 			}
 		} else {
 			/**去服务器拉取**/
@@ -46,7 +47,7 @@ public class UserInfoManager {
             JSONArray array = new JSONArray();
             JSONObject object = new JSONObject();
             try {
-                object.put("id",userId);
+                object.put("username",userName);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -56,7 +57,7 @@ public class UserInfoManager {
                 public void onSuccess(String response) {
                     UserInfoModel userInfoModel = HCApplication.getInstance().getGson().fromJsonWithNoException(response, UserInfoModel.class);
                     if (userInfoModel != null) {
-                        userInfoMap.put(userId, userInfoModel);
+                        userInfoMap.put(userName, userInfoModel);
                         if (listener != null) {
                             listener.onModelComplete(userInfoModel);
                         }
@@ -95,19 +96,31 @@ public class UserInfoManager {
         @SerializedName("id")
         public String id;
 
-        @SerializedName("name")
-        public String name;
-
-        @SerializedName("avatar")
-        public String avatar;
+        @SerializedName("uid")
+        public String uid;
         /**
          * 环信的用户id*
          */
         @SerializedName("username")
         public String username;
 
+        @SerializedName("name")
+        public String name;
+
         @SerializedName("password")
         public String password;
+
+        @SerializedName("gender")
+        public String gender;
+
+        @SerializedName("created")
+        public String created;
+
+        @SerializedName("baby")
+        public String baby;
+
+        @SerializedName("avatar")
+        public String avatar;
 
 		@SerializedName("privilege")
 		public List<String> privilege;

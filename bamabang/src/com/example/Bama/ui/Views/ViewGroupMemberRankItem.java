@@ -54,8 +54,10 @@ public class ViewGroupMemberRankItem extends LinearLayout {
         }
 
         tvTitle.setText(entity.ranking+"");
-        if(!TextUtils.isEmpty(entity.color) && entity.color.length()==7){
+        if(entity.color.contains("#")){
             tvTitle.setTextColor(Color.parseColor(entity.color));
+        }else{
+            tvTitle.setTextColor(Color.parseColor("#"+entity.color));
         }
         HCApplication.getInstance().getImageLoader().displayImage(entity.avatar,ivAvatar, ImageLoaderUtil.Options_Memory_Rect_Avatar);
         tvName.setText(entity.name);

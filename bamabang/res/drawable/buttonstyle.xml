@@ -3,14 +3,14 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 连框颜色值 --><item>
     <shape>
-        <solid android:color="#ff6699" />
+        <solid android:color="#E76B6B" />
     </shape>
 </item>
     <!-- 主体背景颜色值 -->
     <item android:top="1dp" android:bottom="1dp" android:left="1dp" android:right="1dp" >
 
         <shape>
-            <solid android:color="@color/common_white_gray" />
+            <solid android:color="@color/common_white" />
 
             <padding android:bottom="10dp"
                      android:left="10dp"

@@ -13,6 +13,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.example.Bama.R;
 import com.example.Bama.Bean.GroupCircleEntity;
 import com.example.Bama.adapter.GroupCircleAdapter;
+import com.example.Bama.background.HCApplication;
 import com.example.Bama.ui.ActivityGroupChat;
 import com.example.Bama.ui.RequestUtil;
 import com.example.Bama.ui.Views.ViewGroupListItem;
@@ -74,8 +75,9 @@ public class GroupCircleFragment extends Fragment implements RefreshListView.OnR
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (view instanceof ViewGroupListItem) {
                     ViewGroupListItem item = (ViewGroupListItem) view;
-                    if (item.entity != null && !TextUtils.isEmpty(item.entity.groupid)) {
-                        ActivityGroupChat.open(activity, item.entity.groupid);
+                    if (item.entity != null) {
+                        String entity = HCApplication.getInstance().getGson().toJson(item.entity);
+                        ActivityGroupChat.open(activity, entity);
                     } else {
                         ToastUtil.makeShortText("群id为空");
                     }

@@ -36,7 +36,7 @@ public class RequestUtil {
         return mRequestUtil;
     }
 
-    public static void jubaoGroup(Context context,String fortype,String froid, String jubaoInfo){
+    public static void jubaoGroup(Context context,String fortype,String froid, String jubaoInfo,final ActivityJubao.JubaoListener listener){
         if (TextUtils.isEmpty(HCApplication.getInstance().getAccount().userId)){
             ToastUtil.makeLongText("请先登录");
             return;
@@ -51,6 +51,7 @@ public class RequestUtil {
 
             @Override
             public void onException(Request.RequestException e) {
+                ToastUtil.makeLongText("举报失败");
             }
 
             @Override
@@ -68,6 +69,9 @@ public class RequestUtil {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                    }
+                    if(listener!=null){
+                        listener.onSucess();
                     }
 
                 }else{
@@ -146,7 +150,7 @@ public class RequestUtil {
      * @param tagid: 聊天群组id
      * @param callback
      */
-    public static void createGroup(Context context,String picUrl,String groupName,String groupType,String groupDesc,
+    public static void createGroup(Context context,String groupId,String picUrl,String groupName,String groupType,String groupDesc,
                                    final ActivityCreateGroup.CreateGroupCallBack callback){
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("uid",HCApplication.getInstance().getAccount().userId));
@@ -154,11 +158,20 @@ public class RequestUtil {
         params.add(new BasicNameValuePair("name",groupName));
         params.add(new BasicNameValuePair("tagid",groupType));
         params.add(new BasicNameValuePair("description",groupDesc));
-        Request.doRequest(context, params, ServerConfig.URL_GROUP_ADD, Request.GET, new Request.RequestListener() {
+
+        String requestUrl = "";
+        if(TextUtils.isEmpty(groupId)){
+            requestUrl = ServerConfig.URL_GROUP_ADD;
+        }else{
+            params.add(new BasicNameValuePair("groupid",groupId));
+            requestUrl = ServerConfig.URL_GROUP_INFO_EDIT;
+        }
+
+        Request.doRequest(context, params, requestUrl, Request.GET, new Request.RequestListener() {
 
             @Override
             public void onException(Request.RequestException e) {
-                ToastUtil.makeLongText("创建群组失败");
+                ToastUtil.makeLongText("网络错误");
                 if(callback!=null){
                     callback.onFail();
                 }
@@ -172,7 +185,34 @@ public class RequestUtil {
                         callback.onSuccess(groupCreateInfo.content);
                     }
                 }else{
-                    ToastUtil.makeLongText("创建群组失败");
+                    ToastUtil.makeLongText("网络错误");
+                }
+            }
+        });
+    }
+
+    public static void getGroupDetail(Context context,String groupId, final ActivityCreateGroup.CreateGroupCallBack callback){
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("groupid",groupId));
+        Request.doRequest(context, params, ServerConfig.URL_GROUP_INFO_GET, Request.GET, new Request.RequestListener() {
+
+            @Override
+            public void onException(Request.RequestException e) {
+                ToastUtil.makeLongText("群组信息错误");
+                if(callback!=null){
+                    callback.onFail();
+                }
+            }
+
+            @Override
+            public void onComplete(String response) {
+                if (!TextUtils.isEmpty(response)) {
+                    GroupCreateInfoEntity groupCreateInfo = HCApplication.getInstance().getGson().fromJsonWithNoException(response, GroupCreateInfoEntity.class);
+                    if(groupCreateInfo!=null && groupCreateInfo.status && groupCreateInfo.content != null && callback!=null){
+                        callback.onSuccess(groupCreateInfo.content);
+                    }
+                }else{
+                    ToastUtil.makeLongText("群组信息错误");
                 }
             }
         });

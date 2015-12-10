@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/layout"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:paddingLeft="30dp"
+             android:paddingRight="30dp"
              android:background="#80000000">
 
     <LinearLayout
@@ -29,10 +32,8 @@
                         android:id="@+id/avatar"
                         android:layout_width="55dp"
                         android:layout_height="55dp"
-                        android:background="#ff0000"
                         android:scaleType="centerCrop"/>
                 <ImageView
-                        android:id="@+id/avatar"
                         android:layout_width="55dp"
                         android:layout_height="55dp"
                         android:scaleType="centerCrop"
@@ -53,7 +54,6 @@
                             android:id="@+id/nickName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rick"
                             android:textSize="15sp"
                             android:textColor="#3d3d3d"
                             android:layout_marginRight="15dp"/>
@@ -62,7 +62,6 @@
                             android:id="@+id/isGroupMater"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="群主"
                             android:textSize="10sp"
                             android:background="@drawable/gray_stroke_white_bg_shape"
                             android:textColor="#6c6c6c"
@@ -80,16 +79,16 @@
                             android:id="@+id/groupAge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="宝宝:一岁2月26天"
                             android:textSize="12sp"
                             android:textColor="#adadad"
                             android:layout_marginRight="8dp"/>
 
                     <ImageView
                             android:id="@+id/sexImage"
-                            android:layout_width="12dp"
-                            android:layout_height="15dp"
-                            android:background="#ff0000"/>
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#adadad"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

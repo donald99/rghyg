@@ -61,8 +61,8 @@ public class GroupMemberItemView extends FrameLayout {
 				} else {
 					imageLoader.displayImage("", avatar, ImageLoaderUtil.Options_Common_memory_Pic);
 				}
-				if (!TextUtils.isEmpty(userInfoModel.name)) {
-					nickName.setText(userInfoModel.name);
+				if (!TextUtils.isEmpty(userInfoModel.username)) {
+					nickName.setText(userInfoModel.username);
 				} else {
 					nickName.setText("");
 				}

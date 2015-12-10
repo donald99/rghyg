@@ -44,11 +44,12 @@
     <color name="common_white_gray">#f1f1ed</color>
     <color name="line_color">#dadae5</color>
 
-    <color name="title_bg">#FF6699</color>
+    <color name="title_bg">#FCB4B5</color>
     <color name="title_font">#333333</color>
     <color name="lastmsg_font">#666666</color>
     <color name="group_detail_font">#999999</color>
     <color name="rand_bg">#F7F7F7</color>
-    <color name="rank_press_font">#FF6699</color>
+    <color name="rank_press_font">#E76B6C</color>
     <color name="rank_unpress_font">#cccccc</color>
+
 </resources>

@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-        android:background="@drawable/splash">
+              android:background="@color/common_white">
+
+    <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="0dp"
+                  android:layout_height="10dp"
+                  android:layout_weight="0.3"
+                  android:layout_gravity="center"
+                  android:background="@color/common_red">
+
+    </LinearLayout>
+
+    <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="wrap_content"
+                  android:layout_height="16dp"
+                  android:layout_weight="0.7"
+                  android:layout_gravity="center">
+        
+        <View android:layout_width="10dp" android:layout_height="match_parent"
+                android:background="@color/common_red"/>
+
+    </LinearLayout>
 
 </LinearLayout>

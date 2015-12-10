@@ -109,7 +109,7 @@
                         android:id="@+id/iv_userhead"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/mini_avatar_shadow"
+                        android:src="@drawable/logo"
                         android:scaleType="centerCrop"/>
                 <ImageView
                         android:layout_width="match_parent"
