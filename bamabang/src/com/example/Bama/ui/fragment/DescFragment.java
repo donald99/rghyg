@@ -95,29 +95,35 @@ public class DescFragment extends Fragment implements View.OnClickListener {
 				try {
 					EMGroup group = EMGroupManager.getInstance().getGroupFromServer(entity.groupid);
 					final List<String> userNames = group.getMembers();
-					getActivity().runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							group_people_count.setText(userNames.size() + "");
-						}
-					});
+                    if(activity!=null){
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                group_people_count.setText(userNames.size() + "");
+                            }
+                        });
+                    }
 					/**判断自己是否加入群**/
 					if (!TextUtils.isEmpty(account.userName) && userNames.contains(account.userName)) {
-						getActivity().runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								add_group.setVisibility(View.GONE);
-								added_group.setVisibility(View.VISIBLE);
-							}
+                        if(activity!=null){
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    add_group.setVisibility(View.GONE);
+                                    added_group.setVisibility(View.VISIBLE);
+						        }
 						});
+                        }
 					} else {
-						getActivity().runOnUiThread(new Runnable() {
+                        if(activity!=null){
+                            activity.runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
 								add_group.setVisibility(View.VISIBLE);
 								added_group.setVisibility(View.GONE);
-							}
+						    	}
 						});
+                        }
 					}
 				} catch (EaseMobException e) {
 					e.printStackTrace();
@@ -142,7 +148,8 @@ public class DescFragment extends Fragment implements View.OnClickListener {
 					try {
 						EMGroupManager.getInstance().joinGroup(entity.groupid);//需异步处
                         final EMGroup group = EMGroupManager.getInstance().getGroupFromServer(entity.groupid);
-						getActivity().runOnUiThread(new Runnable() {
+                        if(activity!=null){
+                            activity.runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
 								add_group.setVisibility(View.GONE);
@@ -152,8 +159,9 @@ public class DescFragment extends Fragment implements View.OnClickListener {
                                 }
                                 final List<String> accountIds = group.getMembers();
                                 group_people_count.setText(accountIds.size() + "");
-							}
+						    	}
 						});
+                        }
 					} catch (EaseMobException e) {
 						getActivity().runOnUiThread(new Runnable() {
 							@Override
@@ -163,14 +171,16 @@ public class DescFragment extends Fragment implements View.OnClickListener {
 						});
 						e.printStackTrace();
 					}
-					getActivity().runOnUiThread(new Runnable() {
+                    if(activity!=null){
+                        activity.runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
 							if (activity != null) {
 								activity.dismissDialog();
 							}
-						}
+					    	}
 					});
+                    }
 				}
 			}).start();
 			break;

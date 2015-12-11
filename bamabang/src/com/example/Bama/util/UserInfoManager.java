@@ -25,12 +25,6 @@ public class UserInfoManager {
 	private static HashMap<String, UserInfoModel> userInfoMap = new HashMap<String, UserInfoModel>();
 
 	public static void getUserInfo(Activity activity, final String userName, final ModelRequestListener<UserInfoModel> listener) {
-		/**返回测试的数据***/
-		UserInfoModel userInfoModel = new UserInfoModel();
-		if (listener != null) {
-			listener.onModelComplete(userInfoModel);
-			return;
-		}
 		/**测试end***/
 		if (TextUtils.isEmpty(userName)) {
 			if (listener != null) {
@@ -43,7 +37,6 @@ public class UserInfoManager {
 			}
 		} else {
 			/**去服务器拉取**/
-			List<NameValuePair> valuePairs = new ArrayList<NameValuePair>();
             JSONArray array = new JSONArray();
             JSONObject object = new JSONObject();
             try {

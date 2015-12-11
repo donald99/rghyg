@@ -56,16 +56,18 @@ public class GroupMemberItemView extends FrameLayout {
 			@Override
 			public void onModelComplete(UserInfoManager.UserInfoModel model) {
 				userInfoModel = model;
-				if (!TextUtils.isEmpty(userInfoModel.avatar)) {
-					imageLoader.displayImage(userInfoModel.avatar, avatar, ImageLoaderUtil.Options_Common_memory_Pic);
-				} else {
-					imageLoader.displayImage("", avatar, ImageLoaderUtil.Options_Common_memory_Pic);
-				}
-				if (!TextUtils.isEmpty(userInfoModel.username)) {
-					nickName.setText(userInfoModel.username);
-				} else {
-					nickName.setText("");
-				}
+                if(userInfoModel!=null && userInfoModel.content!=null &&userInfoModel.content.size()>0){
+                    if (!TextUtils.isEmpty(userInfoModel.content.get(0).avatar)) {
+                        imageLoader.displayImage(userInfoModel.content.get(0).avatar, avatar, ImageLoaderUtil.Options_Common_memory_Pic);
+                    } else {
+                        imageLoader.displayImage("", avatar, ImageLoaderUtil.Options_Common_memory_Pic);
+                    }
+                    if (!TextUtils.isEmpty(userInfoModel.content.get(0).username)) {
+                        nickName.setText(userInfoModel.content.get(0).username);
+                    } else {
+                        nickName.setText("");
+                    }
+                }
 			}
 
 			@Override
