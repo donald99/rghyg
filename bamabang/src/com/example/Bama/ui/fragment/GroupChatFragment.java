@@ -204,6 +204,13 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 		super.onAttach(activity);
 		this.activityInstance = activity;
 		((ActivityGroupChat) activityInstance).setATTAListener(this);
+
+        EMChatOptions chatOptions = EMChatManager.getInstance().getChatOptions();
+        chatOptions.setNotifyBySoundAndVibrate(false); //默认为true 开启新消息提醒
+        chatOptions.setNoticeBySound(false); //默认为true 开启声音提醒
+        chatOptions.setNoticedByVibrate(false); //默认为true 开启震动提醒
+        chatOptions.setUseSpeaker(false); //默认为true 开启扬声器播放
+        chatOptions.setShowNotificationInBackgroud(false); //默认为true
 	}
 
 	/**
@@ -746,7 +753,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 			if (username.equals(getToChatUsername())) {
 				refreshUIWithNewMessage();
 				//声音和震动提示有新消息
-				HXSDKHelper.getInstance().getNotifier().viberateAndPlayTone(message);
+//				HXSDKHelper.getInstance().getNotifier().viberateAndPlayTone(message);
 			} else {
 				//如果消息不是和当前聊天ID的消息
 				HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
@@ -1125,8 +1132,8 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	}
 
     private void setMessageAttribute(EMMessage msg){
-        if(msg!=null){
-            Account account=HCApplication.getInstance().getAccount();
+        Account account=HCApplication.getInstance().getAccount();
+        if(msg!=null && account!=null){
             msg.setAttribute("nickname",account.name);
             msg.setAttribute("username",account.userName);
             msg.setAttribute("uid",account.userId);

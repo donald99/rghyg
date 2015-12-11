@@ -12,6 +12,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMChatOptions;
 import com.example.Bama.R;
 import com.example.Bama.util.Request;
 import com.example.Bama.util.ToastUtil;
@@ -28,6 +30,8 @@ public abstract class ActivityBase extends FragmentActivity {
 	private boolean mhideSoftOutsideEditText = false;
 	protected boolean isRequestServer = false;
 
+    private static int activeActivities = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,7 +44,31 @@ public abstract class ActivityBase extends FragmentActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
+        activeActivities++;
+        if(activeActivities==1){
+            EMChatOptions chatOptions = EMChatManager.getInstance().getChatOptions();
+            chatOptions.setNotifyBySoundAndVibrate(true); //默认为true 开启新消息提醒
+            chatOptions.setNoticeBySound(true); //默认为true 开启声音提醒
+            chatOptions.setNoticedByVibrate(true); //默认为true 开启震动提醒
+            chatOptions.setUseSpeaker(true); //默认为true 开启扬声器播放
+            chatOptions.setShowNotificationInBackgroud(true); //默认为true
+        }
 	}
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        activeActivities--;
+        if (activeActivities == 0) {
+            EMChatOptions chatOptions = EMChatManager.getInstance().getChatOptions();
+            chatOptions.setNotifyBySoundAndVibrate(false); //默认为true 开启新消息提醒
+            chatOptions.setNoticeBySound(false); //默认为true 开启声音提醒
+            chatOptions.setNoticedByVibrate(false); //默认为true 开启震动提醒
+            chatOptions.setUseSpeaker(false); //默认为true 开启扬声器播放
+            chatOptions.setShowNotificationInBackgroud(false); //默认为true
+        }
+    }
+
 
 	@Override
 	protected void onResume() {
@@ -52,11 +80,6 @@ public abstract class ActivityBase extends FragmentActivity {
 	protected void onPause() {
 		super.onPause();
 		MobclickAgent.onPause(this);
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
 	}
 
 	@Override
@@ -187,4 +210,7 @@ public abstract class ActivityBase extends FragmentActivity {
 	public void back(View view) {
 		finish();
 	}
+
+
+
 }

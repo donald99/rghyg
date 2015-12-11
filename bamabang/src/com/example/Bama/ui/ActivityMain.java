@@ -14,6 +14,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMChatOptions;
 import com.example.Bama.R;
 import com.example.Bama.background.Account;
 import com.example.Bama.background.HCApplication;
@@ -83,7 +85,9 @@ public class ActivityMain extends ActivityBase implements MenuIndexLinster {
         if(!TextUtils.isEmpty(account.userName)){
             account.toLoginChatServer(this,account.userName,account.password);
         }
+
 	}
+
 
 	@Override
 	protected void getViews() {

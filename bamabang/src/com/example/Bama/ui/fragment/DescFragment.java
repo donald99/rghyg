@@ -1,16 +1,18 @@
 package com.example.Bama.ui.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.easemob.chat.EMGroup;
-import com.easemob.chat.EMGroupManager;
+import com.easemob.EMCallBack;
+import com.easemob.chat.*;
 import com.easemob.exceptions.EaseMobException;
 import com.example.Bama.Bean.GroupCircleEntity;
 import com.example.Bama.Bean.GroupCreateInfoEntity;
@@ -131,6 +133,9 @@ public class DescFragment extends Fragment implements View.OnClickListener {
 			if (activity != null) {
 				activity.showDialog("正在加入...");
 			}
+
+            sendAddText(HCApplication.getInstance().getAccount().userName + "加入群组");
+
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -176,4 +181,55 @@ public class DescFragment extends Fragment implements View.OnClickListener {
                 break;
 		}
 	}
+
+    private void sendAddText(String content) {
+        if(entity!=null){
+            //获取到与聊天人的会话对象。参数username为聊天人的userid或者groupid，后文中的username皆是如此
+            EMConversation conversation = EMChatManager.getInstance().getConversation(entity.groupid);
+            //创建一条文本消息
+            final EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
+            setMessageAttribute(message);
+            //如果是群聊，设置chattype,默认是单聊
+            message.setChatType(EMMessage.ChatType.GroupChat);
+            //设置消息body
+            TextMessageBody txtBody = new TextMessageBody(content);
+            message.addBody(txtBody);
+            //设置接收人
+            message.setReceipt(entity.groupid);
+            //把消息加入到此会话对象中
+            conversation.addMessage(message);
+            //发送消息
+            message.setUnread(false);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    EMChatManager.getInstance().sendMessage(message, new EMCallBack() {
+                        @Override
+                        public void onSuccess() {
+                        }
+
+                        @Override
+                        public void onError(int i, String s) {
+                        }
+
+                        @Override
+                        public void onProgress(int i, String s) {
+                        }
+                    });
+                }
+            }).start();
+        }
+
+    }
+
+    private void setMessageAttribute(EMMessage msg){
+        Account account=HCApplication.getInstance().getAccount();
+        if(msg!=null && account!=null){
+            msg.setAttribute("nickname",account.name);
+            msg.setAttribute("username",account.userName);
+            msg.setAttribute("uid",account.userId);
+            msg.setAttribute("headImg",account.avatar);
+            msg.setAttribute("type","1");
+        }
+    }
 }

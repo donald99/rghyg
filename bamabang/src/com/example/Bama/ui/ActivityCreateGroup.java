@@ -87,7 +87,6 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
 	}
 
     private void initGroupInfoView() {
-        if (!TextUtils.isEmpty(groupInfo)){
             GroupCreateInfoEntity.ContentEntity entity = HCApplication.getInstance().getGson().fromJsonWithNoException(groupInfo, GroupCreateInfoEntity.ContentEntity.class);
             HCApplication.getInstance().getImageLoader().displayImage(entity.picurl,headerView,ImageLoaderUtil.Options_Memory_Rect_Avatar);
             etInputGroupName.setText(entity.name);
@@ -95,10 +94,7 @@ public class ActivityCreateGroup extends ActivityBase implements View.OnClickLis
             tagId = entity.tagid;
             groupId = entity.groupid;
             serverImage = entity.picurl;
-            mCreateGroup.setText("编辑");
-        }else{
-            mCreateGroup.setText("创建");
-        }
+            mCreateGroup.setText("提交");
     }
 
 
