@@ -27,8 +27,16 @@ import java.util.List;
 public class ActivityJubao extends ActivityBase {
 
     private String group_id = "";
-	public static void open(Activity activity){
+    private static String fortype = "";
+
+    public static void open(Activity activity,String groupid,boolean isJubaoGroup){
 		Intent intent = new Intent(activity,ActivityJubao.class);
+        intent.putExtra("group_id",groupid);
+        if (isJubaoGroup){
+            fortype = "group";
+        }else{
+            fortype = "user";
+        }
 		activity.startActivity(intent);
 	}
 
@@ -69,8 +77,7 @@ public class ActivityJubao extends ActivityBase {
                     ToastUtil.makeLongText("输入举报信息");
                     return;
                 }
-                //FIXME:UID  Context context,String fortype,String froid, String jubaoInfo
-                RequestUtil.jubaoGroup(ActivityJubao.this,"group",group_id,jubaoInfo,new JubaoListener(){
+                RequestUtil.jubaoGroup(ActivityJubao.this,fortype,group_id,jubaoInfo,new JubaoListener(){
                     @Override
                     public void onSucess() {
                         ActivityJubao.this.finish();

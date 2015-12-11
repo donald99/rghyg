@@ -98,7 +98,6 @@
                     android:layout_height="32dp"
                     android:layout_marginLeft="6dp"
                     android:background="@drawable/chatting_setmode_keyboard_btn"
-                    android:onClick="setModeKeyboard"
                     android:visibility="gone" />
 
             <LinearLayout

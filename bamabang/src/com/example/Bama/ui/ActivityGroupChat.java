@@ -273,6 +273,19 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
             XYGroupCustomerDialog.showDialog(ActivityGroupChat.this,view, new XYGroupCustomerDialog.XYGroupCustomerDialogListener() {
                 @Override
                 public void onAtTaClicked() {
+
+                    try {
+                        EMGroup group = EMGroupManager.getInstance().getGroupFromServer(entity.groupid);
+                        List<String> accountIds = group.getMembers();
+                        if (!TextUtils.isEmpty(account.userName) && accountIds.contains(account.userName)) {
+                        }else{
+                            ToastUtil.makeLongText("非群组成员");
+                            return ;
+                        }
+                    } catch (EaseMobException e) {
+                        e.printStackTrace();
+                    }
+
                     if (listener!=null){
                         UserInfoManager.UserInfoModel member = (UserInfoManager.UserInfoModel) view.getTag();
                         listener.onAttalistener(member.uid);
@@ -281,12 +294,8 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 
                 @Override
                 public void onReportClicked() {
-                    RequestUtil.jubaoGroup(ActivityGroupChat.this, "user", ((UserInfoManager.UserInfoModel) view.getTag()).uid, "report",new ActivityJubao.JubaoListener() {
-                        @Override
-                        public void onSucess() {
-
-                        }
-                    });
+                    UserInfoManager.UserInfoModel member = (UserInfoManager.UserInfoModel) view.getTag();
+                    ActivityJubao.open(ActivityGroupChat.this,member.uid,false);
                 }
 
                 @Override
@@ -342,7 +351,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
 
 					@Override
 					public void reportGroup() {
-						ActivityJubao.open(ActivityGroupChat.this);
+						ActivityJubao.open(ActivityGroupChat.this,entity.groupid,true);
 					}
 
 					@Override

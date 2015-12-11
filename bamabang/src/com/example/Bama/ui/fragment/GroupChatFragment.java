@@ -216,6 +216,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 		listView = (ListView) rootView.findViewById(R.id.list);
 		mEditTextContent = (PasteEditText) rootView.findViewById(R.id.et_sendmessage);
 		buttonSetModeKeyboard = rootView.findViewById(R.id.btn_set_mode_keyboard);
+        buttonSetModeKeyboard.setOnClickListener(this);
 		edittext_layout = (RelativeLayout) rootView.findViewById(R.id.edittext_layout);
 		buttonSetModeVoice = rootView.findViewById(R.id.btn_set_mode_voice);
 		buttonSend = rootView.findViewById(R.id.btn_send);
@@ -716,7 +717,9 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 				return;
 			}
 			setModeVoice();
-		}
+		} else if(id == R.id.btn_set_mode_keyboard){
+            setModeKeyboard(buttonSetModeKeyboard);
+        }
 	}
 
 	/**
@@ -1155,15 +1158,15 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	 * @param view
 	 */
 	public void setModeKeyboard(View view) {
-		// mEditTextContent.setOnFocusChangeListener(new OnFocusChangeListener()
-		// {
-		// @Override
-		// public void onFocusChange(View v, boolean hasFocus) {
-		// if(hasFocus){
-		// getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-		// }
-		// }
-		// });
+		mEditTextContent.setOnFocusChangeListener(new View.OnFocusChangeListener()
+		{
+		@Override
+		public void onFocusChange(View v, boolean hasFocus) {
+            if(hasFocus){
+                activityInstance.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
+		}
+		});
 		edittext_layout.setVisibility(View.VISIBLE);
 		more.setVisibility(View.GONE);
 		view.setVisibility(View.GONE);

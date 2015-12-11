@@ -26,7 +26,7 @@
                 android:layout_gravity="left|center_vertical"/>
         <TextView
                 android:id="@+id/title"
-                android:text="群组名称"
+                android:text="举报"
                 android:textSize="18dp"
                 android:gravity="center"
                 android:textColor="@color/common_white"

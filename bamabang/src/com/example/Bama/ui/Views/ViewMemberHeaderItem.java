@@ -46,17 +46,8 @@ public class ViewMemberHeaderItem extends LinearLayout {
 	public void setData(UserInfoManager.UserInfoModel modelCategory) {
 		this.userInfoModel = modelCategory;
 		name.setText(modelCategory.username);
-//		if (modelCategory.) {
-//			isMaster.setVisibility(View.VISIBLE);
-//		} else {
-//			isMaster.setVisibility(View.GONE);
-//		}
 
-        if (!TextUtils.isEmpty(userInfoModel.avatar)) {
-            HCApplication.getInstance().getImageLoader().displayImage(userInfoModel.avatar, imageView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
-        } else {
-            HCApplication.getInstance().getImageLoader().displayImage("", imageView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
-        }
+        HCApplication.getInstance().getImageLoader().displayImage(userInfoModel.avatar, imageView, ImageLoaderUtil.Options_Memory_Rect_Avatar);
 
 		if(!TextUtils.isEmpty(userInfoModel.username)){
 			UserInfoManager.getUserInfo((Activity) getContext(), userInfoModel.username, new ModelRequestListener<UserInfoManager.UserInfoModel>() {
