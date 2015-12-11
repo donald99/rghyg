@@ -52,4 +52,8 @@
     <color name="rank_press_font">#E76B6C</color>
     <color name="rank_unpress_font">#cccccc</color>
 
+    <color name="second_tab_text_color">#707070</color>
+    <color name="second_tab_text_color2">#787878</color>
+    <color name="select_tab_text_color">#EE6371</color>
+    <color name="second_color">#FED9DB</color>
 </resources>

@@ -1,8 +1,12 @@
 package com.example.Bama.ui.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,16 +22,13 @@ import com.example.Bama.ui.ActivityCreateGroup;
 import com.example.Bama.ui.RequestUtil;
 import com.example.Bama.util.DisplayUtil;
 import com.example.Bama.widget.ColumnHorizontalScrollView;
+import com.example.Bama.widget.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GroupFragment extends Fragment implements View.OnClickListener{
     private ActivityBase activity;
-    private ColumnHorizontalScrollView mColumnHorizontalScrollView;
-    private LinearLayout mRadioGroup_content;
-    public ImageView shade_left;
-    public ImageView shade_right;
     private ViewPager mViewPager;
     private TextView creatGroup;
 
@@ -55,11 +56,8 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
 
     private void initView(View rootView) {
         creatGroup = (TextView) rootView.findViewById(R.id.creatgroup);
-        mColumnHorizontalScrollView =  (ColumnHorizontalScrollView)rootView.findViewById(R.id.mColumnHorizontalScrollView);
-        mRadioGroup_content = (LinearLayout)rootView.findViewById(R.id.mRadioGroup_content);
         mViewPager = (ViewPager) rootView.findViewById(R.id.mViewPager);
-        shade_left = (ImageView) rootView.findViewById(R.id.shade_left);
-        shade_right = (ImageView) rootView.findViewById(R.id.shade_right);
+        tabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.id_stickynavlayout_indicator);
 
         creatGroup.setOnClickListener(this);
 
@@ -77,8 +75,9 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
             public void onSuccess(List list) {
                 if(list!=null){
                     userChannelList  = (ArrayList<ChannelItem.ContentEntity>)list;
-                    initTabColumn();
+
                     initFragment();
+                    initTabsValue();
                 }
             }
 
@@ -94,66 +93,6 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
         super.setRetainInstance(retain);
     }
 
-    private void initTabColumn() {
-        mRadioGroup_content.removeAllViews();
-        int count =  userChannelList.size();
-        mColumnHorizontalScrollView.setParam(activity, DisplayUtil.getWindowsWidth(activity), mRadioGroup_content, shade_left, shade_right);
-        for(int i = 0; i< count; i++){
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.leftMargin = 2;
-            params.rightMargin = 2;
-            TextView columnTextView = new TextView(activity);
-            columnTextView.setTextAppearance(activity, R.style.top_category_scroll_view_item_text);
-//            columnTextView.setBackgroundResource(R.drawable.radio_buttong_bg);
-            columnTextView.setGravity(Gravity.CENTER);
-            columnTextView.setPadding(3, 3, 3, 3);
-            columnTextView.setId(i);
-            columnTextView.setText(userChannelList.get(i).name);
-            columnTextView.setTextColor(getResources().getColorStateList(R.color.top_category_scroll_text_color_day));
-
-            if(columnSelectIndex == i){
-                columnTextView.setSelected(true);
-            }
-            columnTextView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    for(int i = 0;i < mRadioGroup_content.getChildCount();i++){
-                        View localView = mRadioGroup_content.getChildAt(i);
-                        if (localView != v)
-                            localView.setSelected(false);
-                        else{
-                            localView.setSelected(true);
-                            mViewPager.setCurrentItem(i);
-                        }
-                    }
-                }
-            });
-            mRadioGroup_content.addView(columnTextView, i ,params);
-        }
-    }
-
-    private void selectTab(int tab_postion) {
-        columnSelectIndex = tab_postion;
-        for (int i = 0; i < mRadioGroup_content.getChildCount(); i++) {
-            View checkView = mRadioGroup_content.getChildAt(tab_postion);
-            int k = checkView.getMeasuredWidth();
-            int l = checkView.getLeft();
-            int i2 = l + k / 2 - mScreenWidth / 2;
-            mColumnHorizontalScrollView.smoothScrollTo(i2, 0);
-        }
-        for (int j = 0; j <  mRadioGroup_content.getChildCount(); j++) {
-            View checkView = mRadioGroup_content.getChildAt(j);
-            boolean ischeck;
-            if (j == tab_postion) {
-                ischeck = true;
-            } else {
-                ischeck = false;
-            }
-            checkView.setSelected(ischeck);
-        }
-    }
-
     private void initFragment() {
         fragments.clear();
         int count =  userChannelList.size();
@@ -165,12 +104,46 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
             newfragment.setArguments(data);
             fragments.add(newfragment);
         }
-        GroupCircleFragmentPagerAdapter mAdapetr = new GroupCircleFragmentPagerAdapter(getFragmentManager(), fragments);
-		mViewPager.setOffscreenPageLimit(6);
+        CirclesAdapter mAdapetr = new CirclesAdapter(activity.getSupportFragmentManager());
+		mViewPager.setOffscreenPageLimit(count);
         mViewPager.setAdapter(mAdapetr);
         mViewPager.setOnPageChangeListener(pageListener);
+        tabStrip.setViewPager(mViewPager);
+
+        if (userChannelList != null && userChannelList.size() > 2) {
+            mViewPager.setOffscreenPageLimit(((userChannelList.size() / 3) * 2) + 1);
+        } else {
+            mViewPager.setOffscreenPageLimit(userChannelList.size());
+        }
+
+        if (userChannelList.size() <= 4) {//TODO
+            tabStrip.setShouldExpand(true);
+        } else {
+            tabStrip.setShouldExpand(false);
+        }
 
         mViewPager.setCurrentItem(columnSelectIndex);
+    }
+
+    class CirclesAdapter extends FragmentPagerAdapter {
+        public CirclesAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return userChannelList.get(position).name;
+        }
+
+        @Override
+        public int getCount() {
+            return userChannelList.size();
+        }
     }
 
     public ViewPager.OnPageChangeListener pageListener= new ViewPager.OnPageChangeListener(){
@@ -186,7 +159,6 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
         @Override
         public void onPageSelected(int position) {
             mViewPager.setCurrentItem(position);
-            selectTab(position);
         }
     };
 
@@ -202,5 +174,26 @@ public class GroupFragment extends Fragment implements View.OnClickListener{
     public interface QueryTagListCallback{
         public void onSuccess(List list);
         public void onFail();
+    }
+
+    private PagerSlidingTabStrip tabStrip;
+    private void initTabsValue() {
+        // 底部游标颜色
+        tabStrip.setIndicatorColor(Color.parseColor("#FED9DB"));
+        // tab的分割线颜色
+        tabStrip.setDividerColor(Color.parseColor("#FED9DB"));
+
+        tabStrip.setUnderlineColorResource(R.color.second_color);
+        // tab背景
+        tabStrip.setBackgroundColor(getResources().getColor(R.color.common_white));
+        // tab底线高度
+        tabStrip.setUnderlineHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 1, getResources().getDisplayMetrics()));
+        // 游标高度
+        tabStrip.setIndicatorHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, getResources().getDisplayMetrics()));
+        // 正常文字颜色
+        tabStrip.setTextColor(getResources().getColor(R.color.second_tab_text_color2));
+        tabStrip.setTextSize(14);
+        tabStrip.setSelectedTextColor(getResources().getColor(R.color.select_tab_text_color));
+        tabStrip.setShouldExpand(true);
     }
 }
