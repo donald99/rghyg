@@ -120,6 +120,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
         if(entity!=null){
             title.setText(entity.name);
         }
+
 	}
 
 	@Override
@@ -160,6 +161,7 @@ public class ActivityGroupChat extends ActivityBase implements View.OnClickListe
                         account.toLoginChatServer(ActivityGroupChat.this,account.userName,account.password);
                     }
                     updateImageViewsStatus(1);
+
                     if (fragmentGroupChat == null) {
                         fragmentGroupChat = new GroupChatFragment();
                         Bundle bundle = new Bundle();

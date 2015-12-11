@@ -176,7 +176,7 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 	/**
 	 * 是否加入群的标识位*
 	 */
-	private boolean isJoinGroup = false;
+	public static boolean isJoinGroup = false;
 
 	/**
 	 * 群的model*
@@ -328,6 +328,10 @@ public class GroupChatFragment extends Fragment implements View.OnClickListener,
 
 			@Override
 			public void afterTextChanged(Editable s) {
+                if (!isJoinGroup) {
+                    ToastUtil.makeShortText("请先加入群再发送消息");
+                    return;
+                }
 				if (!isAlreadyToActivityGroupMembers) {
 					/**监听是否输入了@符号**/
 					String content = s.toString();

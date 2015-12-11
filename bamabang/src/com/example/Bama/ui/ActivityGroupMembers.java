@@ -89,7 +89,7 @@ public class ActivityGroupMembers extends ActivityBase implements View.OnClickLi
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				if(view instanceof GroupMemberItemView){
-					String userId = ((GroupMemberItemView)view).userInfoModel.id;
+					String userId = ((GroupMemberItemView)view).userInfoModel.username;
 					Intent intent = new Intent();
 					intent.putExtra(kUserId, userId);
 					setResult(RESULT_OK, intent);

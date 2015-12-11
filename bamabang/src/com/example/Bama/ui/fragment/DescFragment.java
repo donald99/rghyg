@@ -111,18 +111,20 @@ public class DescFragment extends Fragment implements View.OnClickListener {
                                 public void run() {
                                     add_group.setVisibility(View.GONE);
                                     added_group.setVisibility(View.VISIBLE);
+                                    GroupChatFragment.isJoinGroup = true;
 						        }
-						});
+						    });
                         }
 					} else {
                         if(activity!=null){
                             activity.runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								add_group.setVisibility(View.VISIBLE);
-								added_group.setVisibility(View.GONE);
-						    	}
-						});
+                                @Override
+                                public void run() {
+                                    add_group.setVisibility(View.VISIBLE);
+                                    added_group.setVisibility(View.GONE);
+                                    GroupChatFragment.isJoinGroup = false;
+                                }
+						    });
                         }
 					}
 				} catch (EaseMobException e) {

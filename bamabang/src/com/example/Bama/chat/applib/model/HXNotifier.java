@@ -33,11 +33,10 @@ import com.example.Bama.chat.applib.controller.HXSDKHelper;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-
 /**
- * ����Ϣ����class
- * 2.1.8������Ϣ��ʾ��ص�api�Ƴ��sdk�����㿪���������޸�
- * ������Ҳ���Լ̳д���ʵ����صĽӿ�
+ * 新消息提醒class
+ * 2.1.8把新消息提示相关的api移除出sdk，方便开发者自由修改
+ * 开发者也可以继承此类实现相关的接口
  *
  * this class is subject to be inherited and implement the relative APIs
  */
@@ -48,7 +47,9 @@ public class HXNotifier {
     protected final static String[] msg_eng = { "sent a message", "sent a picture", "sent a voice",
                                                 "sent location message", "sent a video", "sent a file", "%1 contacts sent %2 messages"
                                               };
-    protected final static String[] msg_ch = { "����һ����Ϣ", "����һ��ͼƬ", "����һ������", "����λ����Ϣ", "����һ����Ƶ", "����һ���ļ�","%1����ϵ�˷���%2����Ϣ"};
+    protected final static String[] msg_ch = { "发来一条[消息]", "发来一张[图片]", "发来一段[语音]", "发来位置信息", "发来一个视频", "发来一个文件",
+            "%1个联系人发来%2条消息"
+    };
 
     protected static int notifyID = 0525; // start notification id
     protected static int foregroundNotifyID = 0555;

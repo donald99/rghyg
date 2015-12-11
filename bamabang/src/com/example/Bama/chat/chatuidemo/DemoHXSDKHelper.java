@@ -108,16 +108,12 @@ public class DemoHXSDKHelper extends HXSDKHelper {
                 switch (event.getEvent()) {
                 case EventNewMessage:
                     //应用在后台，不需要刷新UI,通知栏提示新消息
-                    if(ActivityBase.activityList.size() <= 0){
                         HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
-                    }
                     break;
                 case EventOfflineMessage:
-                    if(ActivityBase.activityList.size() <= 0){
                         EMLog.d(TAG, "received offline messages");
                         List<EMMessage> messages = (List<EMMessage>) event.getData();
                         HXSDKHelper.getInstance().getNotifier().onNewMesg(messages);
-                    }
                     break;
                 // below is just giving a example to show a cmd toast, the app should not follow this
                 // so be careful of this
